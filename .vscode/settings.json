@@ -1,0 +1,12 @@
+{
+    "editor.tabSize": 4,
+    "files.encoding": "utf8",
+    "files.associations": {
+        "*.ps1": "powershell",
+        "*.psm1": "powershell",
+        "*.psd1": "powershell"
+    },
+    "[powershell]": {
+        "files.encoding": "utf8bom"
+    }
+}
