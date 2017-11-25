@@ -13,26 +13,33 @@
     The version number to parse for a fix version
 
 .PARAMETER OnlyFixBelowVersion
-    The version to stop adding fix versions to (in case of padding revision number)
+    The version to stop adding fix versions to
+    (in case of padding revision number)
 
 .PARAMETER AppendRevisionLength
-    The number of zeros to append the revision number with, before adding the fix number (defaults to 1).
+    The number of zeros to append the revision number with, before adding the
+    fix number
+    (defaults to 1).
 
 .PARAMETER NuspecFile
-    The nuspec metadata file to parse for the existing version information (defaults to '.\*.nuspec')
+    The nuspec metadata file to parse for the existing version information
+    (defaults to '.\*.nuspec')
 
 .OUTPUTS
-    Will output the full version number with a fix number when a 4-part version have been specified.
+    Will output the full version number with a fix number when a 4-part version
+    have been specified.
 
 .OUTPUTS
     Will append the date to any pre-release versions.
 
 .OUTPUTS
-    Will just return the same version number if no fix is needed, or when the version number isn't a 4-part version.
+    Will just return the same version number if no fix is needed, or when the
+    version number isn't a 4-part version.
 
 .EXAMPLE
-    Get-FixVersion -Version '24.0.0.195'
-    will output '24.0.0.19501' if the nuspec version is equal to '24.0.0.195' or '24.0.0.19500' and $global:au_Force is set to $true
+    Get-FixVersion -Version '24.0.0.195' will output '24.0.0.19501' if the
+    nuspec version is equal to '24.0.0.195' or '24.0.0.19500' and
+    $global:au_Force is set to $true
 
 .EXAMPLE
     Get-FixVersion -Version '5.0-beta'
@@ -114,7 +121,10 @@ function Get-FixVersion() {
 
     if (!($preRelease)) {
         $existingRevision = getExistingRevision -version $Version -existingVersion $existingVersion
-        return appendRevision -version $mainVersion -existingRevision $existingRevision -appendRevisionLength $AppendRevisionLength
+        return appendRevision `
+            -version $mainVersion `
+            -existingRevision $existingRevision `
+            -appendRevisionLength $AppendRevisionLength
     }
     else {
         return ([string]$mainVersion) + $preRelease + "-" + (Get-Date -UFormat "{0:yyyyMMdd}")
