@@ -10,11 +10,10 @@ image:
 init:
 - ps: $PSVersionTable
 install:
-- ps: >-
-    cinst gitversion gitreleasemanager.portable codecov pester transifex-client --no-progress
-
+- ps: |
+    cinst gitversion gitreleasemanager.portable codecov transifex-client --no-progress
+    Install-Module Pester -Scope CurrentUser -Force -SkipPublisherCheck
     $uri = "https://raw.githubusercontent.com/PowerShell/DscResource.Tests/491688867dc53894b92ca53520a18d145deb7760/DscResource.CodeCoverage/CodeCovIo.psm1"
-
     Invoke-WebRequest -Uri $uri -OutFile $env:USERPROFILE\CodeCovIo.psm1
 build_script:
 - ps: |
@@ -24,9 +23,8 @@ build_script:
     $InformationPreference = 'Continue'
     .\build
 test_script:
-- ps: >-
+- ps: |
     Import-Module $env:USERPROFILE\CodeCovIo.psm1
-
     .\test -CodeCoverage -Pester
 artifacts:
 - path: '**\*.nupkg'
