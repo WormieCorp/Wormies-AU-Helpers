@@ -17,7 +17,11 @@ install:
 
     Invoke-WebRequest -Uri $uri -OutFile $env:USERPROFILE\CodeCovIo.psm1
 build_script:
-- ps: .\build
+- ps: >-
+    $VerbosePreference = 'Continue'
+    $DebugPreference = 'Continue'
+    $InformationPreference = 'Continue'
+    .\build
 test_script:
 - ps: >-
     Import-Module $env:USERPROFILE\CodeCovIo.psm1
