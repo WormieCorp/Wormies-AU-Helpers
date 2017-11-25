@@ -6,6 +6,7 @@ param(
     [Parameter(Mandatory = $true)]
     [Version]$Version
 )
+$ErrorActionPreference = "Stop"
 
 $moduleName = Split-Path -Leaf $ModulePath
 

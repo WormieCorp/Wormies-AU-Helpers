@@ -2,6 +2,7 @@
     $docsDirectory,
     $buildDirectory
 )
+$ErrorActionPreference = "Stop"
 
 function AppendSection {
     param(

@@ -4,6 +4,7 @@
     [Parameter(Mandatory = $true)]
     [string]$outDirectory
 )
+$ErrorActionPreference = "Stop"
 
 if (!(Test-Path $scriptFile)) { Write-Warning "File doesn't exist. Skipping..."}
 

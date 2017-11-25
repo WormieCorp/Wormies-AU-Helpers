@@ -1,4 +1,5 @@
 version: '{build}'
+image: 'Visual Studio 2017'
 pull_requests:
   do_not_increment_build_number: true
 skip_branch_with_pr: true
@@ -13,9 +14,6 @@ install:
 build_script:
 - ps: |
     tx init --host="https://www.transifex.com" --token="$env:TRANSIFEX_TOKEN"
-    $VerbosePreference = 'Continue'
-    $DebugPreference = 'Continue'
-    $InformationPreference = 'Continue'
     .\build
 test_script:
 - ps: |
@@ -30,4 +28,4 @@ notifications:
   on_build_failure: true
   on_build_status_changed: true
 on_finish:
-- cmd: codecov
+- cmd: codecov -f coverage.json
