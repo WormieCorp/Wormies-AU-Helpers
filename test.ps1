@@ -25,7 +25,7 @@ if ($Pester) {
             $coverageFile = "$buildDir/coverage.xml"
             $res = Invoke-Pester -OutputFormat NUnitXml -OutputFile $testResultsFile -PassThru -CodeCoverage $files -CodeCoverageOutputFile "$coverageFile"
             (New-Object "System.Net.WebClient").UploadFile("https://ci.appveyor.com/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
-            Export-CodeCovIoJson -CodeCoverage $res.CodeCoverage -RepoRoot $PSScriptRoot -Path "$buildDir/coverage.json"
+            Export-CodeCovIoJson -CodeCoverage $res.CodeCoverage -RepoRoot $PSScriptRoot -Path "$buildDir/coverage.json" | Out-Null
             if ($res.FailedCount -gt 0) {
                 throw "$($res.FailedCount) tests failed"
             }
