@@ -1,0 +1,31 @@
+version: '{build}'
+pull_requests:
+  do_not_increment_build_number: true
+skip_branch_with_pr: true
+image:
+- Visual Studio 2017
+- WMF 5
+install:
+- cmd: >-
+    cinst gitversion gitreleasemanager.portable codecov pester
+
+    $uri = "https://raw.githubusercontent.com/PowerShell/DscResource.Tests/491688867dc53894b92ca53520a18d145deb7760/DscResource.CodeCoverage/CodeCovIo.psm1"
+
+    Invoke-WebRequest -Uri $uri -OutFile $env:USERPROFILE\CodeCovIo.psm1
+build_script:
+- ps: .\build
+test_script:
+- ps: >-
+    Import-Module $env:USERPROFILE\CodeCovIo.psm1
+
+    .\test -CodeCoverage
+artifacts:
+- path: '**\*.nupkg'
+- path: '**\*.zip'
+notifications:
+- provider: GitHubPullRequest
+  on_build_success: false
+  on_build_failure: true
+  on_build_status_changed: true
+on_finish:
+- cmd: codecov
