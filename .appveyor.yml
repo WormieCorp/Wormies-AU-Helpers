@@ -2,11 +2,6 @@ version: '{build}'
 pull_requests:
   do_not_increment_build_number: true
 skip_branch_with_pr: true
-image:
-- WMF 5
-- Visual Studio 2017
-- Visual Studio 2015
-- Visual Studio 2013
 init:
 - ps: $PSVersionTable
 install:
