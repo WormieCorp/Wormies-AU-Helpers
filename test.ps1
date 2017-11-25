@@ -21,7 +21,7 @@ if ($Pester) {
     $testResultsFile = "$buildDir/TestResults.xml"
     if ($CodeCoverage) {
         $files = @(ls $PSScriptRoot/Wormies-AU-Helpers/* -Filter *.ps1 -Recurse | % FullName)
-        if (Test-Path Env:\APPVEYOR -and (Get-Command Export-CodeCovIoJson -ea 0)) {
+        if ((Test-Path Env:\APPVEYOR) -and (Get-Command Export-CodeCovIoJson -ea 0)) {
             $coverageFile = "$buildDir/coverage.xml"
             $res = Invoke-Pester -OutputFormat NUnitXml -OutputFile $testResultsFile -PassThru -CodeCoverage $files -CodeCoverageOutputFile "$coverageFile"
             (New-Object "System.Net.WebClient").UploadFile("https://ci.appveyor.com/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
