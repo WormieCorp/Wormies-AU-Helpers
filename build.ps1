@@ -2,7 +2,8 @@
     [string]$Version = $null,
     [switch]$Install,
     [switch]$Clean,
-    [switch]$NoChocoPackage
+    [switch]$NoChocoPackage,
+    [switch]$PullTranslations
 )
 $ErrorActionPreference = "Stop"
 
@@ -20,7 +21,7 @@ function CreateManifest {
     "Creating module manifest"
     $params = @{
         ModulePath = $modulePath
-        Version    = $Version -split '\-' | select -first 1
+        Version    = $Version -split '\-' | Select-Object -first 1
     }
 
     & $PSScriptRoot/scripts/Create-ModuleManifest.ps1 @params
@@ -28,43 +29,23 @@ function CreateManifest {
 
 function CreateHelp {
     "Creating module help"
+    $helpDir = "$PSScriptRoot/docs/en"
 
-    $helpDir = "$PSScriptRoot/docs/en-US"
-    $buildHelpDir = "$modulePath"
-    mkdir -Force $buildHelpDir | Out-Null
-    mkdir -Force $helpDir | Out-Null
-    $skip = $false
-    Get-Content $PSScriptRoot/README.md -Encoding UTF8 | Select-Object -Skip 4 | ? {
-        if ($_ -match '^\#\# Installation') { $skip = $true}
-        return !$skip
-    } | Set-Content "$helpDir/about_${moduleName}.help.txt" -Encoding Ascii
-
-    Get-ChildItem $modulePath/public -Filter "*.ps1" -Recurse | ForEach-Object {
-        Write-Verbose "Exporting documentation for $($_.BaseName)"
-        $content = Get-Content $_.FullName -Encoding UTF8
-        $startRead = $false
-        $sb = New-Object System.Text.StringBuilder
-        foreach ($line in $content) {
-            if ($line -match "\<#" -and $line -match "AUTHOR") { continue }
-            elseif ($line -match "\<#") { $startRead = $true ; continue }
-            elseif ($line -match "#\>") { break }
-
-            $sb.AppendLine($line) | Out-Null
-        }
-
-        $sb.ToString() | Set-Content "$helpDir/about_$($_.BaseName).help.txt" -Encoding Ascii
+    Get-ChildItem $modulePath/public/*.ps1 -Recurse | ForEach-Object {
+        & $PSScriptRoot/scripts/Extract-Description.ps1 -scriptFile $_.Fullname -outDirectory $helpDir
     }
 
     $helpDir = Split-Path -Parent $helpDir
 
-    Get-ChildItem $helpDir -Filter "*.json" -Recurse | ForEach-Object {
-        $content = Get-Content $_.FullName -Encoding UTF8 | ConvertFrom-Json
-        $dirName = (Split-Path -Parent $_.FullName) -replace ("^" + [regex]::Escape($helpDir) + '(\\|\/)')
-        mkdir -Force "$buildHelpDir/$dirName" | Out-Null
-        Set-Content -Path "$buildHelpDir/$dirName/$($_.BaseName).psd1" -Encoding UTF8 -Value $content
+    if (Test-Path Env:\APPVEYOR) {
+        "& tx push -s" | Invoke-Expression
     }
 
-    Copy-Item -Recurse -Force $helpDir/* $buildHelpDir -Exclude "*.json"
+    if ((Test-Path Env:\APPVEYOR) -or $PullTranslations) {
+        "& tx pull -a --minimum-perc=60" | Invoke-Expression
+    }
+
+    & $PSScriptRoot/scripts/Create-HelpFiles.ps1 -docsDirectory $helpDir -buildDirectory $modulePath
 }
 
 if ($Clean) { git clean -Xfd -e vars.ps1; return }

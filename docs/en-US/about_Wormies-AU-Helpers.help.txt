@@ -1,6 +1,0 @@
-This PowerShell module implements functions that can be used to make maintaining packages with AU even easier.
-
-To Learn more about AU, please refer to their relevant [documentation](https://github.com/majkinetor/au/wiki)
-
-## Features
-- Ability to push out fix versions for both 4-part versions and pre-release versions by calling a single function.
