@@ -17,7 +17,8 @@ install:
 
     Invoke-WebRequest -Uri $uri -OutFile $env:USERPROFILE\CodeCovIo.psm1
 build_script:
-- ps: >-
+- ps: |
+    tx init --host="https://www.transifex.com" --token="$env:TRANSIFEX_TOKEN"
     $VerbosePreference = 'Continue'
     $DebugPreference = 'Continue'
     $InformationPreference = 'Continue'
