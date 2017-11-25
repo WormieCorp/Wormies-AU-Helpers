@@ -7,7 +7,7 @@ image:
 - WMF 5
 install:
 - ps: >-
-    cinst gitversion gitreleasemanager.portable codecov pester
+    cinst gitversion gitreleasemanager.portable codecov pester transifex-client
 
     $uri = "https://raw.githubusercontent.com/PowerShell/DscResource.Tests/491688867dc53894b92ca53520a18d145deb7760/DscResource.CodeCoverage/CodeCovIo.psm1"
 
