@@ -67,7 +67,7 @@ if (!$Version) {
 $modulePath = "$PSScriptRoot/Wormies-AU-Helpers"
 $moduleName = Split-Path -Leaf $modulePath
 $buildDir = "$PSScriptRoot/.build/$version"
-#$installerPath = "$PSScriptRoot/install.ps1"
+$installerPath = "$PSScriptRoot/install.ps1"
 $removeOld = $true
 
 "`n==| Building $moduleName $version`n"

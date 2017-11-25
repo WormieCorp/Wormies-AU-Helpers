@@ -5,9 +5,13 @@ skip_branch_with_pr: true
 image:
 - Visual Studio 2017
 - WMF 5
+- Visual Studio 2015
+- Visual Studio 2013
+init:
+- ps: $PSVersionTable
 install:
 - ps: >-
-    cinst gitversion gitreleasemanager.portable codecov pester transifex-client
+    cinst gitversion gitreleasemanager.portable codecov pester transifex-client --no-progress
 
     $uri = "https://raw.githubusercontent.com/PowerShell/DscResource.Tests/491688867dc53894b92ca53520a18d145deb7760/DscResource.CodeCoverage/CodeCovIo.psm1"
 
