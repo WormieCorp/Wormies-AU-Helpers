@@ -32,9 +32,15 @@ function CreateHelp {
     $helpDir = "$PSScriptRoot/docs/en-US"
     $buildHelpDir = "$modulePath"
     mkdir -Force $buildHelpDir | Out-Null
-    Get-Content $PSScriptRoot/README.md -Encoding UTF8 | Select-Object -Skip 4 | Set-Content "$helpDir/about_${module_name}.help.txt" -Encoding Ascii
+    mkdir -Force $helpDir | Out-Null
+    $skip = $false
+    Get-Content $PSScriptRoot/README.md -Encoding UTF8 | Select-Object -Skip 4 | ? {
+        if ($_ -match '^\#\# Installation') { $skip = $true}
+        return !$skip
+    } | Set-Content "$helpDir/about_${moduleName}.help.txt" -Encoding Ascii
 
     Get-ChildItem $modulePath/public -Filter "*.ps1" -Recurse | ForEach-Object {
+        Write-Verbose "Exporting documentation for $($_.BaseName)"
         $content = Get-Content $_.FullName -Encoding UTF8
         $startRead = $false
         $sb = New-Object System.Text.StringBuilder
