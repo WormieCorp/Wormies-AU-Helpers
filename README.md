@@ -1,4 +1,4 @@
-[![build](https://ci.appveyor.com/api/projects/status/github/admiringworm/wormies-au-helpers?svg=true)](https://ci.appveyor.com/project/admiringWorm/wormies-au-helpers) [![license](https://img.shields.io/github/license/AdmiringWorm/Wormies-AU-Helpers.svg)](https://github.com/AdmiringWorm/Wormies-AU-Helpers/blob/master/license.txt)
+[![build](https://ci.appveyor.com/api/projects/status/github/admiringworm/wormies-au-helpers?svg=true)](https://ci.appveyor.com/project/admiringWorm/wormies-au-helpers) [![license](https://img.shields.io/github/license/AdmiringWorm/Wormies-AU-Helpers.svg)](https://github.com/AdmiringWorm/Wormies-AU-Helpers/blob/master/LICENSE)
 
 # Chocolatey Automatic Package Updater Helper Module
 

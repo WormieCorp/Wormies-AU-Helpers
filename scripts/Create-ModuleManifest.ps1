@@ -27,7 +27,7 @@ $params = @{
     Description       = "Helper scripts to make updating packages with AU even easier"
     HelpInfoURI       = "https://github.com/AdmiringWorm/wormies-au-helpers/blob/master/README.md"
     Tags              = "chocolatey", "au", "update"
-    LicenseUri        = "https://github.com/AdmiringWorm/wormies-au-helpers/blob/master/LICENSE.txt"
+    LicenseUri        = "https://github.com/AdmiringWorm/wormies-au-helpers/blob/master/LICENSE"
     ReleaseNotes      = "https://github.com/AdmiringWorm/wormies-au-helpers/releases/tag/$Version"
     ProjectUri        = "https://github.com/AdmiringWorm/wormies-au-helpers"
 
