@@ -32,7 +32,7 @@
 
 .EXAMPLE
     Get-FixVersion -Version '24.0.0.195'
-    will output '24.0.0.19501' if the nuspec version is equal to '24.0.0.195' or '24.0.0.19500' and force is used
+    will output '24.0.0.19501' if the nuspec version is equal to '24.0.0.195' or '24.0.0.19500' and $global:au_Force is set to $true
 
 .EXAMPLE
     Get-FixVersion -Version '5.0-beta'
