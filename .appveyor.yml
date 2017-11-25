@@ -22,7 +22,7 @@ test_script:
 - ps: >-
     Import-Module $env:USERPROFILE\CodeCovIo.psm1
 
-    .\test -CodeCoverage
+    .\test -CodeCoverage -Pester
 artifacts:
 - path: '**\*.nupkg'
 - path: '**\*.zip'
