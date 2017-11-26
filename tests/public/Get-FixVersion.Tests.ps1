@@ -20,6 +20,7 @@ Describe 'Get-FixVersion' {
         Get-FixVersion -Version "0.3.2-pre" -OnlyFixBelowVersion "0.3.1" -NuspecFile $nuspecFile | Should Be "0.3.2-pre"
         Get-FixVersion -Version "0.3.2" -OnlyFixBelowVersion "0.3.2-rc100" -NuspecFile $nuspecFile | Should Be "0.3.2"
         Get-FixVersion -Version "1.0.3-beta2" -OnlyFixBelowVersion "1.0.3-alpha100" -NuspecFile $nuspecFile | Should Be "1.0.3-beta2"
+        Get-FixVersion -Version "3.0.2.6" -OnlyFixBelowVersion "3.0.2.6-beta1" -NuspecFile $nuspecFile | Should Be "3.0.2.6"
     }
 
     It "Throws exception when the passed version is invalid" {
