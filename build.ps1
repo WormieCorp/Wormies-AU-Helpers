@@ -59,6 +59,13 @@ function ZipModule {
     if (!(Test-Path $zipPath)) { throw "Failed to build 7z package" }
 }
 
+function BuildChocolateyPackage {
+    if ($NoChocoPackage) { "Skipping chocolatey package build"; return }
+
+    & $PSScriptRoot/chocolatey/Build-Package.ps1
+    Move-Item "$PSScriptRoot/chocolatey/${moduleName}.${version}.nupkg" $buildDir
+}
+
 if ($Clean) { git clean -Xfd -e vars.ps1; return }
 if (!$Version) {
     Write-Verbose "Finding installed GitVersion executable"
@@ -90,3 +97,4 @@ CreateHelp
 
 Copy-Item $installerPath $buildDir
 ZipModule
+BuildChocolateyPackage

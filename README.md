@@ -8,6 +8,7 @@ To Learn more about AU, please refer to their relevant [documentation](https://g
 
 ## Features
 - Ability to push out fix versions for both 4-part versions and pre-release versions by calling a single function.
+- Ability to easily get the url that is being redirected to.
 
 ## Installation
 

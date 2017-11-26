@@ -33,3 +33,6 @@ docs/
 
 # We don't want to check in the transifex configuration directory
 .tx/
+
+# We want to force any changes to this directory
+chocolatey/
