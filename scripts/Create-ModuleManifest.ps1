@@ -40,7 +40,7 @@ $params = @{
     Path              = "$modulePath/$moduleName.psd1"
     RootModule        = "$moduleName.psm1"
 
-    RequiredModules   = @('AU')
+    RequiredModules   = @()
 }
 
 New-ModuleManifest @params
