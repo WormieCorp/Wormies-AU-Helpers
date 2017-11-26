@@ -18,20 +18,28 @@ The value to update with.
 The metadata/nuspec file to update
 
 .EXAMPLE
-`Update-Metadata -key releaseNotes -value "https://github.com/majkinetor/AU/releases/latest"`
+Update-Metadata -key releaseNotes -value "https://github.com/majkinetor/AU/releases/latest"
 
 .EXAMPLE
-`Update-Metadata -key releaseNotes -value "https://github.com/majkinetor/AU/releases/latest" -NuspecFile ".\package.nuspec"`
+Update-Metadata -key releaseNotes -value "https://github.com/majkinetor/AU/releases/latest" -NuspecFile ".\package.nuspec"
+
+.EXAMPLE
+Update-Metadata -data @{ title = 'My Awesome Title' }
+
+.EXAMPLE
+@{ title = 'My Awesome Title' } | Update-Metadata
 
 .NOTES
 Will throw an exception if the specified key doesn't exist in the nuspec file.
 #>
 function Update-Metadata {
     param(
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, ParameterSetName = "Single")]
         [string]$key,
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, ParameterSetName = "Single")]
         [string]$value,
+        [Parameter(Mandatory = $true, ParameterSetName = "Multiple", ValueFromPipeline = $true)]
+        [hashtable]$data = @{$key = $value},
         [ValidateScript( { Test-Path $_ })]
         [string]$NuspecFile = ".\*.nuspec"
     )
@@ -41,11 +49,14 @@ function Update-Metadata {
     $nu = New-Object xml
     $nu.PSBase.PreserveWhitespace = $true
     $nu.Load($NuspecFile)
-    if ($nu.package.metadata."$key") {
-        $nu.package.metadata."$key" = "$value"
+    $data.Keys | % {
+        if ($nu.package.metadata."$_") {
+            $nu.package.metadata."$_" = $data[$_]
+        }
+        else {
+            throw "$_ does not exist on the metadata element in the nuspec file"
+        }
     }
-    else {
-        throw "$key does not exist on the metadata element in the nuspec file"
-    }
+
     $nu.Save($NuspecFile)
 }
