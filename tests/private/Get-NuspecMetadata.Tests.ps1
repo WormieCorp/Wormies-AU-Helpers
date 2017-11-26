@@ -8,5 +8,11 @@ Describe "Parsing" {
             $data.id | Should Be "ValidNuspec"
             $data.version | Should Be "1.0.3"
         }
+
+        It "Should resolve the correct nuspec file when using globbing pattern" {
+            $data = Get-NuspecMetadata -nuspecFile "$PSScriptRoot\*.nuspec"
+            $data.id | Should Be "ValidNuspec"
+            $data.version | Should Be "1.0.3"
+        }
     }
 }
