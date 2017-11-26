@@ -25,7 +25,8 @@ if ($Pester) {
         $files = @(ls $PSScriptRoot/Wormies-AU-Helpers/* -Filter *.ps1 -Recurse | % FullName)
         if ((Test-Path Env:\APPVEYOR) -and (Get-Command Export-CodeCovIoJson -ea 0)) {
             $res = Invoke-Pester -OutputFormat NUnitXml -OutputFile $testResultsFile -PassThru -CodeCoverage $files -CodeCoverageOutputFile "coverage.xml"
-            (New-Object "System.Net.WebClient").UploadFile("https://ci.appveyor.com/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
+            $wc = New-Object 'System.Net.WebClient'
+            $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
             Export-CodeCovIoJson -CodeCoverage $res.CodeCoverage -RepoRoot $PSScriptRoot -Path "coverage.json" | Out-Null
             if ($res.FailedCount -gt 0) {
                 throw "$($res.FailedCount) tests failed"
