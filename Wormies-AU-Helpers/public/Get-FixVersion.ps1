@@ -73,12 +73,18 @@ function Get-FixVersion() {
     function getExistingRevision {
         param($version, $existingVersion)
 
-        $revision = $version -replace "^$existingVersion"
-        if ($revision -match '^\d+$') {
+        $revision = $existingVersion -replace "^$version"
+        if ($revision -match '^\d+$' -and $global:au_Force -eq $true) {
             return [int]$revision
         }
-        else {
+        elseif ($revision -match "^\d+$") {
+            return ([int]$revision) - 1
+        }
+        elseif ($version -eq $existingVersion) {
             return 0
+        }
+        else {
+            return -1
         }
     }
 
