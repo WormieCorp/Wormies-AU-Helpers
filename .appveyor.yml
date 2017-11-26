@@ -18,7 +18,7 @@ build_script:
 test_script:
 - ps: |
     Import-Module $env:USERPROFILE\CodeCovIo.psm1
-    .\test -CodeCoverage -Pester
+    .\test -CodeCoverage
 artifacts:
 - path: '**\*.nupkg'
 - path: '**\*.7z'
