@@ -15,7 +15,7 @@ install:
 - ps: Get-Module AU -ListAvailable | select -First 1 | % { $_.Version.ToString() }
 - choco --version
 - codecov --version
-- gitreleasemanager --version
+- gitreleasemanager --version && exit 0
 - ps: Get-Module Pester -ListAvailable | select -First 1 | % { $_.Version.ToString() }
 - tx --version
 build_script:
@@ -36,7 +36,6 @@ notifications:
   on_build_status_changed: true
 on_success:
 - ps: .\publish.ps1
-on_finish:
 - cmd: codecov -f coverage.json
 
 cache: docs
