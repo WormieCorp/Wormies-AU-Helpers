@@ -21,7 +21,7 @@ test_script:
     .\test -CodeCoverage -Pester
 artifacts:
 - path: '**\*.nupkg'
-- path: '**\*.zip'
+- path: '**\*.7z'
 notifications:
 - provider: GitHubPullRequest
   on_build_success: false

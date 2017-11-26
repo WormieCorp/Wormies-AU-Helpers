@@ -48,6 +48,17 @@ function CreateHelp {
     & $PSScriptRoot/scripts/Create-HelpFiles.ps1 -docsDirectory $helpDir -buildDirectory $modulePath
 }
 
+function ZipModule {
+    "Creating 7z package"
+
+    $zipPath = "$buildDir/${moduleName}_$version.7z"
+    $exec = Get-Command "7z.exe" -ErrorAction Ignore | ForEach-Object Source
+    if (!$exec) { $exec = "$Env:ChocolateyInstall/tools/7z.exe" }
+
+    "& '$exec' a -m0=lzma2 -mx=9 '$zipPath' '$modulePath' '$installerPath'" | Invoke-Expression
+    if (!(Test-Path $zipPath)) { throw "Failed to build 7z package" }
+}
+
 if ($Clean) { git clean -Xfd -e vars.ps1; return }
 if (!$Version) {
     Write-Verbose "Finding installed GitVersion executable"
@@ -76,3 +87,6 @@ init
 $modulePath = "$buildDir/$moduleName"
 CreateManifest
 CreateHelp
+
+Copy-Item $installerPath $buildDir
+ZipModule
