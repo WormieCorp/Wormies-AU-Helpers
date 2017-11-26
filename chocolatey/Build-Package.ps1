@@ -28,7 +28,12 @@ $nuspecBuildPath = $nuspecPath -replace "\.nuspec$", "_build.nuspec"
 $description = $au.package.metadata.summary + ".`n`n" + $features
 $au.package.metadata.version = $version
 $au.package.metadata.description = $description
-$au.package.metadata.releaseNotes = "https://github.com/majkinetor/au/releases/tag/" + $version
+if (Test-Path "$PSScriptRoot/CHANGELOG.md") {
+    $au.package.metadata.releaseNotes = Get-Content "$PSScriptRoot/CHANGELOG.md" -Encoding UTF8
+}
+else {
+    $au.package.metadata.releaseNotes = "https://github.com/majkinetor/au/releases/tag/" + $version
+}
 $au.Save($nuspecBuildPath)
 
 "Copying module"
