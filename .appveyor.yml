@@ -38,3 +38,5 @@ on_success:
 - ps: .\publish.ps1
 on_finish:
 - cmd: codecov -f coverage.json
+
+cache: docs
