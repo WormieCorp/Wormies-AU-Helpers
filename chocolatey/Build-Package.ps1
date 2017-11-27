@@ -36,9 +36,9 @@ else {
 }
 $au.Save($nuspecBuildPath)
 
-"Copying module"
-Copy-Item -Force -Recurse $modulePath $PSScriptRoot/tools
-Copy-Item $PSScriptRoot/../install.ps1 $PSScriptRoot/tools
+"Copying 7z archive"
+$archive = Get-ChildItem "$buildPath/$version/*${version}.7z" | % FullName
+Copy-Item $archive $PSScriptRoot/tools/Wormies-AU-Helpers.7z
 
 Remove-Item $PSScriptRoot/*.nupkg
 choco pack -r $nuspecBuildPath --outputdirectory $PSScriptRoot
