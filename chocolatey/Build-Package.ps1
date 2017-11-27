@@ -23,22 +23,41 @@ if (!$res) { throw "Can't find markdown header 'Features' in the README.md" }
 
 $features = $Matches[0]
 "Updating nuspec file"
+$repo = git remote get-url origin | % { $_ -replace '\.git$' }
 $nuspecBuildPath = $nuspecPath -replace "\.nuspec$", "_build.nuspec"
 [xml]$au = Get-Content $nuspecPath -Encoding UTF8
 $description = $au.package.metadata.summary + ".`n`n" + $features
 $au.package.metadata.version = $version
 $au.package.metadata.description = $description
+$au.package.metadata.licenseUrl = "${repo}/blob/develop/LICENSE"
+$au.package.metadata.projectUrl = $repo
+$au.package.metadata.projectSourceUrl = $repo
+$au.package.metadata.bugTrackerUrl = "${repo}/issues"
+$au.package.metadata.docsUrl = "${repo}/wiki"
+$au.package.metadata.packageSourceUrl = "${repo}/tree/develop/chocolatey"
+
 if (Test-Path "$PSScriptRoot/CHANGELOG.md") {
     $au.package.metadata.releaseNotes = Get-Content "$PSScriptRoot/CHANGELOG.md" -Encoding UTF8
 }
 else {
-    $au.package.metadata.releaseNotes = "https://github.com/majkinetor/au/releases/tag/" + $version
+    $au.package.metadata.releaseNotes = "$repo/releases/tag/" + $version
 }
 $au.Save($nuspecBuildPath)
 
 "Copying 7z archive"
 $archive = Get-ChildItem "$buildPath/$version/*${version}.7z" | % FullName
 Copy-Item $archive $PSScriptRoot/tools/Wormies-AU-Helpers.7z
+Copy-Item $PSScriptRoot/../LICENSE $PSScriptRoot/legal/LICENSE.txt
+
+$checksum = Get-FileHash $archive -Algorithm SHA256 | % Hash
+
+$content = Get-Content $PSScriptRoot/legal/VERIFICATION.txt -Encoding UTF8 | % {
+    $_ -replace "\<.*\/tag\/[^\>]*\>", "<$repo/releases/tag/${version}>" `
+        -replace "(checksum\:).*", "`${1} ${checksum}" `
+        -replace "\<.*LICENSE\>", "<$($au.package.metadata.licenseUrl)>"
+}
+
+$content | Out-File $PSScriptRoot/legal/VERIFICATION.txt -Encoding utf8
 
 Remove-Item $PSScriptRoot/*.nupkg
 choco pack -r $nuspecBuildPath --outputdirectory $PSScriptRoot

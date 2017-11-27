@@ -25,6 +25,6 @@
     </metadata>
     <files>
       <file src="tools\**" target="tools" />
-      <file src="..\LICENSE" target="legal\LICENSE.txt" />
+      <file src="legal\**" target="legal" />
     </files>
 </package>
