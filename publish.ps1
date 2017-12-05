@@ -68,8 +68,6 @@ elseif ($isMainBranch -and !$isPullRequest) {
 
 if ($isTaggedBuild) {
     & $PSScriptRoot/scripts/Generate-MarkdownDocs.ps1 -PathToModule $modulePath
-    Push-Location $PSScriptRoot/docs
-    Pop-Location
     Publish-PSGallery
     Publish-MyGet
     Publish-Chocolatey
@@ -78,5 +76,6 @@ elseif (!$isMainBranch -and !$isPullRequest) {
     Publish-MyGet
 }
 
-
+Push-Location $PSScriptRoot/docs
 & $PSScriptRoot/docs/build.ps1 -Target AppVeyor
+Pop-Location
