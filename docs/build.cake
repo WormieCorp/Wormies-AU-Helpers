@@ -10,6 +10,7 @@ BuildParameters.SetParameters(
     buildSystem: BuildSystem,
     title: "Wormies-AU-Helpers",
     repositoryOwner: "WormieCorp",
+    repositoryName: "Wormies-AU-Helpers",
     appVeyorAccountName: "AdmiringWorm",
     wyamRecipe: "Docs",
     wyamTheme: "Samson",
