@@ -77,5 +77,5 @@ elseif (!$isMainBranch -and !$isPullRequest) {
 }
 
 Push-Location $PSScriptRoot/docs
-& $PSScriptRoot/docs/build.ps1 -Target AppVeyor
+& $PSScriptRoot/docs/build.ps1 -Target AppVeyor -Verbosity Diagnostic
 Pop-Location
