@@ -8,14 +8,13 @@ init:
 install:
 - ps: |
     cinst powershell -n --no-progress
-    cinst gitversion gitreleasemanager.portable codecov transifex-client au --no-progress
+    cinst gitversion gitreleasemanager.portable codecov au --no-progress
     Install-Module Pester -Scope CurrentUser -Force -SkipPublisherCheck
     $uri = "https://raw.githubusercontent.com/PowerShell/DscResource.Tests/491688867dc53894b92ca53520a18d145deb7760/DscResource.CodeCoverage/CodeCovIo.psm1"
     Invoke-WebRequest -Uri $uri -OutFile $env:USERPROFILE\CodeCovIo.psm1
 - ps: Get-Module Pester -ListAvailable | select -First 1 | % { $_.Version.ToString() }
 build_script:
 - ps: |
-    tx init --host="https://www.transifex.com" --token="$env:TRANSIFEX_TOKEN"
     .\build -BuildDocs
 test_script:
 - ps: |
