@@ -16,7 +16,7 @@ install:
 build_script:
 - ps: |
     tx init --host="https://www.transifex.com" --token="$env:TRANSIFEX_TOKEN"
-    .\build
+    .\build -BuildDocs
 test_script:
 - ps: |
     Import-Module $env:USERPROFILE\CodeCovIo.psm1
@@ -33,4 +33,6 @@ on_success:
 - ps: .\publish.ps1
 - cmd: codecov -f coverage.json
 
-cache: docs
+cache:
+- docs/input/docs/functions
+- docs/tools->docs/tools/packages.config

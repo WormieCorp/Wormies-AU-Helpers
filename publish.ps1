@@ -3,7 +3,7 @@
 $ErrorActionPreference = 'Stop'
 
 function Test-Var {
-    $input | % { if (!(Test-Path Env:$_)) { throw "Environment Variable $_ must be set" }}
+    $input | ForEach-Object { if (!(Test-Path Env:$_)) { throw "Environment Variable $_ must be set" }}
 
     $params = @{
         Path = $modulePath
@@ -67,6 +67,10 @@ elseif ($isMainBranch -and !$isPullRequest) {
 & $PSScriptRoot/chocolatey/Build-Package.ps1
 
 if ($isTaggedBuild) {
+    & $PSScriptRoot/scripts/Generate-MarkdownDocs.ps1 -PathToModule $modulePath
+    Push-Location $PSScriptRoot/docs
+    & $PSScriptRoot/docs/build.ps1 -Target AppVeyor
+    Pop-Location
     Publish-PSGallery
     Publish-MyGet
     Publish-Chocolatey

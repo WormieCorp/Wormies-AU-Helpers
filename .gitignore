@@ -29,7 +29,6 @@ $RECYCLE.BIN/
 
 # Ignore build folder
 .build/
-docs/
 
 # We don't want to check in the transifex configuration directory
 .tx/

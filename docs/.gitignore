@@ -1,0 +1,7 @@
+*.exe
+tools/*
+!tools/packages.config
+
+input/docs/functions/*
+!input/docs/functions/README.txt
+BuildArtifacts/

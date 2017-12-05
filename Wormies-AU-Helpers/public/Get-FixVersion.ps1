@@ -37,13 +37,19 @@
     version number isn't a 4-part version.
 
 .EXAMPLE
-    Get-FixVersion -Version '24.0.0.195' will output '24.0.0.19501' if the
-    nuspec version is equal to '24.0.0.195' or '24.0.0.19500' and
-    $global:au_Force is set to $true
+    Get-FixVersion -Version '24.0.0.195'
+
+    will output `24.0.0.19501` if the
+    nuspec version is equal to `24.0.0.195` or `24.0.0.19500` and
+    `$global:au_Force` is set to `$true`
 
 .EXAMPLE
     Get-FixVersion -Version '5.0-beta'
-    will output '5.0-beta-20171123' (the current date)
+
+    will output `5.0-beta-20171123` (the current date)
+
+.LINK
+    https://wormiecorp.github.io/docs/functions/get-fixversion
 #>
 function Get-FixVersion() {
     param(
