@@ -27,27 +27,6 @@ function CreateManifest {
     & $PSScriptRoot/scripts/Create-ModuleManifest.ps1 @params
 }
 
-function CreateHelp {
-    "Creating module help"
-    $helpDir = "$PSScriptRoot/docs/en"
-
-    Get-ChildItem $modulePath/public/*.ps1 -Recurse | ForEach-Object {
-        & $PSScriptRoot/scripts/Extract-Description.ps1 -scriptFile $_.Fullname -outDirectory $helpDir
-    }
-
-    $helpDir = Split-Path -Parent $helpDir
-
-    if (Test-Path Env:\APPVEYOR) {
-        "& tx push -s" | Invoke-Expression
-    }
-
-    if ((Test-Path Env:\APPVEYOR) -or $PullTranslations) {
-        "& tx pull -a --minimum-perc=60" | Invoke-Expression
-    }
-
-    & $PSScriptRoot/scripts/Create-HelpFiles.ps1 -docsDirectory $helpDir -buildDirectory $modulePath
-}
-
 function ZipModule {
     "Creating 7z package"
 
@@ -93,7 +72,6 @@ init
 
 $modulePath = "$buildDir/$moduleName"
 CreateManifest
-CreateHelp
 
 Copy-Item $installerPath $buildDir
 ZipModule
