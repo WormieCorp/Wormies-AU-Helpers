@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<link rel="self" href="http://wormiecorp.github.io/wormies-au-helpers" />
-	<id>http://wormiecorp.github.io/wormies-au-helpers</id>
+	<link rel="self" href="http://wormiecorp.github.io/Wormies-AU-Helpers" />
+	<id>http://wormiecorp.github.io/Wormies-AU-Helpers</id>
 	<title>Wormies-AU-Helpers</title>
 	<rights>2017</rights>
-	<updated>2017-12-05T16:11:55Z</updated>
+	<updated>2017-12-05T16:13:59Z</updated>
 </feed>
