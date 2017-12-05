@@ -51,7 +51,7 @@ $modulePath = "$buildDir/$moduleName"
 Write-Information "Version found: $Version"
 
 $isMainBranch = $Env:APPEYOR_REPO_BRANCH -eq "master"
-$isMainRepo = $Env:APPVEYOR_REPO_NAME -eq "AdmiringWorm/Wormies-AU-Helpers"
+$isMainRepo = $Env:APPVEYOR_REPO_NAME -eq "WormieCorp/Wormies-AU-Helpers"
 $isTaggedBuild = $Env:APPVEYOR_REPO_TAG -eq "true"
 $isPullRequest = ![string]::IsNullOrWhiteSpace($Env:APPVEYOR_PULL_REQUEST_NUMBER)
 

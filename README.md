@@ -1,4 +1,4 @@
-[![build](https://ci.appveyor.com/api/projects/status/github/admiringworm/wormies-au-helpers?svg=true)](https://ci.appveyor.com/project/admiringWorm/wormies-au-helpers) [![license](https://img.shields.io/github/license/AdmiringWorm/Wormies-AU-Helpers.svg)](https://github.com/AdmiringWorm/Wormies-AU-Helpers/blob/master/LICENSE)
+[![build](https://ci.appveyor.com/api/projects/status/github/admiringworm/wormies-au-helpers?svg=true)](https://ci.appveyor.com/project/admiringWorm/wormies-au-helpers) [![license](https://img.shields.io/github/license/WormieCorp/Wormies-AU-Helpers.svg)](https://github.com/WormieCorp/Wormies-AU-Helpers/blob/master/LICENSE)
 
 # Chocolatey Automatic Package Updater Helper Module
 
@@ -19,4 +19,4 @@ To install it, use one of the following methods:
 - PowerShell Gallery: [`Install-Module wormies-au-helpers`](https://www.powershellgallery.com/packages/Wormies-AU-Helpers)
 - Chocolatey: [`choco install wormies-au-helpers`](https://chocolatey.org/packages/wormies-au-helpers)
 - MyGet: [`choco install wormies-au-helpers --source https://www.myget.org/F/wormie-nugets --pre`](https://www.myget.org/feed/wormie-nugets/package/nuget/wormies-au-helpers)
-- [Download](https://com/majkinetor/au/releases/latest) latest 7z package, or latest build [artifact](https://ci.appveyor.com/project/admiringworm/wormies-au-helpers/build/artifacts)
+- [Download](https://com/WormieCorp/Wormies-AU-Helpers/releases/latest) latest 7z package, or latest build [artifact](https://ci.appveyor.com/project/admiringworm/wormies-au-helpers/build/artifacts)

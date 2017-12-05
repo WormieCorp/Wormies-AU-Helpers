@@ -5,10 +5,10 @@ in verifying that this package's contents are trustworthy.
 This package is being officially supplied by the software author of these scripts (Kim J. Nordmo)
 
 The included binary file can be downloaded from our releases page located at
-<https://github.com/AdmiringWorm/Wormies-AU-Helpers/releases/tag/>
+<https://github.com/WormieCorp/Wormies-AU-Helpers/releases/tag/>
 
 and should match the following
 sha256 checksum:
 
 The file 'License.txt' is also available in the repository at
-<https://github.com/AdmiringWorm/Wormies-AU-Helpers/blob/develop/LICENSE>
+<https://github.com/WormieCorp/Wormies-AU-Helpers/blob/develop/LICENSE>
