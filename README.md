@@ -1,4 +1,4 @@
-[![build](https://ci.appveyor.com/api/projects/status/github/admiringworm/wormies-au-helpers?svg=true)](https://ci.appveyor.com/project/admiringWorm/wormies-au-helpers) [![license](https://img.shields.io/github/license/WormieCorp/Wormies-AU-Helpers.svg)](https://github.com/WormieCorp/Wormies-AU-Helpers/blob/master/LICENSE)
+[![Build status](https://ci.appveyor.com/api/projects/status/6xm2ci85fnpxf8g2?svg=true)](https://ci.appveyor.com/project/AdmiringWorm/wormies-au-helpers) [![license](https://img.shields.io/github/license/WormieCorp/Wormies-AU-Helpers.svg)](https://github.com/WormieCorp/Wormies-AU-Helpers/blob/master/LICENSE)
 
 # Chocolatey Automatic Package Updater Helper Module
 
@@ -10,6 +10,9 @@ To Learn more about AU, please refer to their relevant [documentation](https://g
 - Ability to push out fix versions for both 4-part versions and pre-release versions by calling a single function.
 - Ability to easily get the url that is being redirected to.
 - Ability to update either a single or multiple metadata elements
+
+Please read our documentation for an overall view of the functions available:
+<https://wormiecorp.github.io/Wormies-AU-Helpers/docs/>
 
 ## Installation
 
