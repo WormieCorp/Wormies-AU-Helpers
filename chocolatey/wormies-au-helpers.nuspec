@@ -9,13 +9,13 @@
         <owners>Kim J. Nordmo</owners>
         <summary>Wormies AU Helpers is a collection of scripts to help packaging using AU even easier.</summary>
         <description></description>
-        <projectUrl>https://github.com/WormieCorp/Wormies-AU-Helpers</projectUrl>
-        <tags>admin powershell module package helpers chocolatey au</tags>
+        <projectUrl>https://wormiecorp.github.io/Wormies-AU-Helpers/</projectUrl>
+        <tags>admin powershell module package helpers au</tags>
         <copyright>Copyright (C) 2017-Present - Kim J. Nordmo</copyright>
         <licenseUrl>https://github.com/WormieCorp/Wormies-AU-Helpers/blob/master/LICENSE</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <releaseNotes></releaseNotes>
-        <docsUrl>https://github.com/WormieCorp/Wormies-AU-Helpers/wiki</docsUrl>
+        <docsUrl>https://wormiecorp.github.io/Wormies-AU-Helpers/docs</docsUrl>
         <bugTrackerUrl>https://github.com/WormieCorp/Wormies-AU-Helpers/issues</bugTrackerUrl>
         <projectSourceUrl>https://github.com/WormieCorp/Wormies-AU-Helpers</projectSourceUrl>
         <packageSourceUrl>https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/chocolatey</packageSourceUrl>
