@@ -98,6 +98,8 @@ function Get-FixVersion() {
         return $Version
     }
 
+    $NuspecFile = Resolve-Path $NuspecFile
+
     $existingVersion = Get-NuspecMetadata -nuspecFile $NuspecFile | ForEach-Object version
 
     if ($existingVersion -eq $Version -and $global:au_Force -ne $true) {
