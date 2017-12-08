@@ -37,7 +37,8 @@ $au.package.metadata.docsUrl = "${repo}/wiki"
 $au.package.metadata.packageSourceUrl = "${repo}/tree/develop/chocolatey"
 
 if (Test-Path "$PSScriptRoot/CHANGELOG.md") {
-    $au.package.metadata.releaseNotes = Get-Content "$PSScriptRoot/CHANGELOG.md" -Encoding UTF8
+    [string]$changelog = Get-Content "$PSScriptRoot/CHANGELOG.md" -Encoding UTF8 | Out-String
+    $au.package.metadata.releaseNotes = $changelog
 }
 else {
     $au.package.metadata.releaseNotes = "$repo/releases/tag/" + $version
