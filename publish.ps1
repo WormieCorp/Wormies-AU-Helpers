@@ -48,12 +48,16 @@ $Version = $cmd | Invoke-Expression
 $buildDir = "$PSScriptRoot/.build/$Version"
 $moduleName = ".\Wormies-AU-Helpers"
 $modulePath = "$buildDir/$moduleName"
-Write-Information "Version found: $Version"
 
 $isMainBranch = $Env:APPVEYOR_REPO_BRANCH -eq "master"
 $isMainRepo = $Env:APPVEYOR_REPO_NAME -eq "WormieCorp/Wormies-AU-Helpers"
 $isTaggedBuild = $Env:APPVEYOR_REPO_TAG -eq "true"
 $isPullRequest = ![string]::IsNullOrWhiteSpace($Env:APPVEYOR_PULL_REQUEST_NUMBER)
+Write-Information "Version found: $Version"
+Write-Information "  Branch used: $isMainBranch"
+Write-Information "    Main Repo: $isMainRepo"
+Write-Information " Tagged Build: $isTaggedBuild"
+Write-Information " Pull Request: $isPullRequest"
 
 if (!$isMainRepo) { Write-Warning "Not running on the main repository, skipping"; return }
 
