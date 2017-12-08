@@ -65,6 +65,11 @@ elseif ($isMainBranch -and !$isPullRequest) {
 }
 
 & $PSScriptRoot/chocolatey/Build-Package.ps1
+$msg = $env:APPVEYOR_REPO_COMMIT_MESSAGE + $env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED
+
+if (!$isTaggedBuild -and !$isPullRequest -and $msg -match ".*force[\- ]*docs") {
+    & $PSScriptRoot/scripts/Generate-MarkdownDocs.ps1 -PathToModule $modulePath
+}
 
 if ($isTaggedBuild) {
     & $PSScriptRoot/scripts/Generate-MarkdownDocs.ps1 -PathToModule $modulePath
