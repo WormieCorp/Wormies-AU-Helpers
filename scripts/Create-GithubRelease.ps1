@@ -28,7 +28,7 @@ $assets | % { "  - " + (Split-Path -Leaf $_) }
 if ($publishRelease) {
     $args = $args -replace '\-t', '-m'
     "Closing $version milestone"
-    "& '$gitReleaseManager close $args" | Invoke-Expression
+    "& '$gitReleaseManager' close $args" | Invoke-Expression
     $args = $args -replace '\-m', '-t'
     "Publishing $version release"
     "& '$gitReleaseManager' publish $args" | Invoke-Expression
