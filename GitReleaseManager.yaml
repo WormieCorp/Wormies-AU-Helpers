@@ -18,3 +18,4 @@ issue-labels-include:
 - Documentation
 issue-labels-exclude:
 - Build
+- Epic
