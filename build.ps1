@@ -42,7 +42,7 @@ function BuildChocolateyPackage {
     if ($NoChocoPackage) { "Skipping chocolatey package build"; return }
 
     & $PSScriptRoot/chocolatey/Build-Package.ps1
-    Move-Item "$PSScriptRoot/chocolatey/${moduleName}.${version}.nupkg" $buildDir
+    Move-Item "$PSScriptRoot/chocolatey/$($moduleName.ToLowerInvariant()).${version}.nupkg" $buildDir
 }
 
 if ($Clean) { git clean -Xfd -e vars.ps1; return }
