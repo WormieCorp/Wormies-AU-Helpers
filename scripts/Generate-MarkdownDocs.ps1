@@ -35,6 +35,7 @@ $arrParameterProperties = @(
 $outputFile = (Generate-TemporaryFile).Fullname
 
 $b = {
+    Remove-Module $ModuleName -Force -ea 0
     $Module = Import-Module $PathToModule -Force
 
     foreach ($singleFunction in (Get-Command -Module $ModuleName).Name) {
