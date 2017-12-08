@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
-        <title>Wormies-AU-Helpers - Documentation</title>
+        <title>Wormies-AU-Helpers - Update-Metadata</title>
         <link href="/Wormies-AU-Helpers/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/highlight.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -72,7 +72,7 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/index.cshtml"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/functions/update-metadata.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -81,12 +81,12 @@
 
                     <ul class="sidebar-menu">
                         
-                <li class="treeview">
+                <li class="treeview active">
                     <a href="/Wormies-AU-Helpers/docs/functions">Functions</a> <a href="#" class="expand"></a>
                     <ul class="treeview-menu">
                                         <li><a href="/Wormies-AU-Helpers/docs/functions/get-fixversion">Get-FixVersion</a></li>
                 <li><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></li>
-                <li><a href="/Wormies-AU-Helpers/docs/functions/update-metadata">Update-Metadata</a></li>
+                <li class="selected"><a href="/Wormies-AU-Helpers/docs/functions/update-metadata">Update-Metadata</a></li>
 
                     </ul>
                 </li>
@@ -102,40 +102,70 @@
 
 
 	<section class="content-header">
-		<h1>Documentation</h1>
+		<h1>Update-Metadata</h1>
 	</section>
 	<section class="content">
-		<p>This user guide, like Wormies-AU-Helpers itself, is under very active development. Some parts of it aren't
-documented as completely as they need to be, but we gladly accept your contributions.</p>
+		<h2 id="synopsis">Synopsis</h2>
+<p>Updates the metadata nuspec file with the specified information.</p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-PowerShell">Update-Metadata -key &lt;String&gt; -value &lt;String&gt; [-NuspecFile &lt;String&gt;] [&lt;CommonParameters&gt;]
 
-<p>We need your help to improve the documentation for Wormies-AU-Helpers, so if there is something that you
-would like to add then you can edit the content directly on GitHub.</p>
-
-    <h1>Functions</h1>
-			<div class="box">
-				<div class="box-body no-padding">
-					<table class="table table-striped table-hover two-cols-alt table-responsive">
-						
-						<tbody>
-								<tr>
-									<td><strong><a href="/Wormies-AU-Helpers/docs/functions/get-fixversion">Get-FixVersion</a></strong></td>
-									<td>
-Parse the specified version and create a fix version when needed.									</td>
-								</tr>
-								<tr>
-									<td><strong><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></strong></td>
-									<td>
-Aquire the url that is being redirected to when using the passed url parameter									</td>
-								</tr>
-								<tr>
-									<td><strong><a href="/Wormies-AU-Helpers/docs/functions/update-metadata">Update-Metadata</a></strong></td>
-									<td>
-Updates the metadata nuspec file with the specified information.									</td>
-								</tr>
-						</tbody>				
-					</table>
-				</div>
-			</div> 
+Update-Metadata -data &lt;Hashtable&gt; [-NuspecFile &lt;String&gt;] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2 id="description">Description</h2>
+<p>When a key and value is specified, update the metadata element with the specified key
+and the corresponding value in the specified NuspecFile.</p>
+<h2 id="parameters">Parameters</h2>
+<h3 id="key">key</h3>
+<p>The element that should be updated in the metadata section.</p>
+<ul>
+<li><strong>Type</strong>: String</li>
+<li><strong>ParameterValue</strong>: String</li>
+<li><strong>PipelineInput</strong>: false</li>
+<li><strong>Position</strong>: named</li>
+<li><strong>Required</strong>: true</li>
+</ul>
+<h3 id="value">value</h3>
+<p>The value to update with.</p>
+<ul>
+<li><strong>Type</strong>: String</li>
+<li><strong>ParameterValue</strong>: String</li>
+<li><strong>PipelineInput</strong>: false</li>
+<li><strong>Position</strong>: named</li>
+<li><strong>Required</strong>: true</li>
+</ul>
+<h3 id="data">data</h3>
+<ul>
+<li><strong>Type</strong>: Hashtable</li>
+<li><strong>DefaultValue</strong>: &#64;{$key = $value}</li>
+<li><strong>ParameterValue</strong>: Hashtable</li>
+<li><strong>PipelineInput</strong>: true (ByValue)</li>
+<li><strong>Position</strong>: named</li>
+<li><strong>Required</strong>: true</li>
+</ul>
+<h3 id="nuspecfile">NuspecFile</h3>
+<p>The metadata/nuspec file to update</p>
+<ul>
+<li><strong>Type</strong>: String</li>
+<li><strong>DefaultValue</strong>: .*.nuspec</li>
+<li><strong>ParameterValue</strong>: String</li>
+<li><strong>PipelineInput</strong>: false</li>
+<li><strong>Position</strong>: named</li>
+<li><strong>Required</strong>: false</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1">Example 1</h3>
+<pre><code class="language-PowerShell">Update-Metadata -key releaseNotes -value &quot;https://github.com/majkinetor/AU/releases/latest&quot;
+</code></pre>
+<h3 id="example-2">Example 2</h3>
+<pre><code class="language-PowerShell">Update-Metadata -key releaseNotes -value &quot;https://github.com/majkinetor/AU/releases/latest&quot; -NuspecFile &quot;.\package.nuspec&quot;
+</code></pre>
+<h3 id="example-3">Example 3</h3>
+<pre><code class="language-PowerShell">Update-Metadata -data &#64;{ title = 'My Awesome Title' }
+</code></pre>
+<h3 id="example-4">Example 4</h3>
+<pre><code class="language-PowerShell">&#64;{ title = 'My Awesome Title' } | Update-Metadata
+</code></pre>
 
 	</section>
                 

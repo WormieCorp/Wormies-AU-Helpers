@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
-        <title>Wormies-AU-Helpers - Documentation</title>
+        <title>Wormies-AU-Helpers - Get-FixVersion</title>
         <link href="/Wormies-AU-Helpers/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/highlight.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -72,7 +72,7 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/index.cshtml"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/functions/get-fixversion.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -81,10 +81,10 @@
 
                     <ul class="sidebar-menu">
                         
-                <li class="treeview">
+                <li class="treeview active">
                     <a href="/Wormies-AU-Helpers/docs/functions">Functions</a> <a href="#" class="expand"></a>
                     <ul class="treeview-menu">
-                                        <li><a href="/Wormies-AU-Helpers/docs/functions/get-fixversion">Get-FixVersion</a></li>
+                                        <li class="selected"><a href="/Wormies-AU-Helpers/docs/functions/get-fixversion">Get-FixVersion</a></li>
                 <li><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></li>
                 <li><a href="/Wormies-AU-Helpers/docs/functions/update-metadata">Update-Metadata</a></li>
 
@@ -102,40 +102,74 @@
 
 
 	<section class="content-header">
-		<h1>Documentation</h1>
+		<h1>Get-FixVersion</h1>
 	</section>
 	<section class="content">
-		<p>This user guide, like Wormies-AU-Helpers itself, is under very active development. Some parts of it aren't
-documented as completely as they need to be, but we gladly accept your contributions.</p>
-
-<p>We need your help to improve the documentation for Wormies-AU-Helpers, so if there is something that you
-would like to add then you can edit the content directly on GitHub.</p>
-
-    <h1>Functions</h1>
-			<div class="box">
-				<div class="box-body no-padding">
-					<table class="table table-striped table-hover two-cols-alt table-responsive">
-						
-						<tbody>
-								<tr>
-									<td><strong><a href="/Wormies-AU-Helpers/docs/functions/get-fixversion">Get-FixVersion</a></strong></td>
-									<td>
-Parse the specified version and create a fix version when needed.									</td>
-								</tr>
-								<tr>
-									<td><strong><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></strong></td>
-									<td>
-Aquire the url that is being redirected to when using the passed url parameter									</td>
-								</tr>
-								<tr>
-									<td><strong><a href="/Wormies-AU-Helpers/docs/functions/update-metadata">Update-Metadata</a></strong></td>
-									<td>
-Updates the metadata nuspec file with the specified information.									</td>
-								</tr>
-						</tbody>				
-					</table>
-				</div>
-			</div> 
+		<h2 id="synopsis">Synopsis</h2>
+<p>Parse the specified version and create a fix version when needed.</p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-PowerShell">Get-FixVersion [-Version] &lt;String&gt; [[-OnlyFixBelowVersion] &lt;String&gt;] [[-AppendRevisionLength] &lt;Int32&gt;] [[-NuspecFile] &lt;String&gt;] [&lt;CommonParameters&gt;]
+</code></pre>
+<h2 id="description">Description</h2>
+<p>When a 4-part version number is used by the software authors, there
+may be a little hard at times to push out an updated version by manually
+creating the fix version.
+This script helps out with this when both a 4-part version is used, and
+when a prerelease have been passed.</p>
+<h2 id="parameters">Parameters</h2>
+<h3 id="version">Version</h3>
+<p>The version number to parse for a fix version</p>
+<ul>
+<li><strong>Type</strong>: String</li>
+<li><strong>ParameterValue</strong>: String</li>
+<li><strong>PipelineInput</strong>: false</li>
+<li><strong>Position</strong>: 1</li>
+<li><strong>Required</strong>: true</li>
+</ul>
+<h3 id="onlyfixbelowversion">OnlyFixBelowVersion</h3>
+<p>The version to stop adding fix versions to
+(in case of padding revision number)</p>
+<ul>
+<li><strong>Type</strong>: String</li>
+<li><strong>ParameterValue</strong>: String</li>
+<li><strong>PipelineInput</strong>: false</li>
+<li><strong>Position</strong>: 2</li>
+<li><strong>Required</strong>: false</li>
+</ul>
+<h3 id="appendrevisionlength">AppendRevisionLength</h3>
+<p>The number of zeros to append the revision number with, before adding the
+fix number
+(defaults to 1).</p>
+<ul>
+<li><strong>Type</strong>: Int32</li>
+<li><strong>DefaultValue</strong>: 1</li>
+<li><strong>ParameterValue</strong>: Int32</li>
+<li><strong>PipelineInput</strong>: false</li>
+<li><strong>Position</strong>: 3</li>
+<li><strong>Required</strong>: false</li>
+</ul>
+<h3 id="nuspecfile">NuspecFile</h3>
+<p>The nuspec metadata file to parse for the existing version information
+(defaults to '.*.nuspec')</p>
+<ul>
+<li><strong>Type</strong>: String</li>
+<li><strong>DefaultValue</strong>: ./*.nuspec</li>
+<li><strong>ParameterValue</strong>: String</li>
+<li><strong>PipelineInput</strong>: false</li>
+<li><strong>Position</strong>: 4</li>
+<li><strong>Required</strong>: false</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1">Example 1</h3>
+<pre><code class="language-PowerShell">Get-FixVersion -Version '24.0.0.195'
+</code></pre>
+<p>will output <code>24.0.0.19501</code> if the
+nuspec version is equal to <code>24.0.0.195</code> or <code>24.0.0.19500</code> and
+<code>$global:au_Force</code> is set to <code>$true</code></p>
+<h3 id="example-2">Example 2</h3>
+<pre><code class="language-PowerShell">Get-FixVersion -Version '5.0-beta'
+</code></pre>
+<p>will output <code>5.0-beta-20171123</code> (the current date)</p>
 
 	</section>
                 
