@@ -35,4 +35,4 @@ on_success:
 cache:
 - docs/input/docs/functions
 - docs/tools->docs/tools/packages.config
-- 'C:\Users\appveyor\.nuget\packages->docs/packages.xml'
+- '%USERPROFILE%\.nuget\packages -> docs/packages.xml'
