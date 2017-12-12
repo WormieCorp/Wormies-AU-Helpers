@@ -105,54 +105,26 @@
 		<h1>Update-Metadata</h1>
 	</section>
 	<section class="content">
-		<h2 id="synopsis">Synopsis</h2>
-<p>Updates the metadata nuspec file with the specified information.</p>
+		<p>Updates the metadata nuspec file with the specified information.</p>
 <h2 id="syntax">Syntax</h2>
-<pre><code class="language-PowerShell">Update-Metadata -key &lt;String&gt; -value &lt;String&gt; [-NuspecFile &lt;String&gt;] [&lt;CommonParameters&gt;]
-
-Update-Metadata -data &lt;Hashtable&gt; [-NuspecFile &lt;String&gt;] [&lt;CommonParameters&gt;]
+<pre><code class="language-PowerShell">Update-Metadata `
+    -key &lt;String&gt; `
+    -value &lt;String&gt; `
+    [-NuspecFile &lt;String&gt;]
+</code></pre>
+<pre><code class="language-PowerShell">Update-Metadata `
+    -data &lt;Hashtable&gt; `
+    [-NuspecFile &lt;String&gt;]
 </code></pre>
 <h2 id="description">Description</h2>
 <p>When a key and value is specified, update the metadata element with the specified key
 and the corresponding value in the specified NuspecFile.</p>
-<h2 id="parameters">Parameters</h2>
-<h3 id="key">key</h3>
-<p>The element that should be updated in the metadata section.</p>
-<ul>
-<li><strong>Type</strong>: String</li>
-<li><strong>ParameterValue</strong>: String</li>
-<li><strong>PipelineInput</strong>: false</li>
-<li><strong>Position</strong>: named</li>
-<li><strong>Required</strong>: true</li>
-</ul>
-<h3 id="value">value</h3>
-<p>The value to update with.</p>
-<ul>
-<li><strong>Type</strong>: String</li>
-<li><strong>ParameterValue</strong>: String</li>
-<li><strong>PipelineInput</strong>: false</li>
-<li><strong>Position</strong>: named</li>
-<li><strong>Required</strong>: true</li>
-</ul>
-<h3 id="data">data</h3>
-<ul>
-<li><strong>Type</strong>: Hashtable</li>
-<li><strong>DefaultValue</strong>: &#64;{$key = $value}</li>
-<li><strong>ParameterValue</strong>: Hashtable</li>
-<li><strong>PipelineInput</strong>: true (ByValue)</li>
-<li><strong>Position</strong>: named</li>
-<li><strong>Required</strong>: true</li>
-</ul>
-<h3 id="nuspecfile">NuspecFile</h3>
-<p>The metadata/nuspec file to update</p>
-<ul>
-<li><strong>Type</strong>: String</li>
-<li><strong>DefaultValue</strong>: .*.nuspec</li>
-<li><strong>ParameterValue</strong>: String</li>
-<li><strong>PipelineInput</strong>: false</li>
-<li><strong>Position</strong>: named</li>
-<li><strong>Required</strong>: false</li>
-</ul>
+<h2 id="notes">Notes</h2>
+<p>Will throw an exception if the specified key doesn't exist in the nuspec file.</p>
+<p>While the parameter <code>NuspecFile</code> accepts globbing patterns,
+it is expected to only match a single file.</p>
+<h2 id="aliases">Aliases</h2>
+<p>None</p>
 <h2 id="examples">Examples</h2>
 <h3 id="example-1">Example 1</h3>
 <pre><code class="language-PowerShell">Update-Metadata -key releaseNotes -value &quot;https://github.com/majkinetor/AU/releases/latest&quot;
@@ -166,6 +138,139 @@ and the corresponding value in the specified NuspecFile.</p>
 <h3 id="example-4">Example 4</h3>
 <pre><code class="language-PowerShell">&#64;{ title = 'My Awesome Title' } | Update-Metadata
 </code></pre>
+<h2 id="inputs">Inputs</h2>
+<p>None</p>
+<h2 id="outputs">Outputs</h2>
+<p>None</p>
+<h2 id="required-parameters">Required Parameters</h2>
+<h3 id="key-string">-key &lt;String&gt;</h3>
+<p>The element that should be updated in the metadata section.</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="value-string">-value &lt;String&gt;</h3>
+<p>The value to update with.</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-hashtable">-data &lt;Hashtable&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;">&#64;{$key = $value}</td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">true (ByValue)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional-parameters">Optional Parameters</h2>
+<h3 id="nuspecfile-string">-NuspecFile &lt;String&gt;</h3>
+<p>The metadata/nuspec file to update</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">true</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;">.\*.nuspec</td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
 
 	</section>
                 

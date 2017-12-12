@@ -105,10 +105,13 @@
 		<h1>Get-FixVersion</h1>
 	</section>
 	<section class="content">
-		<h2 id="synopsis">Synopsis</h2>
-<p>Parse the specified version and create a fix version when needed.</p>
+		<p>Parse the specified version and create a fix version when needed.</p>
 <h2 id="syntax">Syntax</h2>
-<pre><code class="language-PowerShell">Get-FixVersion [-Version] &lt;String&gt; [[-OnlyFixBelowVersion] &lt;String&gt;] [[-AppendRevisionLength] &lt;Int32&gt;] [[-NuspecFile] &lt;String&gt;] [&lt;CommonParameters&gt;]
+<pre><code class="language-PowerShell">Get-FixVersion `
+    -Version &lt;String&gt; `
+    [-OnlyFixBelowVersion &lt;String&gt;] `
+    [-AppendRevisionLength &lt;Int32&gt;] `
+    [-NuspecFile &lt;String&gt;]
 </code></pre>
 <h2 id="description">Description</h2>
 <p>When a 4-part version number is used by the software authors, there
@@ -116,49 +119,11 @@ may be a little hard at times to push out an updated version by manually
 creating the fix version.
 This script helps out with this when both a 4-part version is used, and
 when a prerelease have been passed.</p>
-<h2 id="parameters">Parameters</h2>
-<h3 id="version">Version</h3>
-<p>The version number to parse for a fix version</p>
-<ul>
-<li><strong>Type</strong>: String</li>
-<li><strong>ParameterValue</strong>: String</li>
-<li><strong>PipelineInput</strong>: false</li>
-<li><strong>Position</strong>: 1</li>
-<li><strong>Required</strong>: true</li>
-</ul>
-<h3 id="onlyfixbelowversion">OnlyFixBelowVersion</h3>
-<p>The version to stop adding fix versions to
-(in case of padding revision number)</p>
-<ul>
-<li><strong>Type</strong>: String</li>
-<li><strong>ParameterValue</strong>: String</li>
-<li><strong>PipelineInput</strong>: false</li>
-<li><strong>Position</strong>: 2</li>
-<li><strong>Required</strong>: false</li>
-</ul>
-<h3 id="appendrevisionlength">AppendRevisionLength</h3>
-<p>The number of zeros to append the revision number with, before adding the
-fix number
-(defaults to 1).</p>
-<ul>
-<li><strong>Type</strong>: Int32</li>
-<li><strong>DefaultValue</strong>: 1</li>
-<li><strong>ParameterValue</strong>: Int32</li>
-<li><strong>PipelineInput</strong>: false</li>
-<li><strong>Position</strong>: 3</li>
-<li><strong>Required</strong>: false</li>
-</ul>
-<h3 id="nuspecfile">NuspecFile</h3>
-<p>The nuspec metadata file to parse for the existing version information
-(defaults to '.*.nuspec')</p>
-<ul>
-<li><strong>Type</strong>: String</li>
-<li><strong>DefaultValue</strong>: ./*.nuspec</li>
-<li><strong>ParameterValue</strong>: String</li>
-<li><strong>PipelineInput</strong>: false</li>
-<li><strong>Position</strong>: 4</li>
-<li><strong>Required</strong>: false</li>
-</ul>
+<h2 id="notes">Notes</h2>
+<p>While the parameter <code>NuspecFile</code> accepts globbing patterns,
+it is expected to only match a single file.</p>
+<h2 id="aliases">Aliases</h2>
+<p>None</p>
 <h2 id="examples">Examples</h2>
 <h3 id="example-1">Example 1</h3>
 <pre><code class="language-PowerShell">Get-FixVersion -Version '24.0.0.195'
@@ -170,6 +135,148 @@ nuspec version is equal to <code>24.0.0.195</code> or <code>24.0.0.19500</code> 
 <pre><code class="language-PowerShell">Get-FixVersion -Version '5.0-beta'
 </code></pre>
 <p>will output <code>5.0-beta-20171123</code> (the current date)</p>
+<h2 id="inputs">Inputs</h2>
+<p>None</p>
+<h2 id="outputs">Outputs</h2>
+<p>Will output the full version number with a fix number when a 4-part version
+have been specified.</p>
+<p>Will append the date to any pre-release versions.</p>
+<p>Will just return the same version number if no fix is needed, or when the
+version number isn't a 4-part version.</p>
+<h2 id="required-parameters">Required Parameters</h2>
+<h3 id="version-string">-Version &lt;String&gt;</h3>
+<p>The version number to parse for a fix version</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional-parameters">Optional Parameters</h2>
+<h3 id="onlyfixbelowversion-string">-OnlyFixBelowVersion &lt;String&gt;</h3>
+<p>The version to stop adding fix versions to
+(in case of padding revision number)</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="appendrevisionlength-int32">-AppendRevisionLength &lt;Int32&gt;</h3>
+<p>The number of zeros to append the revision number with, before adding the
+fix number
+(defaults to 1).</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nuspecfile-string">-NuspecFile &lt;String&gt;</h3>
+<p>The nuspec metadata file to parse for the existing version information
+(defaults to '.*.nuspec')</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">true</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;">./*.nuspec</td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
 
 	</section>
                 
