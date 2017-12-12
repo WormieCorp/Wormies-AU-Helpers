@@ -1,6 +1,47 @@
 ﻿Remove-Module wormies-au-helpers -ea ignore
 Import-Module "$PSScriptRoot/../../Wormies-AU-Helpers"
 
+function Get-FileEncoding {
+    # <https://vertigion.com/2015/02/04/powershell-get-fileencoding/>
+    [CmdletBinding()]
+    param (
+        [Alias("PSPath")]
+        [Parameter(Mandatory = $True, ValueFromPipelineByPropertyName = $True)]
+        [String]$Path
+        ,
+        [Parameter(Mandatory = $False)]
+        [System.Text.Encoding]$DefaultEncoding = [System.Text.Encoding]::ASCII
+    )
+
+    process {
+        [Byte[]]$bom = Get-Content -Encoding Byte -ReadCount 4 -TotalCount 4 -Path $Path
+
+        $encoding_found = $false
+
+        foreach ($encoding in [System.Text.Encoding]::GetEncodings().GetEncoding()) {
+            if ($encoding_found) { break }
+            $preamble = $encoding.GetPreamble()
+            if ($preamble) {
+                foreach ($i in 0..$preamble.Length) {
+                    if ($preamble[$i] -ne $bom[$i]) {
+                        break
+                    }
+                    elseif ($i -eq $preable.Length) {
+                        $encoding_found = $encoding
+                        break
+                    }
+                }
+            }
+        }
+
+        if (!$encoding_found) {
+            $encoding_found = $DefaultEncoding
+        }
+
+        $encoding_found
+    }
+}
+
 Describe "Update-Metadata" {
     $nuspecFile = "$PSScriptRoot\test.nuspec"
     BeforeEach {
@@ -51,5 +92,13 @@ Describe "Update-Metadata" {
         $nuspecFile | Should -FileContentMatchExactly "\<title\>Yuppie\<\/title\>"
         $nuspecFile | Should -FileContentMatchExactly "\<version\>0\.5\.3\<\/version\>"
         $nuspecFile | Should -FileContentMatchExactly "\<id\>yuppie\<\/id\>"
+    }
+
+    It "Should create file without UTF8 BOM encoding" {
+        Update-Metadata -key "title" -value "NO BOM TEST" -NuspecFile $nuspecFile
+
+        $expectedEncoding = New-Object System.Text.UTF8Encoding($false)
+
+        Get-FileEncoding -Path $nuspecFile -DefaultEncoding $expectedEncoding | Should Be $expectedEncoding
     }
 }

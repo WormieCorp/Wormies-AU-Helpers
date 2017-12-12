@@ -58,5 +58,6 @@ function Update-Metadata {
         }
     }
 
-    $nu.Save($NuspecFile)
+    $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+    [System.IO.File]::WriteAllText($NuspecFile, $nu.InnerXml, $utf8NoBom)
 }
