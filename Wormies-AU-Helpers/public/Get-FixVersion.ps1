@@ -48,6 +48,10 @@
 
     will output `5.0-beta-20171123` (the current date)
 
+.NOTES
+    While the parameter `NuspecFile` accepts globbing patterns,
+    it is expected to only match a single file.
+
 .LINK
     https://wormiecorp.github.io/docs/functions/get-fixversion
 #>
@@ -60,6 +64,7 @@ function Get-FixVersion() {
         [string]$OnlyFixBelowVersion = $null,
         [Alias("AppendZeroes")]
         [int]$AppendRevisionLength = 1,
+        [SupportsWildcards()]
         [string]$NuspecFile = "./*.nuspec"
     )
     function appendRevision {
