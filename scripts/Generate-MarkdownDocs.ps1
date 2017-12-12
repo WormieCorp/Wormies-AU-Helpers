@@ -1,10 +1,10 @@
 ﻿param(
-    [string]$PathToModule,
+    [string]$PathToModule = "$PSScriptRoot\..\.build\*\Wormies-AU-Helpers",
     [string]$ModuleName = "Wormies-AU-Helpers",
     [string]$OutputFolderPath = "$PSScriptRoot/../docs/input/docs/functions"
 )
 
-function Generate-TemporaryFile {
+function GenerateTemporaryFile {
     <#
     .SYNOPSIS
     Function used to generate a temporary file.
@@ -20,27 +20,85 @@ function Generate-TemporaryFile {
     }
 }
 
+function GenerateSyntax {
+    param($syntax, [bool]$commonParameters)
+
+    $sb = New-Object System.Text.StringBuilder
+
+    $sb.Append($syntax.name) | Out-Null
+
+    foreach ($param in $syntax.parameter | sort Position) {
+        $sb.AppendLine(' `') | Out-Null
+        $sb.Append("    ") | Out-Null
+        if ($param.required -eq 'false') { $sb.Append('[') | Out-Null }
+        $sb.AppendFormat("-{0} <{1}>", $param.name, $param.parameterValue) | Out-Null
+        if ($param.required -eq 'false') { $sb.Append(']') | Out-Null }
+    }
+
+    if ($commonParameters) {
+        $sb.AppendLine(' `') | Out-Null
+        $sb.Append("    [<CommonParameters>]") | Out-Null
+    }
+
+    return $sb.ToString()
+}
+
+function GenerateParameterTable {
+    param(
+        $parameters,
+        $arrParameterProperties
+    )
+
+    forEach ($item in $parameters) {
+        '### -' + $item.name + " \<" + $item.Type.Name + "\>"
+        ($item.Description | Out-String).Trim() + "`r`n"
+        $propLen = $arrParameterProperties | % { $_ -split '\:' | select -last 1 } | Measure-Object -Maximum -Property Length | % Maximum
+        $propLen += 2
+
+        $valLen = $arrParameterProperties | % { $_ -split '\:' | select -first 1 | % { $item.$_ } } | Measure-Object -Maximum -Property Length | % Maximum
+        $valLen += 2
+        if ($valLen -lt 7) { $valLen = 7 }
+        if ($propLen -lt 10) { $propLen = 10 }
+
+        $format = '|{0,-' + $propLen + '}|{1,' + $valLen + '}|'
+
+        ($format -f " Property ", " Value ")
+        "|:" + ("-" * ($propLen - 1)) + "|:" + ("-" * ($valLen - 2)) + ":|"
+
+        foreach ($arrParameterProperty in $arrParameterProperties) {
+            $splits = $arrParameterProperty -split '\:'
+            $name = if ($splits.Length -ge 2) { $splits[1] } else { $splits[0] }
+            $val = $item."$($splits[0])" -replace "([\\\/\<\>])", '\$1'
+            $format -f " $name ", " $val "
+        }
+
+        ""
+    }
+}
+
 if (!(Test-Path $OutputFolderPath)) { mkdir -Path $OutputFolderPath }
 $OutputFolderPath = Resolve-Path $OutputFolderPath
 
 $arrParameterProperties = @(
-    'DefaultValue',
-    'ParameterValue',
-    'PipelineInput',
-    'Position',
-    'Required'
+    "Aliases",
+    'Position:Position?'
+    'Globbing:Globbing?'
+    'DefaultValue:Default Value',
+    'PipelineInput:Accept Pipeline Input?'
 )
 
 # Prepare output file name which is temporary due to UTF conversion
-$outputFile = (Generate-TemporaryFile).Fullname
+$outputFile = (GenerateTemporaryFile).Fullname
+#$outputFile = "C:\Users\nord_\AppData\Local\Temp\testing.md"
 
 $b = {
     Remove-Module $ModuleName -Force -ea 0
     $Module = Import-Module $PathToModule -Force
 
-    foreach ($singleFunction in (Get-Command -Module $ModuleName).Name) {
+    foreach ($singleFunction in (Get-Command -Module $ModuleName | ? CommandType -ne 'Alias').Name) {
         # Get functionHelp for the current function
-        $functionHelp = Get-Help $singleFunction -ErrorAction SilentlyContinue
+        $functionHelp = Get-Help $singleFunction -Full -ErrorAction SilentlyContinue
+        "Generating wyam documentation for function: '$singleFunction'"
 
         # Add function base name
 
@@ -48,18 +106,20 @@ $b = {
 
         # Add synopsis
         if ($functionHelp.Synopsis) {
-            "Description: " + $functionHelp.Synopsis + "`r`n---" | Out-File -FilePath $outputFile -Append
-            '## Synopsis' | Out-File $outputFile -Append
+            "Description: " + $functionHelp.Synopsis + "`r`n---`r`n" | Out-File -FilePath $outputFile -Append
             $functionHelp.Synopsis + " `r`n" | Out-File -FilePath $outputFile -Append
         }
         else {
             "---`r`n" | Out-File -FilePath $outputFile -Force
         }
 
+        $commonParameters = if ($functionHelp.CommonParameters) { $true } else { $false }
+
         # Add Syntax
         if ($functionHelp.Syntax) {
             '## Syntax' | Out-File -FilePath $outputFile -Append
-            "``````PowerShell`r`n" + ($functionHelp.Syntax | Out-String).trim() + "`r`n```````r`n" | Out-File -FilePath $outputFile -Append
+
+            $functionHelp.Syntax.syntaxItem | % { "``````PowerShell`r`n" + (GenerateSyntax -syntax $_ -commonParameters $commonParameters) + "`r`n```````r`n"} | Out-File -FilePath $outputFile -Append
         }
 
         # Add Description
@@ -68,20 +128,20 @@ $b = {
             $functionHelp.Description.Text + "`r`n" | Out-File -FilePath $outputFile -Append
         }
 
-        # Add parameters
-        if ($functionHelp.Parameters) {
-            '## Parameters' | Out-File -FilePath $outputFile -Append
-            forEach ($item in $functionHelp.Parameters.Parameter) {
-                '### ' + $item.name | Out-File -FilePath $outputFile -Append
-                $item.Description + "`r`n" | Out-File -FilePath $outputFile -Append
-                '- **Type**: ' + $item.Type.Name | Out-File -FilePath $outputFile -Append
-                forEach ($arrParameterProperty in $arrParameterProperties) {
-                    if ($item.$arrParameterProperty) {
-                        "- **$arrParameterProperty**: " + $item.$arrParameterProperty | Out-File -FilePath $outputFile -Append
-                    }
+        if ($functionHelp.alertSet) {
+            '## Notes' | Out-File -FilePath $outputFile -Append
+            $functionHelp.alertSet.alert.text | Out-File -FilePath $outputFile -Append
+        }
 
-                }
-            }
+        $aliases = Get-Alias -Definition $singleFunction -ErrorAction SilentlyContinue
+
+        "## Aliases" | Out-File -FilePath $outputFile -Append
+        if ($aliases) {
+            $aliases | % { "``$_``  " } | Out-File $outputFile -Append
+            "" | Out-File $outputFile -Append
+        }
+        else {
+            "None`r`n" | Out-File -FilePath $outputFile -Append
         }
 
         # Add examples
@@ -90,10 +150,90 @@ $b = {
             forEach ($item in $functionHelp.Examples.Example) {
                 "`r`n### " + $item.title.Replace('-', '').Replace('EXAMPLE', 'Example') | Out-File -FilePath $outputFile -Append
                 if ($item.Code) {
-                    "``````PowerShell`r`n" + $item.Code + "`r`n``````" | Out-File -FilePath $outputFile -Append
+                    "``````PowerShell`r`n" + $item.Code.Trim() + "`r`n``````" | Out-File -FilePath $outputFile -Append
                 }
                 if ($item.Remarks) {
-                    $item.Remarks | Out-File -FilePath $outputFile -Append
+                    ($item.Remarks | Out-String).Trim() | Out-File -FilePath $outputFile -Append
+                }
+            }
+
+            "" | Out-File -FilePath $outputFile -Append
+        }
+
+        "## Inputs" | Out-File -FilePath $outputFile -Append
+
+        if ($functionHelp.input) {
+            $functionHelp.input + "`r`n" | Out-File -FilePath $outputFile -Append
+        }
+        else {
+            "None`r`n" | Out-File -FilePath $outputFile -Append
+        }
+
+        "## Outputs" | Out-File -FilePath $outputFile -Append
+
+        if ($functionHelp.returnValues) {
+            foreach ($text in $functionHelp.returnValues.returnValue.type.name) {
+                "$text`r`n" | Out-File -FilePath $outputFile -Append
+            }
+        }
+        else {
+            "None`r`n" | Out-File -FilePath $outputFile -Append
+        }
+
+        # Add parameters
+        if ($functionHelp.Parameters) {
+            $requiredParams = $functionHelp.Parameters.Parameter | ? required -eq 'true'
+            $optionalParams = $functionHelp.Parameters.Parameter | ? required -eq 'false'
+            if ($requiredParams) {
+                "## Required Parameters`r`n" | Out-File -FilePath $outputFile -Append
+                GenerateParameterTable -parameters $requiredParams -arrParameterProperties $arrParameterProperties | Out-File -FilePath $outputFile -Append
+            }
+
+            if ($optionalParams) {
+                "## Optional Parameters`r`n" | Out-File -FilePath $outputFile -Append
+                GenerateParameterTable -parameters $optionalParams -arrParameterProperties $arrParameterProperties | Out-File -FilePath $outputFile -Append
+            }
+        }
+
+        if ($commonParameters) {
+            if (!$functionHelp.parameters) { "## Parameters " | Out-File -FilePath $outputFile -Append }
+            "### <CommonParameters>`r`nThis cmdlet supports the common parameters: -Verbose, -Debug, -ErrorAction, -ErrorVariable, -OutBuffer, and -OutVariable. For more information, see `about_commonParameters` https://go.microsoft.com/fwlink/p/?LinkID=113216" | Out-File -FilePath $outputFile -Append
+        }
+
+        if ($functionHelp.relatedLinks) {
+            $links = New-Object System.Collections.Generic.List[string]
+
+            foreach ($link in $functionHelp.relatedLinks.navigationLink) {
+                if ($link.linkText -and $link.uri) {
+                    $links.Add("- [$($link.linkText)]($($link.uri))")
+                }
+                elseif ($link.uri) {
+                    # First check if this uri is the one for this function
+                    $name = $link.uri -split '\/' | select -last 1
+                    $funcSlug = $singleFunction.ToLowerInvariant()
+                    if ($name -ne $funcSlug) {
+                        $links.Add("- <$($link.uri)>")
+                    }
+                }
+                elseif ((Get-Command -Module $ModuleName -Name $link.linkText -ErrorAction SilentlyContinue)) {
+                    # Now we know it is a local function
+                    $funcSlug = (Get-Command -Module $ModuleName $link.linkText).Name.ToLowerInvariant()
+                    $links.Add(" - [$($link.linkText)]($funcSlug)")
+                }
+                else {
+                    $helpItem = Get-Help $link.linkText | ? { $_.relatedLinks.navigationLink.uri } | % { $_.relatedLinks.navigationLink | select -first 1 }
+                    if ($helpItem.linkText) {
+                        $Links.Add("- [$($helpItem.linkText)]($($helpItem.uri)) {target=_blank}")
+                    }
+                    else {
+                        $links.Add("- [$($link.linkText)]($($helpItem.uri)) {target=_blank}")
+                    }
+                }
+
+                #" - <$uri>" | Out-File -FilePath $outputFile -Append
+                if ($links.Count -gt 0) {
+                    '## Related Links' | Out-File -FilePath $outputFile -Append
+                    $links | Out-File -FilePath $outputFile -Append
                 }
             }
         }
