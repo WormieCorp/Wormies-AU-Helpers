@@ -53,7 +53,7 @@
     it is expected to only match a single file.
 
 .LINK
-    https://wormiecorp.github.io/docs/functions/get-fixversion
+    https://wormiecorp.github.io/Wormies-AU-Helpers/docs/functions/get-fixversion
 #>
 function Get-FixVersion() {
     param(

@@ -34,6 +34,9 @@ Update-Metadata -data @{ title = 'My Awesome Title' }
 
     While the parameter `NuspecFile` accepts globbing patterns,
     it is expected to only match a single file.
+
+.LINK
+    https://wormiecorp.github.io/Wormies-AU-Helpers/docs/functions/update-metadata
 #>
 function Update-Metadata {
     param(

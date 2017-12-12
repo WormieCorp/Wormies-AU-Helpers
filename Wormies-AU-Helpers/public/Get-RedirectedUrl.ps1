@@ -16,6 +16,9 @@
 
 .OUTPUTS
     The redirected url when one is found, otherwise returns the same url that was passed.
+
+.LINK
+    https://wormiecorp.github.io/Wormies-AU-Helpers/docs/functions/get-redirectedurl
 #>
 function Get-RedirectedUrl {
     param(
