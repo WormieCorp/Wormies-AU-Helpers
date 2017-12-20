@@ -144,7 +144,7 @@ $b = {
             "---`r`n" | Out-File -FilePath $outputFile -Force
         }
 
-        if (($nextFunctions.Contains($singleFunction))) {
+        if ($nextFunctions -and ($nextFunctions.Contains($singleFunction))) {
             ":::{.alert .alert-warning}`r`n**Preliminary Notice**`r`n`r`nThis function has not yet been made available. It is a planned function for the next minor version.`r`n:::" | Out-File -FilePath $outputFile -Append
         }
         else {
