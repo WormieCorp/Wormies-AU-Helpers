@@ -12,7 +12,7 @@ To Learn more about AU, please refer to their relevant [documentation](https://g
 - Ability to update either a single or multiple metadata elements
 
 Please read our documentation for an overall view of the functions available:
-<https://wormiecorp.github.io/Wormies-AU-Helpers/docs/>
+https://wormiecorp.github.io/Wormies-AU-Helpers/docs/
 
 ## Installation
 
