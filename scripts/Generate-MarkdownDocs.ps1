@@ -1,5 +1,5 @@
 ﻿param(
-    [string]$PathToModule = "$PSScriptRoot\..\.build\*\Wormies-AU-Helpers",
+    [string]$PathToModule,
     [string]$ModuleName = "Wormies-AU-Helpers",
     [string]$OutputFolderPath = "$PSScriptRoot/../docs/input/docs/functions"
 )
@@ -95,6 +95,38 @@ $b = {
     Remove-Module $ModuleName -Force -ea 0
     $Module = Import-Module $PathToModule -Force
 
+    $commands = Get-Command -Module $ModuleName | ? CommandType -ne 'Alias'
+
+    $tags = . git tag
+    $prevTag = "e50169dd32d8ddeb8c5eae3fc81415376dd6b58b" # The first commit in this repo
+
+    $tagsWithCommands = @{ }
+
+    foreach ($tag in $tags) {
+        $functions = git diff "$prevTag..$tag" --name-only | % {
+            (Split-Path -Leaf $_) -split '\.ps1' | select -first 1
+        } | ? {
+            $file = $_
+            $commands | ? { $file -eq $_.Name }
+        }
+
+        if ($functions) {
+            $tagsWithCommands[$tag] = [array]$functions
+        }
+        $prevTag = $tag
+    }
+
+    [array]$nextFunctions = git diff "$prevTag.." --name-only | % {
+        (Split-Path -Leaf $_) -split "\.ps1" | select -first 1
+    } | ? {
+        $file = $_
+        $commands | ? { $file -eq $_.Name }
+    } | ? {
+        $file = $_
+        $commandsInPreviousTag = $tagsWithCommands.Values | ? { $_ -eq $file }
+        !$commandsInPreviousTag
+    }
+
     foreach ($singleFunction in (Get-Command -Module $ModuleName | ? CommandType -ne 'Alias').Name) {
         # Get functionHelp for the current function
         $functionHelp = Get-Help $singleFunction -Full -ErrorAction SilentlyContinue
@@ -106,11 +138,23 @@ $b = {
 
         # Add synopsis
         if ($functionHelp.Synopsis) {
-            "Description: " + $functionHelp.Synopsis + "`r`n---`r`n" | Out-File -FilePath $outputFile -Append
-            $functionHelp.Synopsis + " `r`n" | Out-File -FilePath $outputFile -Append
+            "Description: " + $functionHelp.Synopsis.Trim() + "`r`n---`r`n" | Out-File -FilePath $outputFile -Append
         }
         else {
             "---`r`n" | Out-File -FilePath $outputFile -Force
+        }
+
+        if (($nextFunctions.Contains($singleFunction))) {
+            ":::{.alert .alert-warning}`r`n**Preliminary Notice**`r`n`r`nThis function has not yet been made available. It is a planned function for the next minor version.`r`n:::" | Out-File -FilePath $outputFile -Append
+        }
+        else {
+            [version]$tag = $tagsWithCommands.GetEnumerator() | ? { $_.Value | ? { $_ -eq $singleFunction }} | % { $_.Key } | sort | select -First 1
+
+            ":::{.alert .alert-info}`r`nThis function was introduced in version **$tag**.`r`n:::" | Out-File -FilePath $outputFile -Append
+        }
+
+        if ($functionHelp.Synopsis) {
+            $functionHelp.Synopsis + " `r`n" | Out-File -FilePath $outputFile -Append
         }
 
         $commonParameters = if ($functionHelp.CommonParameters) { $true } else { $false }
