@@ -150,7 +150,7 @@ $b = {
         else {
             [version]$tag = $tagsWithCommands.GetEnumerator() | ? { $_.Value | ? { $_ -eq $singleFunction }} | % { $_.Key } | sort | select -First 1
 
-            ":::{.alert .alert-info}`r`nThis function was introduced in version **$tag**.`r`n:::" | Out-File -FilePath $outputFile -Append
+            ":::{.alert .alert-info}`r`nThis function was introduced in version [**$tag**](https://github.com/WormieCorp/Wormies-AU-Helpers/releases/tag/$tag).`r`n:::" | Out-File -FilePath $outputFile -Append
         }
 
         if ($functionHelp.Synopsis) {
