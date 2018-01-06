@@ -28,6 +28,10 @@ function Expand-Aliases () {
     )
 
     BEGIN {
+        $moduleExists = Get-Module chocolateyInstaller -All -ErrorAction SilentlyContinue
+        if (!$moduleExists) {
+            Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -ErrorAction SilentlyContinue -Force -WarningAction SilentlyContinue
+        }
         $aliases = Get-Alias | Group-Object -AsHashTable -Property Name
         $ParserErrors = $null
     }
@@ -55,6 +59,9 @@ function Expand-Aliases () {
     }
 
     END {
+        if (!$moduleExists) {
+            Remove-Module chocolateyInstaller -ErrorAction SilentlyContinue -Force
+        }
         if (!$directory -and !$Files) {
             $Text
         }

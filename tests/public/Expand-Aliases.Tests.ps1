@@ -2,6 +2,7 @@
 Import-Module "$PSScriptRoot/../../Wormies-AU-Helpers"
 
 Describe "Expand-Aliases" {
+    Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
     It "Should return same text if text is used" {
         $text = "Remove-Item sometext.txt; Get-ChildItem directory"
         Expand-Aliases -Text $text | Should Be $text
@@ -42,5 +43,30 @@ Describe "Expand-Aliases" {
 
         Expand-Aliases -Files $file
         Get-Content $file -Raw | Should Be $expected
+    }
+
+    It "Should expand chocolatey aliases" {
+        $testText = "Invoke-ChocolateyProcess -Statements 'does','not','matter' -ExeToRun 'non-existant.exe'"
+        $expectedText = "Start-ChocolateyProcessAsAdmin -Statements 'does','not','matter' -ExeToRun 'non-existant.exe'"
+
+        Expand-Aliases -Text $testText | Should Be $expectedText
+    }
+
+    It "Should remove chocolateyInstaller module when done" {
+        # Make sure that chocolateyInstaller module is removed before we start
+        Remove-Module chocolateyInstaller -ErrorAction SilentlyContinue -Force
+        $text = "ls ."
+
+        Expand-Aliases -Text $text
+        Get-Module chocolateyInstaller -All | Should Be $null
+    }
+
+    It "Should not remove chocolateyInstaller module if imported before calling function" {
+        Import-Module "$env:ChocolateyInstall\helpers\chocolateyInstaller.psm1" -Force
+        $text = "ls ."
+
+        Expand-Aliases -Text $text
+
+        Get-Module chocolateyInstaller -All | Should -Not -Be $null
     }
 }
