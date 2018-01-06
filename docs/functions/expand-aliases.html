@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
-        <title>Wormies-AU-Helpers - Get-RedirectedUrl</title>
+        <title>Wormies-AU-Helpers - Expand-Aliases</title>
         <link href="/Wormies-AU-Helpers/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/highlight.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -72,7 +72,7 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/functions/get-redirectedurl.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/functions/expand-aliases.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -84,9 +84,9 @@
                 <li class="treeview active">
                     <a href="/Wormies-AU-Helpers/docs/functions">Functions</a> <a href="#" class="expand"></a>
                     <ul class="treeview-menu">
-                                        <li><a href="/Wormies-AU-Helpers/docs/functions/expand-aliases">Expand-Aliases</a></li>
+                                        <li class="selected"><a href="/Wormies-AU-Helpers/docs/functions/expand-aliases">Expand-Aliases</a></li>
                 <li><a href="/Wormies-AU-Helpers/docs/functions/get-fixversion">Get-FixVersion</a></li>
-                <li class="selected"><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></li>
+                <li><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></li>
                 <li><a href="/Wormies-AU-Helpers/docs/functions/update-metadata">Update-Metadata</a></li>
 
                     </ul>
@@ -103,30 +103,41 @@
 
 
 	<section class="content-header">
-		<h1>Get-RedirectedUrl</h1>
+		<h1>Expand-Aliases</h1>
 	</section>
 	<section class="content">
-		<div class="alert alert-info"><p>This function was introduced in version <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/releases/tag/0.1.0"><strong>0.1.0</strong></a>.</p>
+		<div class="alert alert-warning"><p><strong>Preliminary Notice</strong></p>
+<p>This function has not yet been made available. It is a planned function for the next minor version.</p>
 </div>
-<p>Aquire the url that is being redirected to when using the passed url parameter</p>
+<p>Expands the aliases in either the file or text passed to the function.</p>
 <h2 id="syntax">Syntax</h2>
-<pre><code class="language-PowerShell">Get-RedirectedUrl `
-    -url &lt;Uri&gt; `
-    [-referer &lt;Uri&gt;]
+<pre><code class="language-PowerShell">Expand-Aliases `
+    -Text &lt;String&gt;
+</code></pre>
+<pre><code class="language-PowerShell">Expand-Aliases `
+    -Directory &lt;String&gt; `
+    [-Filter &lt;String&gt;]
+</code></pre>
+<pre><code class="language-PowerShell">Expand-Aliases `
+    -Files &lt;String[]&gt;
 </code></pre>
 <h2 id="description">Description</h2>
-<p>When a website only supplies a url to the latest version, but that url is redirected
-to a different url to aquire the actual binary file.
-Then this function can be used to simplify that aquiral.</p>
+<p>Any scripts in 'corporate' or 'formal' use should have any aliases expanded.
+This this removes ambiguity and any potential clashes or errors.</p>
 <h2 id="aliases">Aliases</h2>
 <p>None</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1">Example 1</h3>
+<pre><code class="language-PowerShell">Expand-Aliases -Text &quot;rm file.txt; gi file.exe&quot;
+</code></pre>
+<p>Should be expanded to &quot;Remove-Item file.txt; Get-Item file.exe&quot;</p>
 <h2 id="inputs">Inputs</h2>
 <p>None</p>
 <h2 id="outputs">Outputs</h2>
-<p>The redirected url when one is found, otherwise returns the same url that was passed.</p>
+<p>None</p>
 <h2 id="required-parameters">Required Parameters</h2>
-<h3 id="url-uri">-url &lt;Uri&gt;</h3>
-<p>The url to check for redirection</p>
+<h3 id="text-string">-Text &lt;String&gt;</h3>
+<p>The script text that should parsed for aliases to expand.</p>
 <table class="table">
 <thead>
 <tr>
@@ -141,7 +152,69 @@ Then this function can be used to simplify that aquiral.</p>
 </tr>
 <tr>
 <td style="text-align: left;">Position?</td>
-<td style="text-align: center;">1</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directory-string">-Directory &lt;String&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="files-string">-Files &lt;String[]&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
 </tr>
 <tr>
 <td style="text-align: left;">Globbing?</td>
@@ -158,9 +231,7 @@ Then this function can be used to simplify that aquiral.</p>
 </tbody>
 </table>
 <h2 id="optional-parameters">Optional Parameters</h2>
-<h3 id="referer-uri">-referer &lt;Uri&gt;</h3>
-<p>An optional parameter to use when a website requires the referer header to
-be used</p>
+<h3 id="filter-string">-Filter &lt;String&gt;</h3>
 <table class="table">
 <thead>
 <tr>
@@ -175,7 +246,7 @@ be used</p>
 </tr>
 <tr>
 <td style="text-align: left;">Position?</td>
-<td style="text-align: center;">2</td>
+<td style="text-align: center;">named</td>
 </tr>
 <tr>
 <td style="text-align: left;">Globbing?</td>
@@ -183,7 +254,7 @@ be used</p>
 </tr>
 <tr>
 <td style="text-align: left;">Default Value</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">*.ps1</td>
 </tr>
 <tr>
 <td style="text-align: left;">Accept Pipeline Input?</td>
