@@ -27,7 +27,7 @@ function GenerateSyntax {
 
     $sb.Append($syntax.name) | Out-Null
 
-    foreach ($param in $syntax.parameter | sort Position) {
+    foreach ($param in $syntax.parameter | Sort-Object Position) {
         $sb.AppendLine(' `') | Out-Null
         $sb.Append("    ") | Out-Null
         if ($param.required -eq 'false') { $sb.Append('[') | Out-Null }
@@ -52,10 +52,10 @@ function GenerateParameterTable {
     forEach ($item in $parameters) {
         '### -' + $item.name + " \<" + $item.Type.Name + "\>"
         ($item.Description | Out-String).Trim() + "`r`n"
-        $propLen = $arrParameterProperties | % { $_ -split '\:' | select -last 1 } | Measure-Object -Maximum -Property Length | % Maximum
+        $propLen = $arrParameterProperties | ForEach-Object { $_ -split '\:' | Select-Object -last 1 } | Measure-Object -Maximum -Property Length | ForEach-Object Maximum
         $propLen += 2
 
-        $valLen = $arrParameterProperties | % { $_ -split '\:' | select -first 1 | % { $item.$_ } } | Measure-Object -Maximum -Property Length | % Maximum
+        $valLen = $arrParameterProperties | ForEach-Object { $_ -split '\:' | Select-Object -first 1 | ForEach-Object { $item.$_ } } | Measure-Object -Maximum -Property Length | ForEach-Object Maximum
         $valLen += 2
         if ($valLen -lt 7) { $valLen = 7 }
         if ($propLen -lt 10) { $propLen = 10 }
@@ -95,7 +95,7 @@ $b = {
     Remove-Module $ModuleName -Force -ea 0
     $Module = Import-Module $PathToModule -Force
 
-    $commands = Get-Command -Module $ModuleName | ? CommandType -ne 'Alias'
+    $commands = Get-Command -Module $ModuleName | Where-Object CommandType -ne 'Alias'
 
     $tags = . git tag
     $prevTag = "e50169dd32d8ddeb8c5eae3fc81415376dd6b58b" # The first commit in this repo
@@ -103,11 +103,11 @@ $b = {
     $tagsWithCommands = @{ }
 
     foreach ($tag in $tags) {
-        $functions = git diff "$prevTag..$tag" --name-only | % {
-            (Split-Path -Leaf $_) -split '\.ps1' | select -first 1
-        } | ? {
+        $functions = git diff "$prevTag..$tag" --name-only | ForEach-Object {
+            (Split-Path -Leaf $_) -split '\.ps1' | Select-Object -first 1
+        } | Where-Object {
             $file = $_
-            $commands | ? { $file -eq $_.Name }
+            $commands | Where-Object { $file -eq $_.Name }
         }
 
         if ($functions) {
@@ -116,18 +116,18 @@ $b = {
         $prevTag = $tag
     }
 
-    [array]$nextFunctions = git diff "$prevTag.." --name-only | % {
-        (Split-Path -Leaf $_) -split "\.ps1" | select -first 1
-    } | ? {
+    [array]$nextFunctions = git diff "$prevTag.." --name-only | ForEach-Object {
+        (Split-Path -Leaf $_) -split "\.ps1" | Select-Object -first 1
+    } | Where-Object {
         $file = $_
-        $commands | ? { $file -eq $_.Name }
-    } | ? {
+        $commands | Where-Object { $file -eq $_.Name }
+    } | Where-Object {
         $file = $_
-        $commandsInPreviousTag = $tagsWithCommands.Values | ? { $_ -eq $file }
+        $commandsInPreviousTag = $tagsWithCommands.Values | Where-Object { $_ -eq $file }
         !$commandsInPreviousTag
     }
 
-    foreach ($singleFunction in (Get-Command -Module $ModuleName | ? CommandType -ne 'Alias').Name) {
+    foreach ($singleFunction in (Get-Command -Module $ModuleName | Where-Object CommandType -ne 'Alias').Name) {
         # Get functionHelp for the current function
         $functionHelp = Get-Help $singleFunction -Full -ErrorAction SilentlyContinue
         "Generating wyam documentation for function: '$singleFunction'"
@@ -148,7 +148,7 @@ $b = {
             ":::{.alert .alert-warning}`r`n**Preliminary Notice**`r`n`r`nThis function has not yet been made available. It is a planned function for the next minor version.`r`n:::" | Out-File -FilePath $outputFile -Append
         }
         else {
-            [version]$tag = $tagsWithCommands.GetEnumerator() | ? { $_.Value | ? { $_ -eq $singleFunction }} | % { $_.Key } | sort | select -First 1
+            [version]$tag = $tagsWithCommands.GetEnumerator() | Where-Object { $_.Value | Where-Object { $_ -eq $singleFunction }} | ForEach-Object { $_.Key } | Sort-Object | Select-Object -First 1
 
             ":::{.alert .alert-info}`r`nThis function was introduced in version [**$tag**](https://github.com/WormieCorp/Wormies-AU-Helpers/releases/tag/$tag).`r`n:::" | Out-File -FilePath $outputFile -Append
         }
@@ -163,7 +163,7 @@ $b = {
         if ($functionHelp.Syntax) {
             '## Syntax' | Out-File -FilePath $outputFile -Append
 
-            $functionHelp.Syntax.syntaxItem | % { "``````PowerShell`r`n" + (GenerateSyntax -syntax $_ -commonParameters $commonParameters) + "`r`n```````r`n"} | Out-File -FilePath $outputFile -Append
+            $functionHelp.Syntax.syntaxItem | ForEach-Object { "``````PowerShell`r`n" + (GenerateSyntax -syntax $_ -commonParameters $commonParameters) + "`r`n```````r`n"} | Out-File -FilePath $outputFile -Append
         }
 
         # Add Description
@@ -181,7 +181,7 @@ $b = {
 
         "## Aliases" | Out-File -FilePath $outputFile -Append
         if ($aliases) {
-            $aliases | % { "``$_``  " } | Out-File $outputFile -Append
+            $aliases | ForEach-Object { "``$_``  " } | Out-File $outputFile -Append
             "" | Out-File $outputFile -Append
         }
         else {
@@ -226,8 +226,8 @@ $b = {
 
         # Add parameters
         if ($functionHelp.Parameters) {
-            $requiredParams = $functionHelp.Parameters.Parameter | ? required -eq 'true'
-            $optionalParams = $functionHelp.Parameters.Parameter | ? required -eq 'false'
+            $requiredParams = $functionHelp.Parameters.Parameter | Where-Object required -eq 'true'
+            $optionalParams = $functionHelp.Parameters.Parameter | Where-Object required -eq 'false'
             if ($requiredParams) {
                 "## Required Parameters`r`n" | Out-File -FilePath $outputFile -Append
                 GenerateParameterTable -parameters $requiredParams -arrParameterProperties $arrParameterProperties | Out-File -FilePath $outputFile -Append
@@ -253,7 +253,7 @@ $b = {
                 }
                 elseif ($link.uri) {
                     # First check if this uri is the one for this function
-                    $name = $link.uri -split '\/' | select -last 1
+                    $name = $link.uri -split '\/' | Select-Object -last 1
                     $funcSlug = $singleFunction.ToLowerInvariant()
                     if ($name -ne $funcSlug) {
                         $links.Add("- <$($link.uri)>")
@@ -265,7 +265,7 @@ $b = {
                     $links.Add(" - [$($link.linkText)]($funcSlug)")
                 }
                 else {
-                    $helpItem = Get-Help $link.linkText | ? { $_.relatedLinks.navigationLink.uri } | % { $_.relatedLinks.navigationLink | select -first 1 }
+                    $helpItem = Get-Help $link.linkText | Where-Object { $_.relatedLinks.navigationLink.uri } | ForEach-Object { $_.relatedLinks.navigationLink | Select-Object -first 1 }
                     if ($helpItem.linkText) {
                         $Links.Add("- [$($helpItem.linkText)]($($helpItem.uri)) {target=_blank}")
                     }

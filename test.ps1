@@ -9,7 +9,7 @@ $ErrorActionPreference = 'Stop'
 
 if (!$Chocolatey -and !$Pester) { $Chocolatey = $Pester = $true }
 
-$buildDir = gi $PSScriptRoot/.build/*
+$buildDir = Get-Item $PSScriptRoot/.build/*
 
 if ($Chocolatey) {
     "`n==| Running Chocolatey tests"
@@ -22,7 +22,7 @@ if ($Pester) {
 
     $testResultsFile = "$buildDir/TestResults.xml"
     if ($CodeCoverage) {
-        $files = @(ls $PSScriptRoot/Wormies-AU-Helpers/* -Filter *.ps1 -Recurse | % FullName)
+        $files = @(Get-ChildItem $PSScriptRoot/Wormies-AU-Helpers/* -Filter *.ps1 -Recurse | ForEach-Object FullName)
         if ((Test-Path Env:\APPVEYOR) -and (Get-Command Export-CodeCovIoJson -ea 0)) {
             $res = Invoke-Pester -OutputFormat NUnitXml -OutputFile $testResultsFile -PassThru -CodeCoverage $files -CodeCoverageOutputFile "coverage.xml"
             $wc = New-Object 'System.Net.WebClient'

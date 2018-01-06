@@ -19,7 +19,7 @@ Describe "Expand-Aliases" {
         if (![System.IO.Directory]::Exists($outputDirectory)) {
             [System.IO.Directory]::CreateDirectory($outputDirectory)
         }
-        Get-ChildItem $directory -Filter "*.ps1" | % {
+        Get-ChildItem $directory -Filter "*.ps1" | ForEach-Object {
             Copy-Item $_.FullName $outputDirectory
         }
 
@@ -27,7 +27,7 @@ Describe "Expand-Aliases" {
         $expectedDirectory = "$PSScriptRoot\aliasResultFiles"
         Expand-Aliases -Directory $outputDirectory
 
-        Get-ChildItem $outputDirectory -Filter "*.ps1" | % {
+        Get-ChildItem $outputDirectory -Filter "*.ps1" | ForEach-Object {
             $expected = Get-Content -Raw "$expectedDirectory/$($_.Name)"
             $actual = Get-Content -Raw $_.FullName
             $actual | Should Be $expected

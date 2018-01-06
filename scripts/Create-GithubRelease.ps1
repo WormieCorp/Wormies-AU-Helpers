@@ -18,10 +18,10 @@ $repoUser = $splits | Select-Object -Last 1 -Skip 2
 $repoName = $splits | Select-Object -Last 1 -Skip 1
 $args += " -o '$repoUser' -r '$repoName'"
 
-$assets = Get-ChildItem $PSScriptRoot/.. -Include "*.7z", "*.nupkg" -Recurse | % FullName
+$assets = Get-ChildItem $PSScriptRoot/.. -Include "*.7z", "*.nupkg" -Recurse | ForEach-Object FullName
 
 "Uploading the followings assets to $repoName for version $version"
-$assets | % { "  - " + (Split-Path -Leaf $_) }
+$assets | ForEach-Object { "  - " + (Split-Path -Leaf $_) }
 
 "& '$gitReleaseManager' addasset $args --assets $assets" | Invoke-Expression
 

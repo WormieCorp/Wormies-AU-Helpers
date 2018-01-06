@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Expands the aliases in either the file or text passed to the function.
 
@@ -38,7 +38,7 @@ function Expand-Aliases () {
                 Get-ChildItem -LiteralPath $directory -Filter $filter -Recurse
             }
             else {
-                $files | % { Get-Item $_ }
+                $files | ForEach-Object { Get-Item $_ }
             }
 
             foreach ($file in $allFiles) {

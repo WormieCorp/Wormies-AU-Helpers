@@ -56,7 +56,7 @@ function Update-Metadata {
     $nu = New-Object xml
     $nu.PSBase.PreserveWhitespace = $true
     $nu.Load($NuspecFile)
-    $data.Keys | % {
+    $data.Keys | ForEach-Object {
         if ($nu.package.metadata."$_") {
             $nu.package.metadata."$_" = $data[$_]
         }

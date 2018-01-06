@@ -8,7 +8,7 @@
         $ParserErrors = $null)
 
     $tokens = [System.Management.Automation.PSParser]::Tokenize($text, [ref]$ParserErrors)
-    $commands = $tokens | ? Type -eq "Command" | sort Start -Descending
+    $commands = $tokens | Where-Object Type -eq "Command" | Sort-Object Start -Descending
 
     foreach ($cmd in $commands) {
         $key = $cmd.Content
