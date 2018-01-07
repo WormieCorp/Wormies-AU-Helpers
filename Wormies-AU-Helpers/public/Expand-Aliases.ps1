@@ -9,10 +9,30 @@
 .PARAMETER Text
     The script text that should parsed for aliases to expand.
 
+.PARAMETER Directory
+    The directory to use for parsing files.
+
+.PARAMETER Filter
+    The filter to use when traversing a directory for files to parse.
+
+.PARAMETER Files
+    The files to expand aliases in.
+
 .EXAMPLE
     Expand-Aliases -Text "rm file.txt; gi file.exe"
 
     Should be expanded to "Remove-Item file.txt; Get-Item file.exe"
+
+.EXAMPLE
+    Expand-Aliases -Directory .\tools -Filter "*.ps1"
+
+    Should traverse the tools directory relative to the current
+    directory, and expand all aliases in files matching the specified filter.
+
+.EXAMPLE
+    Expand-Aliases -Files ".\file1.ps1","text-File.txt"
+
+    Should expand all aliases in the two specified files.
 #>
 
 function Expand-Aliases () {
