@@ -131,6 +131,15 @@ This this removes ambiguity and any potential clashes or errors.</p>
 <pre><code class="language-PowerShell">Expand-Aliases -Text &quot;rm file.txt; gi file.exe&quot;
 </code></pre>
 <p>Should be expanded to &quot;Remove-Item file.txt; Get-Item file.exe&quot;</p>
+<h3 id="example-2">Example 2</h3>
+<pre><code class="language-PowerShell">Expand-Aliases -Directory .\tools -Filter &quot;*.ps1&quot;
+</code></pre>
+<p>Should traverse the tools directory relative to the current
+directory, and expand all aliases in files matching the specified filter.</p>
+<h3 id="example-3">Example 3</h3>
+<pre><code class="language-PowerShell">Expand-Aliases -Files &quot;.\file1.ps1&quot;,&quot;text-File.txt&quot;
+</code></pre>
+<p>Should expand all aliases in the two specified files.</p>
 <h2 id="inputs">Inputs</h2>
 <p>None</p>
 <h2 id="outputs">Outputs</h2>
@@ -169,6 +178,7 @@ This this removes ambiguity and any potential clashes or errors.</p>
 </tbody>
 </table>
 <h3 id="directory-string">-Directory &lt;String&gt;</h3>
+<p>The directory to use for parsing files.</p>
 <table class="table">
 <thead>
 <tr>
@@ -200,6 +210,7 @@ This this removes ambiguity and any potential clashes or errors.</p>
 </tbody>
 </table>
 <h3 id="files-string">-Files &lt;String[]&gt;</h3>
+<p>The files to expand aliases in.</p>
 <table class="table">
 <thead>
 <tr>
@@ -232,6 +243,7 @@ This this removes ambiguity and any potential clashes or errors.</p>
 </table>
 <h2 id="optional-parameters">Optional Parameters</h2>
 <h3 id="filter-string">-Filter &lt;String&gt;</h3>
+<p>The filter to use when traversing a directory for files to parse.</p>
 <table class="table">
 <thead>
 <tr>
