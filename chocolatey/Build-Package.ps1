@@ -23,7 +23,7 @@ if (!$res) { throw "Can't find markdown header 'Features' in the README.md" }
 
 $features = $Matches[0]
 "Updating nuspec file"
-$repo = git remote get-url origin | % { $_ -replace '\.git$' }
+$repo = git remote get-url origin | ForEach-Object { $_ -replace '\.git$' }
 $nuspecBuildPath = $nuspecPath -replace "\.nuspec$", "_build.nuspec"
 [xml]$au = Get-Content $nuspecPath -Encoding UTF8
 $description = $au.package.metadata.summary + ".`n`n" + $features
@@ -46,13 +46,13 @@ else {
 $au.Save($nuspecBuildPath)
 
 "Copying 7z archive"
-$archive = Get-ChildItem "$buildPath/$version/*${version}.7z" | % FullName
+$archive = Get-ChildItem "$buildPath/$version/*${version}.7z" | ForEach-Object FullName
 Copy-Item $archive $PSScriptRoot/tools/Wormies-AU-Helpers.7z
 Copy-Item $PSScriptRoot/../LICENSE $PSScriptRoot/legal/LICENSE.txt
 
-$checksum = Get-FileHash $archive -Algorithm SHA256 | % Hash
+$checksum = Get-FileHash $archive -Algorithm SHA256 | ForEach-Object Hash
 
-$content = Get-Content $PSScriptRoot/legal/VERIFICATION.txt -Encoding UTF8 | % {
+$content = Get-Content $PSScriptRoot/legal/VERIFICATION.txt -Encoding UTF8 | ForEach-Object {
     $_ -replace "\<.*\/tag\/[^\>]*\>", "<$repo/releases/tag/${version}>" `
         -replace "(checksum\:).*", "`${1} ${checksum}" `
         -replace "\<.*LICENSE\>", "<$($au.package.metadata.licenseUrl)>"

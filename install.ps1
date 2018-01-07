@@ -28,7 +28,7 @@ Write-Host "`n==| Starting $moduleName installation`n"
 
 if (!$modulePath) {
     if (Test-Path $PSScriptRoot/.build/*) {
-        $modulePath = (ls $PSScriptRoot/.build/* -ErrorAction Ignore | sort CreationDate -Descending | select -First 1 -Expand FullName) + "/" + $moduleName
+        $modulePath = (Get-ChildItem $PSScriptRoot/.build/* -ErrorAction Ignore | Sort-Object CreationDate -Descending | Select-Object -First 1 -Expand FullName) + "/" + $moduleName
     }
     else {
         $modulePath = "$PSScriptRoot/$moduleName"
@@ -42,9 +42,9 @@ $modulePath = Resolve-Path $modulePath
 
 Write-Host "Module path: '$modulePath'"
 
-cp -Recurse -Force $modulePath $moduleDst
+Copy-Item -Recurse -Force $modulePath $moduleDst
 
-$res = Get-Module $moduleName -ListAvailable | ? { (Split-Path $_.ModuleBase) -eq $moduleDst }
+$res = Get-Module $moduleName -ListAvailable | Where-Object { (Split-Path $_.ModuleBase) -eq $moduleDst }
 if (!$res) { throw "Module installation failed" }
 
 Write-Host "`n$($res.Name) version $($res.Version) installed successfully at '$moduleDst\$moduleName"
@@ -52,12 +52,12 @@ Write-Host "`n$($res.Name) version $($res.Version) installed successfully at '$m
 $functions = $res.ExportedFunctions.Keys
 
 Import-Module $moduleDst/$moduleName -Force
-$aliases = Get-Alias | ? { $_.Source -eq $moduleName }
+$aliases = Get-Alias | Where-Object { $_.Source -eq $moduleName }
 
 if ($functions.Length) {
-    $functions | % {
-        [PSCustomObject]@{ Function = $_; Alias = $aliases | ? Defintion -eq $_ }
-    } | % { Write-Host ("`n  {0,-20} {1}`n  --------             -----" -f 'Function', 'Alias') } {
+    $functions | ForEach-Object {
+        [PSCustomObject]@{ Function = $_; Alias = $aliases | Where-Object Defintion -eq $_ }
+    } | ForEach-Object { Write-Host ("`n  {0,-20} {1}`n  --------             -----" -f 'Function', 'Alias') } {
         Write-Host ("  {0,-20} {1}" -f $_.Function, "$($_.Alias)")
     }
 }

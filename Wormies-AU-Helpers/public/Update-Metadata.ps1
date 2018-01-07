@@ -30,7 +30,13 @@ Update-Metadata -data @{ title = 'My Awesome Title' }
 @{ title = 'My Awesome Title' } | Update-Metadata
 
 .NOTES
-Will throw an exception if the specified key doesn't exist in the nuspec file.
+    Will throw an exception if the specified key doesn't exist in the nuspec file.
+
+    While the parameter `NuspecFile` accepts globbing patterns,
+    it is expected to only match a single file.
+
+.LINK
+    https://wormiecorp.github.io/Wormies-AU-Helpers/docs/functions/update-metadata
 #>
 function Update-Metadata {
     param(
@@ -41,6 +47,7 @@ function Update-Metadata {
         [Parameter(Mandatory = $true, ParameterSetName = "Multiple", ValueFromPipeline = $true)]
         [hashtable]$data = @{$key = $value},
         [ValidateScript( { Test-Path $_ })]
+        [SupportsWildcards()]
         [string]$NuspecFile = ".\*.nuspec"
     )
 
@@ -49,7 +56,7 @@ function Update-Metadata {
     $nu = New-Object xml
     $nu.PSBase.PreserveWhitespace = $true
     $nu.Load($NuspecFile)
-    $data.Keys | % {
+    $data.Keys | ForEach-Object {
         if ($nu.package.metadata."$_") {
             $nu.package.metadata."$_" = $data[$_]
         }
