@@ -33,6 +33,9 @@
     Expand-Aliases -Files ".\file1.ps1","text-File.txt"
 
     Should expand all aliases in the two specified files.
+
+.LINK
+    https://wormiecorp.github.io/Wormies-AU-Helpers/docs/functions/expand-aliases
 #>
 
 function Expand-Aliases () {
