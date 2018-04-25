@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
-        <title>Wormies-AU-Helpers - Expand-Aliases</title>
+        <title>Wormies-AU-Helpers - Blog</title>
         <link href="/Wormies-AU-Helpers/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/highlight.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -58,8 +58,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
-                                    <li class="active"><a href="/Wormies-AU-Helpers/docs">Documentation</a></li>
-        <li><a href="/Wormies-AU-Helpers/blog">Blog</a></li>
+                                    <li><a href="/Wormies-AU-Helpers/docs">Documentation</a></li>
+        <li class="active"><a href="/Wormies-AU-Helpers/blog">Blog</a></li>
  
                         </ul>       
                     </div>
@@ -73,7 +73,6 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/functions/expand-aliases.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -83,16 +82,17 @@
 
                     <ul class="sidebar-menu">
                         
-                <li class="treeview active">
-                    <a href="/Wormies-AU-Helpers/docs/functions">Functions</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                                        <li class="selected"><a href="/Wormies-AU-Helpers/docs/functions/expand-aliases">Expand-Aliases</a></li>
-                <li><a href="/Wormies-AU-Helpers/docs/functions/get-fixversion">Get-FixVersion</a></li>
-                <li><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></li>
-                <li><a href="/Wormies-AU-Helpers/docs/functions/update-metadata">Update-Metadata</a></li>
 
-                    </ul>
-                </li>
+    <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
+        <li><a href="/Wormies-AU-Helpers/blog/Release">Release</a></li>
+    
+    <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/04">April, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/01">January, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2017/12">December, 2017</a></li>
+    
+    <li class="header"><i class="fa fa-user"></i> Authors</li>    
+        <li><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></li>
 
                     </ul>
                             
@@ -106,176 +106,79 @@
 
 
 	<section class="content-header">
-		<h1>Expand-Aliases</h1>
+		<h1>Blog</h1>
 	</section>
 	<section class="content">
-		<div class="alert alert-info"><p>This function was introduced in version <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/releases/tag/0.2.0"><strong>0.2.0</strong></a>.</p>
-</div>
-<p>Expands the aliases in either the file or text passed to the function.</p>
-<h2 id="syntax">Syntax</h2>
-<pre><code class="language-PowerShell">Expand-Aliases `
-    -Text &lt;String&gt;
-</code></pre>
-<pre><code class="language-PowerShell">Expand-Aliases `
-    -Directory &lt;String&gt; `
-    [-Filter &lt;String&gt;]
-</code></pre>
-<pre><code class="language-PowerShell">Expand-Aliases `
-    -Files &lt;String[]&gt;
-</code></pre>
-<h2 id="description">Description</h2>
-<p>Any scripts in 'corporate' or 'formal' use should have any aliases expanded.
-This this removes ambiguity and any potential clashes or errors.</p>
-<h2 id="aliases">Aliases</h2>
-<p>None</p>
-<h2 id="examples">Examples</h2>
-<h3 id="example-1">Example 1</h3>
-<pre><code class="language-PowerShell">Expand-Aliases -Text &quot;rm file.txt; gi file.exe&quot;
-</code></pre>
-<p>Should be expanded to &quot;Remove-Item file.txt; Get-Item file.exe&quot;</p>
-<h3 id="example-2">Example 2</h3>
-<pre><code class="language-PowerShell">Expand-Aliases -Directory .\tools -Filter &quot;*.ps1&quot;
-</code></pre>
-<p>Should traverse the tools directory relative to the current
-directory, and expand all aliases in files matching the specified filter.</p>
-<h3 id="example-3">Example 3</h3>
-<pre><code class="language-PowerShell">Expand-Aliases -Files &quot;.\file1.ps1&quot;,&quot;text-File.txt&quot;
-</code></pre>
-<p>Should expand all aliases in the two specified files.</p>
-<h2 id="inputs">Inputs</h2>
-<p>None</p>
-<h2 id="outputs">Outputs</h2>
-<p>None</p>
-<h2 id="required-parameters">Required Parameters</h2>
-<h3 id="text-string">-Text &lt;String&gt;</h3>
-<p>The script text that should parsed for aliases to expand.</p>
-<table class="table">
-<thead>
-<tr>
-<th style="text-align: left;">Property</th>
-<th style="text-align: center;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Aliases</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Position?</td>
-<td style="text-align: center;">named</td>
-</tr>
-<tr>
-<td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">false</td>
-</tr>
-<tr>
-<td style="text-align: left;">Default Value</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Accept Pipeline Input?</td>
-<td style="text-align: center;">false</td>
-</tr>
-</tbody>
-</table>
-<h3 id="directory-string">-Directory &lt;String&gt;</h3>
-<p>The directory to use for parsing files.</p>
-<table class="table">
-<thead>
-<tr>
-<th style="text-align: left;">Property</th>
-<th style="text-align: center;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Aliases</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Position?</td>
-<td style="text-align: center;">named</td>
-</tr>
-<tr>
-<td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">false</td>
-</tr>
-<tr>
-<td style="text-align: left;">Default Value</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Accept Pipeline Input?</td>
-<td style="text-align: center;">false</td>
-</tr>
-</tbody>
-</table>
-<h3 id="files-string">-Files &lt;String[]&gt;</h3>
-<p>The files to expand aliases in.</p>
-<table class="table">
-<thead>
-<tr>
-<th style="text-align: left;">Property</th>
-<th style="text-align: center;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Aliases</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Position?</td>
-<td style="text-align: center;">named</td>
-</tr>
-<tr>
-<td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">false</td>
-</tr>
-<tr>
-<td style="text-align: left;">Default Value</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Accept Pipeline Input?</td>
-<td style="text-align: center;">false</td>
-</tr>
-</tbody>
-</table>
-<h2 id="optional-parameters">Optional Parameters</h2>
-<h3 id="filter-string">-Filter &lt;String&gt;</h3>
-<p>The filter to use when traversing a directory for files to parse.</p>
-<table class="table">
-<thead>
-<tr>
-<th style="text-align: left;">Property</th>
-<th style="text-align: center;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Aliases</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Position?</td>
-<td style="text-align: center;">named</td>
-</tr>
-<tr>
-<td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">false</td>
-</tr>
-<tr>
-<td style="text-align: left;">Default Value</td>
-<td style="text-align: center;">*.ps1</td>
-</tr>
-<tr>
-<td style="text-align: left;">Accept Pipeline Input?</td>
-<td style="text-align: center;">false</td>
-</tr>
-</tbody>
-</table>
+		
+
+        <h2><a href="/Wormies-AU-Helpers/blog/new-release-0.2.1">Bug Release 0.2.1</a></h2>
+<dl class="dl-horizontal">
+    <dt><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Wednesday, April 25, 2018</dd>
+        <dt><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>            <div>
+                <h1 id="bug-release">0.2.1 Bug Release</h1>
+<p>As part of this release we had <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.0...0.2.1">3 commits</a> which resulted in <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=6&amp;state=closed">1 issue</a> being closed.</p>
+<p><strong>Bug</strong></p>
+<ul>
+<li><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/14"><strong>#14</strong></a> Get-RedirectedUrl Should automatically escape the url</li>
+</ul>
+<h3 id="where-to-get-it">Where to get it</h3>
+<p>You can download this release from <a href="https://chocolatey.org/packages/wormies-au-helpers/0.2.1">chocolatey</a>, or from the <a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.2.1">PowerShell Gallery</a></p>
+
+            </div>
+        <hr />
+        <h2><a href="/Wormies-AU-Helpers/blog/new-release-0.2.0">New Release 0.2.0</a></h2>
+<dl class="dl-horizontal">
+    <dt><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Sunday, January 7, 2018</dd>
+        <dt><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>            <div>
+                <p>As part of this release we had <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.1...0.2.0">22 commits</a> which resulted in <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=2&amp;state=closed">1 issue</a> being closed.</p>
+                <a href="/Wormies-AU-Helpers/blog/new-release-0.2.0">Read more...</a>
+            </div>
+        <hr />
+        <h2><a href="/Wormies-AU-Helpers/blog/new-release-0.1.1">Bug Release 0.1.1</a></h2>
+<dl class="dl-horizontal">
+    <dt><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Tuesday, December 12, 2017</dd>
+        <dt><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>            <div>
+                <p>As part of this release we had <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.0...0.1.1">2 commits</a> which resulted in <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=3&amp;state=closed">1 issue</a> being closed.</p>
+                <a href="/Wormies-AU-Helpers/blog/new-release-0.1.1">Read more...</a>
+            </div>
+        <hr />
+        <h2><a href="/Wormies-AU-Helpers/blog/new-release-0.1.0">New Release - 0.1.0</a></h2>
+<dl class="dl-horizontal">
+    <dt><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Friday, December 8, 2017</dd>
+        <dt><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>            <div>
+                <p>I'm happy to anounce the first public release of the Wormies-AU-Helpers powershell module.</p>
+                <a href="/Wormies-AU-Helpers/blog/new-release-0.1.0">Read more...</a>
+            </div>
+        <hr />
+    <nav>
+        <ul class="pager">
+            <li class="previous">                
+            </li>
+            <li class="next">
+            </li>
+        </ul>
+    </nav>
+
 
 	</section>
                 

@@ -1,22 +1,20 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
-        <title>Wormies-AU-Helpers - Wormies AU Helpers</title>
+        <title>Wormies-AU-Helpers - Bug Release 0.1.1</title>
         <link href="/Wormies-AU-Helpers/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/highlight.css" rel="stylesheet">
-        <link href="/Wormies-AU-Helpers/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/Wormies-AU-Helpers/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/Wormies-AU-Helpers/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/Wormies-AU-Helpers/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/Wormies-AU-Helpers/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/Wormies-AU-Helpers/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/Wormies-AU-Helpers/assets/css/override.css" rel="stylesheet" />
+        <link href="/Wormies-AU-Helpers/assets/css/override.css" rel="stylesheet">
         <script src="/Wormies-AU-Helpers/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/Wormies-AU-Helpers/assets/js/bootstrap.min.js"></script>        
         <script src="/Wormies-AU-Helpers/assets/js/app.min.js"></script>         
@@ -31,7 +29,7 @@
 
         
     </head>
-    <body class="hold-transition wyam layout-boxed layout-top-nav ">    
+    <body class="hold-transition wyam layout-boxed  ">    
         <div class="top-banner"></div>
         <div class="wrapper with-container">
             <!-- Header -->
@@ -43,6 +41,10 @@
                          
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
                                         
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -55,7 +57,7 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
                                     <li><a href="/Wormies-AU-Helpers/docs">Documentation</a></li>
-        <li><a href="/Wormies-AU-Helpers/blog">Blog</a></li>
+        <li class="active"><a href="/Wormies-AU-Helpers/blog">Blog</a></li>
  
                         </ul>       
                     </div>
@@ -66,11 +68,13 @@
             </header>
             
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar hidden">
+            <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/index.cshtml"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/blog/new-release-0.1.1.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#bug-release">0.1.1 Bug Release</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -79,6 +83,17 @@
 
                     <ul class="sidebar-menu">
                         
+
+    <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
+        <li><a href="/Wormies-AU-Helpers/blog/Release">Release</a></li>
+    
+    <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/04">April, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/01">January, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2017/12">December, 2017</a></li>
+    
+    <li class="header"><i class="fa fa-user"></i> Authors</li>    
+        <li><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></li>
 
                     </ul>
                             
@@ -92,32 +107,30 @@
 
 
 	<section class="content-header">
-		<h1>Wormies AU Helpers</h1>
+		<h1>Bug Release 0.1.1</h1>
 	</section>
 	<section class="content">
 		
-<div class="container-fluid">
-    <h1>What is it?</h1>
-    <p>
-        Wormies AU Helpers is a collection of helper scripts to make maintaining packages
-        using AU even easier.
-    </p>
 
-    <h2>Where to get it?</h2>
-    <p>
-        Officially published versions are available on our
-        <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/releases/">GitHub releases page</a>,
-        on <a href="https://chocolatey.org/packages/wormies-au-helpers">chocolatey</a> as well as on the
-        <a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers">PowerShell Gallery</a>.
-    </p>
-    <p>
-        Deveopment versions can be installed through chocolatey with the command
-        <code>choco install wormies-au-helpers --source https://www.myget.org/F/wormie-nugets --pre</code>, and can
-        be viewed <a href="https://www.myget.org/feed/wormie-nugets/package/nuget/wormies-au-helpers">here</a>.
-        These versions can also be installed using the latest
-        <a href="https://ci.appveyor.com/project/admiringworm/wormies-au-helpers/build/artifacts">AppVeyor Artifacts</a>.
-    </p>
-</div>
+
+<dl class="dl-horizontal">
+    <dt><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Tuesday, December 12, 2017</dd>
+        <dt><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>
+
+<h1 id="bug-release">0.1.1 Bug Release</h1>
+<p>As part of this release we had <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.0...0.1.1">2 commits</a> which resulted in <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=3&amp;state=closed">1 issue</a> being closed.</p>
+<p><strong>Bug</strong></p>
+<ul>
+<li><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/11"><strong>#11</strong></a> Update-Metadata saves nuspec file with UTF8-BOM encoding</li>
+</ul>
+<h3 id="where-to-get-it">Where to get it</h3>
+<p>You can download this release from <a href="https://chocolatey.org/packages/wormies-au-helpers/0.1.1">chocolatey</a>, or from the <a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.1.1">PowerShell Gallery</a></p>
+
 
 	</section>
                 
@@ -180,5 +193,5 @@
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>
