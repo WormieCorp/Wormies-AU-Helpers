@@ -34,4 +34,4 @@ on_success:
 
 cache:
 - docs/input/docs/functions
-- docs/tools->docs/tools/packages.config
+- docs/tools->docs/build.ps1
