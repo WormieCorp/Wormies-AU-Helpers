@@ -2,7 +2,13 @@
 Import-Module "$PSScriptRoot/../../Wormies-AU-Helpers"
 
 Describe 'Get-FixVersion' {
-    Mock "Resolve-Path" { return "$PSScriptRoot\test.nuspec" }
+    if (!$PSScriptRoot) {
+        $PSScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
+    }
+    $rootPath = $PSScriptRoot
+    sc -Value "" -Path "$rootPath\test.nuspec"
+
+    Mock "Resolve-Path" { return "$rootPath\test.nuspec" }
     $nuspecFile = "$PSScriptRoot/../private/ValidNuspec.nuspec"
     It "Should return same version when no padding is needed" {
         $global:au_Force = $false
@@ -84,5 +90,11 @@ Describe 'Get-FixVersion' {
         Get-FixVersion -Version 0.5.3.2 -NuspecFile $nuspecFile | Should Be "0.5.3.202"
         Mock Get-NuspecMetadata { return @{ id = "myid"; version = "0.5.3.202" } } -ModuleName "Wormies-AU-Helpers"
         Get-FixVersion -Version 0.5.3.2 -NuspecFile $nuspecFile | Should Be "0.5.3.203"
+    }
+
+    It "Should return padded fix version when onlyFixBelowVersion is higher than current and force is used" {
+        $global:au_Force = $true
+        Mock Get-NuspecMetadata { return @{ id = "myid"; version = "10.5.16.49299" }} -ModuleName "Wormies-AU-Helpers"
+        Get-FixVersion -Version "10.5.16.49299" -NuspecFile $nuspecFile -OnlyFixBelowVersion "10.5.17" | Should Be "10.5.16.4929901"
     }
 }
