@@ -10,4 +10,8 @@ Describe "Get-RedirectedUrl" {
     It "Should return same url when no redirect happens" {
         Get-RedirectedUrl "https://chocolatey.org/" | Should Be "https://chocolatey.org/"
     }
+
+    It "Should escape urls with spaces in the path" {
+        Get-RedirectedUrl "https://electron.authy.com/download?channel=stable&arch=x64&platform=win32&version=latest&product=authy" | Should -Match "\%20"
+    }
 }
