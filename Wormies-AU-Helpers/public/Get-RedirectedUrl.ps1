@@ -40,7 +40,7 @@ function Get-RedirectedUrl {
         $result = $resp.ResponseUri.OriginalString
         } else {
         $result = [uri]::EscapeUriString($resp.ResponseUri.OriginalString)
-        
+        }
     }
     else {
         Write-Warning "No redirected url was found, returning given url."
