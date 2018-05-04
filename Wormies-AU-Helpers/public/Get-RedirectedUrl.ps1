@@ -37,7 +37,7 @@ function Get-RedirectedUrl {
 
     if ($resp -and $resp.ResponseUri.OriginalString -ne $url) {
         Write-Verbose "Found redirected url '$($resp.ResponseUri)"
-        if ($escapeString) {
+        if (($escapeString) -or ($resp.ResponseUri.OriginalString -match "/s")) {
         $result = [uri]::EscapeUriString($resp.ResponseUri.OriginalString)
         } else {
         $result = $resp.ResponseUri.OriginalString
