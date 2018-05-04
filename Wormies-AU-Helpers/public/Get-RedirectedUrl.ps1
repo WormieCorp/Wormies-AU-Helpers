@@ -24,7 +24,8 @@ function Get-RedirectedUrl {
     param(
         [Parameter(Mandatory = $true)]
         [uri]$url,
-        [uri]$referer
+        [uri]$referer,
+        [bool]$escapeString = $false
     )
 
     $req = [System.Net.WebRequest]::CreateDefault($url)
@@ -36,7 +37,11 @@ function Get-RedirectedUrl {
 
     if ($resp -and $resp.ResponseUri.OriginalString -ne $url) {
         Write-Verbose "Found redirected url '$($resp.ResponseUri)"
+        if ($escapeString) {
         $result = [uri]::EscapeUriString($resp.ResponseUri.OriginalString)
+        } else {
+        $result = $resp.ResponseUri.OriginalString
+        }
     }
     else {
         Write-Warning "No redirected url was found, returning given url."
