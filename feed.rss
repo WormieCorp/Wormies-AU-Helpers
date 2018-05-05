@@ -5,8 +5,25 @@
 		<link>http://wormiecorp.github.io/Wormies-AU-Helpers</link>
 		<description />
 		<copyright>2018</copyright>
-		<pubDate>Sat, 05 May 2018 10:14:34 GMT</pubDate>
-		<lastBuildDate>Sat, 05 May 2018 10:14:34 GMT</lastBuildDate>
+		<pubDate>Sat, 05 May 2018 10:17:17 GMT</pubDate>
+		<lastBuildDate>Sat, 05 May 2018 10:17:17 GMT</lastBuildDate>
+		<item>
+			<title>Bug Release 0.2.2</title>
+			<link>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.2</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.1...0.2.2"&gt;15 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=7&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>AdmiringWorm</author>
+			<guid>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.2</guid>
+			<pubDate>Sat, 05 May 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h1 id="bug-release"&gt;0.2.2 Bug Release&lt;/h1&gt;
+&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.1...0.2.2"&gt;15 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=7&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bug&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/17"&gt;&lt;strong&gt;#17&lt;/strong&gt;&lt;/a&gt; Some uri escape to %2520 instead of %20&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://chocolatey.org/packages/wormies-au-helpers/0.2.2"&gt;chocolatey&lt;/a&gt;, or from the &lt;a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.2.2"&gt;PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Bug Release 0.2.1</title>
 			<link>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.1</link>

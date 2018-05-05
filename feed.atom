@@ -4,7 +4,26 @@
 	<id>http://wormiecorp.github.io/Wormies-AU-Helpers</id>
 	<title>Wormies-AU-Helpers</title>
 	<rights>2018</rights>
-	<updated>2018-05-05T10:14:34Z</updated>
+	<updated>2018-05-05T10:17:17Z</updated>
+	<entry>
+		<author>
+			<name>AdmiringWorm</name>
+		</author>
+		<link href="http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.2" />
+		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.2</id>
+		<title>Bug Release 0.2.2</title>
+		<updated>2018-05-05T00:00:00Z</updated>
+		<content>&lt;h1 id="bug-release"&gt;0.2.2 Bug Release&lt;/h1&gt;
+&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.1...0.2.2"&gt;15 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=7&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bug&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/17"&gt;&lt;strong&gt;#17&lt;/strong&gt;&lt;/a&gt; Some uri escape to %2520 instead of %20&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://chocolatey.org/packages/wormies-au-helpers/0.2.2"&gt;chocolatey&lt;/a&gt;, or from the &lt;a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.2.2"&gt;PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+</content>
+		<summary>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.1...0.2.2"&gt;15 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=7&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</summary>
+	</entry>
 	<entry>
 		<author>
 			<name>AdmiringWorm</name>
