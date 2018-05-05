@@ -30,10 +30,8 @@ $description = $au.package.metadata.summary + ".`n`n" + $features
 $au.package.metadata.version = $version
 $au.package.metadata.description = $description
 $au.package.metadata.licenseUrl = "${repo}/blob/develop/LICENSE"
-$au.package.metadata.projectUrl = $repo
 $au.package.metadata.projectSourceUrl = $repo
 $au.package.metadata.bugTrackerUrl = "${repo}/issues"
-$au.package.metadata.docsUrl = "${repo}/wiki"
 $au.package.metadata.packageSourceUrl = "${repo}/tree/develop/chocolatey"
 
 if (Test-Path "$PSScriptRoot/CHANGELOG.md") {
