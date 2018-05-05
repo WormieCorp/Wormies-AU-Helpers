@@ -30,16 +30,17 @@ function Get-RedirectedUrl {
     $req = [System.Net.WebRequest]::CreateDefault($url)
     if ($referer) {
         $req.Referer = $referer
-    }
 
+    }
     $resp = $req.GetResponse()
 
     if ($resp -and $resp.ResponseUri.OriginalString -ne $url) {
         Write-Verbose "Found redirected url '$($resp.ResponseUri)"
         if ( $($resp.ResponseUri.OriginalString) -match '\%\d+' ) {
-        $result = $resp.ResponseUri.OriginalString
-        } else {
-        $result = [uri]::EscapeUriString($resp.ResponseUri.OriginalString)
+            $result = $resp.ResponseUri.OriginalString
+        }
+        else {
+            $result = [uri]::EscapeUriString($resp.ResponseUri.OriginalString)
         }
     }
     else {
