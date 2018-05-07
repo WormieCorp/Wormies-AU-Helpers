@@ -18,6 +18,10 @@
 .PARAMETER Files
     The files to expand aliases in.
 
+.PARAMETER AliasWhitelist
+    Allows to add a array of whitelisted aliases that shouldn't be expanded.
+    (defaults to @('Get-UninstallRegistryKey'))
+
 .EXAMPLE
     Expand-Aliases -Text "rm file.txt; gi file.exe"
 
@@ -47,7 +51,10 @@ function Expand-Aliases () {
         [Parameter(Mandatory = $false, ParameterSetName = 'directory')]
         [string]$Filter = "*.ps1",
         [Parameter(Mandatory = $true, ParameterSetName = 'files')]
-        [string[]]$Files
+        [string[]]$Files,
+        [Parameter(Mandatory = $false)]
+        [Alias('Whitelist')]
+        [string[]]$AliasWhitelist = @('Get-PackageParameters'; 'Get-UninstallRegistryKey') # We add some default due to later chocolatey version setting it as an alias
     )
 
     BEGIN {
@@ -70,14 +77,14 @@ function Expand-Aliases () {
 
             foreach ($file in $allFiles) {
                 $oldText = Get-Content -Path $file.FullName -Raw
-                $text = Expand-AliasesInText -text $oldText -aliases $aliases -ParserErrors $ParserErrors
+                $text = Expand-AliasesInText -text $oldText -aliases $aliases -ParserErrors $ParserErrors -whitelist $AliasWhitelist
                 if ($oldText -cne $text) {
                     [System.IO.File]::WriteAllText($file.FullName, $text, [System.Text.Encoding]::UTF8)
                 }
             }
         }
         else {
-            $text = Expand-AliasesInText -text $text -aliases $aliases -ParserErrors $ParserErrors
+            $text = Expand-AliasesInText -text $text -aliases $aliases -ParserErrors $ParserErrors -whitelist $AliasWhitelist
         }
     }
 
