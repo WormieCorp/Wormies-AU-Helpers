@@ -114,14 +114,17 @@
 <p>Expands the aliases in either the file or text passed to the function.</p>
 <h2 id="syntax">Syntax</h2>
 <pre><code class="language-PowerShell">Expand-Aliases `
-    -Text &lt;String&gt;
+    -Text &lt;String&gt; `
+    [-AliasWhitelist &lt;String[]&gt;]
 </code></pre>
 <pre><code class="language-PowerShell">Expand-Aliases `
     -Directory &lt;String&gt; `
-    [-Filter &lt;String&gt;]
+    [-Filter &lt;String&gt;] `
+    [-AliasWhitelist &lt;String[]&gt;]
 </code></pre>
 <pre><code class="language-PowerShell">Expand-Aliases `
-    -Files &lt;String[]&gt;
+    -Files &lt;String[]&gt; `
+    [-AliasWhitelist &lt;String[]&gt;]
 </code></pre>
 <h2 id="description">Description</h2>
 <p>Any scripts in 'corporate' or 'formal' use should have any aliases expanded.
@@ -269,6 +272,39 @@ directory, and expand all aliases in files matching the specified filter.</p>
 <tr>
 <td style="text-align: left;">Default Value</td>
 <td style="text-align: center;">*.ps1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="aliaswhitelist-string">-AliasWhitelist &lt;String[]&gt;</h3>
+<p>Allows to add a array of whitelisted aliases that shouldn't be expanded.
+(defaults to &#64;('Get-UninstallRegistryKey'))</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;">&#64;('Get-PackageParameters'; 'Get-UninstallRegistryKey')</td>
 </tr>
 <tr>
 <td style="text-align: left;">Accept Pipeline Input?</td>
