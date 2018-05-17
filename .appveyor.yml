@@ -19,7 +19,11 @@ build_script:
 test_script:
 - ps: |
     Import-Module $env:USERPROFILE\CodeCovIo.psm1
-    .\test -CodeCoverage
+    if ($env:APPVEYOR_REPO_BRANCH -notmatch '[\/\-]') {
+        .\test -CodeCoverage
+    } else {
+        .\test -CodeCoverage -Pester
+    }
 artifacts:
 - path: '**\*.nupkg'
 - path: '**\*.7z'
