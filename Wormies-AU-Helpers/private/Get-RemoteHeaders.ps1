@@ -16,5 +16,7 @@
         elseif ($value.Count -gt 1) { $headers[$_] = $value }
     }
 
+    $resp.Dispose()
+
     return $headers
 }
