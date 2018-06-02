@@ -8,7 +8,7 @@ init:
 install:
 - ps: |
     cinst powershell -n --no-progress
-    cinst gitversion gitreleasemanager.portable codecov au --no-progress
+    cinst gitversion gitreleasemanager.portable au --no-progress
     Install-Module Pester -Scope CurrentUser -Force -SkipPublisherCheck
     $uri = "https://raw.githubusercontent.com/PowerShell/DscResource.Tests/491688867dc53894b92ca53520a18d145deb7760/DscResource.CodeCoverage/CodeCovIo.psm1"
     Invoke-WebRequest -Uri $uri -OutFile $env:USERPROFILE\CodeCovIo.psm1
@@ -29,8 +29,12 @@ notifications:
   on_build_failure: true
   on_build_status_changed: true
 on_success:
+  - ps: |
+      $env:PATH = 'C:\msys64\usr\bin;' + $env:PATH
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+      bash codecov.sh -f "coverage.json"
 - ps: .\publish.ps1
-- cmd: codecov -f coverage.json
+
 
 cache:
 - docs/input/docs/functions
