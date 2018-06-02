@@ -35,4 +35,4 @@ if ($publishRelease) {
 }
 
 "Exporting Release Notes..."
-"& '$gitReleaseManager' export $args --fileOutputPath $PSScriptRoot\..\chocolatey\CHANGELOG.md" | Invoke-Expression
+"& '$gitReleaseManager' export $args --fileOutputPath '$PSScriptRoot\..\chocolatey\CHANGELOG.md'" | Invoke-Expression
