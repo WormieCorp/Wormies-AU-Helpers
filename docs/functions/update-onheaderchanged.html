@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
-        <title>Wormies-AU-Helpers - Get-RedirectedUrl</title>
+        <title>Wormies-AU-Helpers - Update-OnHeaderChanged</title>
         <link href="/Wormies-AU-Helpers/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/highlight.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -73,7 +73,7 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/functions/get-redirectedurl.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/functions/update-onheaderchanged.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -88,9 +88,9 @@
                     <ul class="treeview-menu">
                                         <li><a href="/Wormies-AU-Helpers/docs/functions/expand-aliases">Expand-Aliases</a></li>
                 <li><a href="/Wormies-AU-Helpers/docs/functions/get-fixversion">Get-FixVersion</a></li>
-                <li class="selected"><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></li>
+                <li><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></li>
                 <li><a href="/Wormies-AU-Helpers/docs/functions/update-metadata">Update-Metadata</a></li>
-                <li><a href="/Wormies-AU-Helpers/docs/functions/update-onheaderchanged">Update-OnHeaderChanged</a></li>
+                <li class="selected"><a href="/Wormies-AU-Helpers/docs/functions/update-onheaderchanged">Update-OnHeaderChanged</a></li>
 
                     </ul>
                 </li>
@@ -107,31 +107,35 @@
 
 
 	<section class="content-header">
-		<h1>Get-RedirectedUrl</h1>
+		<h1>Update-OnHeaderChanged</h1>
 	</section>
 	<section class="content">
-		<div class="alert alert-info"><p>This function was introduced in version <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/releases/tag/0.1.0"><strong>0.1.0</strong></a>.</p>
+		<div class="alert alert-warning"><p><strong>Preliminary Notice</strong></p>
+<p>This function has not yet been made available. It is a planned function for the next minor version.</p>
 </div>
-<p>Aquire the url that is being redirected to when using the passed url parameter</p>
+<p>Update-OnHeaderChanged [[-URL32] <string>] [[-URL64] <string>] [[-DownloadOptions] <hashtable>] [[-AcceptedHeaders] &lt;string[]&gt;] [[-FilePath] <string>] [[-DownloadFiles] <scriptblock>] [[-ParseVersion] <scriptblock>] [[-OnVersionMismatch] <scriptblock>] [[-ParseStoredInfo] <scriptblock>] [[-SaveStoredInfo] <scriptblock>] [-UseFileVersion]</p>
 <h2 id="syntax">Syntax</h2>
-<pre><code class="language-PowerShell">Get-RedirectedUrl `
-    -url &lt;Uri&gt; `
-    [-referer &lt;Uri&gt;] `
-    [-NoEscape &lt;&gt;]
+<pre><code class="language-PowerShell">Update-OnHeaderChanged `
+    [-URL32 &lt;string&gt;] `
+    [-URL64 &lt;string&gt;] `
+    [-DownloadOptions &lt;hashtable&gt;] `
+    [-AcceptedHeaders &lt;string[]&gt;] `
+    [-FilePath &lt;string&gt;] `
+    [-DownloadFiles &lt;scriptblock&gt;] `
+    [-ParseVersion &lt;scriptblock&gt;] `
+    [-OnVersionMismatch &lt;scriptblock&gt;] `
+    [-ParseStoredInfo &lt;scriptblock&gt;] `
+    [-SaveStoredInfo &lt;scriptblock&gt;] `
+    [-UseFileVersion &lt;&gt;]
 </code></pre>
-<h2 id="description">Description</h2>
-<p>When a website only supplies a url to the latest version, but that url is redirected
-to a different url to aquire the actual binary file.
-Then this function can be used to simplify that aquiral.</p>
 <h2 id="aliases">Aliases</h2>
 <p>None</p>
 <h2 id="inputs">Inputs</h2>
 <p>None</p>
 <h2 id="outputs">Outputs</h2>
-<p>The redirected url when one is found, otherwise returns the same url that was passed.</p>
-<h2 id="required-parameters">Required Parameters</h2>
-<h3 id="url-uri">-url &lt;Uri&gt;</h3>
-<p>The url to check for redirection</p>
+<p>System.Object</p>
+<h2 id="optional-parameters">Optional Parameters</h2>
+<h3 id="acceptedheaders-string">-AcceptedHeaders &lt;string[]&gt;</h3>
 <table class="table">
 <thead>
 <tr>
@@ -142,15 +146,15 @@ Then this function can be used to simplify that aquiral.</p>
 <tbody>
 <tr>
 <td style="text-align: left;">Aliases</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">None</td>
 </tr>
 <tr>
 <td style="text-align: left;">Position?</td>
-<td style="text-align: center;">1</td>
+<td style="text-align: center;">3</td>
 </tr>
 <tr>
 <td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">false</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: left;">Default Value</td>
@@ -162,10 +166,7 @@ Then this function can be used to simplify that aquiral.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="optional-parameters">Optional Parameters</h2>
-<h3 id="referer-uri">-referer &lt;Uri&gt;</h3>
-<p>An optional parameter to use when a website requires the referer header to
-be used</p>
+<h3 id="downloadfiles-scriptblock">-DownloadFiles &lt;scriptblock&gt;</h3>
 <table class="table">
 <thead>
 <tr>
@@ -176,7 +177,38 @@ be used</p>
 <tbody>
 <tr>
 <td style="text-align: left;">Aliases</td>
+<td style="text-align: center;">None</td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
 <td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="downloadoptions-hashtable">-DownloadOptions &lt;hashtable&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;">None</td>
 </tr>
 <tr>
 <td style="text-align: left;">Position?</td>
@@ -184,7 +216,7 @@ be used</p>
 </tr>
 <tr>
 <td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">false</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: left;">Default Value</td>
@@ -196,7 +228,7 @@ be used</p>
 </tr>
 </tbody>
 </table>
-<h3 id="noescape-switchparameter">-NoEscape &lt;SwitchParameter&gt;</h3>
+<h3 id="filepath-string">-FilePath &lt;string&gt;</h3>
 <table class="table">
 <thead>
 <tr>
@@ -207,19 +239,236 @@ be used</p>
 <tbody>
 <tr>
 <td style="text-align: left;">Aliases</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">None</td>
 </tr>
 <tr>
 <td style="text-align: left;">Position?</td>
-<td style="text-align: center;">named</td>
+<td style="text-align: center;">4</td>
 </tr>
 <tr>
 <td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">false</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: left;">Default Value</td>
-<td style="text-align: center;">False</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="onversionmismatch-scriptblock">-OnVersionMismatch &lt;scriptblock&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;">None</td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parsestoredinfo-scriptblock">-ParseStoredInfo &lt;scriptblock&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;">None</td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="parseversion-scriptblock">-ParseVersion &lt;scriptblock&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;">None</td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="savestoredinfo-scriptblock">-SaveStoredInfo &lt;scriptblock&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;">None</td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="url32-string">-URL32 &lt;string&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;">None</td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="url64-string">-URL64 &lt;string&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;">None</td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usefileversion-switch">-UseFileVersion &lt;switch&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;">None</td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">Named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: left;">Accept Pipeline Input?</td>
