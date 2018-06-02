@@ -69,4 +69,21 @@ Describe "Expand-Aliases" {
 
         Get-Module chocolateyInstaller -All | Should -Not -Be $null
     }
+
+    It "Should not expand aliases specified in whitelist array" {
+        $testText = 'gc "something"'
+        $expectedText = 'gc "something"'
+
+        Expand-Aliases -Text $testText -AliasWhitelist @('gc') | Should Be $expectedText
+
+        $testText = 'Get-UninstallRegistryKey "somekey"'
+        $expectedText = 'Get-UninstallRegistryKey "somekey"'
+
+        Expand-Aliases -Text $testText | Should Be $expectedText
+
+        $testText = $testText + '; gc "testing"'
+        $expectedText = $expectedText + '; Get-Content "testing"'
+
+        Expand-Aliases -Text $testText | Should Be $expectedText
+    }
 }

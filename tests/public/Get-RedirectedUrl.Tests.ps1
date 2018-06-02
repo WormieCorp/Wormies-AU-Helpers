@@ -19,4 +19,8 @@ Describe "Get-RedirectedUrl" {
         Get-RedirectedUrl "https://electron.authy.com/download?channel=stable&arch=x64&platform=win32&version=latest&product=authy" | Should -Not -Match "\%2520"
         Get-RedirectedUrl "https://www.dropbox.com/download?build=48.4.58&plat=win&type=full" | Should -Not -Match "\%2520"
     }
+
+    It "Should not escape urls when user passes the 'NoEscape' switch" {
+        Get-RedirectedUrl "https://electron.authy.com/download?channel=stable&arch=x64&platform=win32&version=latest&product=authy" -NoEscape | Should -Not -Match '\%20'
+    }
 }

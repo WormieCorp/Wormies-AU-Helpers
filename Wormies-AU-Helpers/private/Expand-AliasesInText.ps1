@@ -5,14 +5,15 @@
         [string]$text,
         [Parameter(Mandatory = $true)]
         [hashtable]$aliases,
-        $ParserErrors = $null)
+        $ParserErrors = $null,
+        [string[]]$whitelist = @())
 
     $tokens = [System.Management.Automation.PSParser]::Tokenize($text, [ref]$ParserErrors)
     $commands = $tokens | Where-Object Type -eq "Command" | Sort-Object Start -Descending
 
     foreach ($cmd in $commands) {
         $key = $cmd.Content
-        if ($aliases.Contains($key)) {
+        if ($aliases.Contains($key) -and !$whitelist.Contains($key)) {
             $alias = $aliases.$key
             $old = $cmd.Content
             $new = $alias.ResolvedCommandName

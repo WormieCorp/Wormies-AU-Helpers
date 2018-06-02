@@ -24,7 +24,9 @@ function Get-RedirectedUrl {
     param(
         [Parameter(Mandatory = $true)]
         [uri]$url,
-        [uri]$referer
+        [uri]$referer,
+        [Alias('DisableEscape','RawUrl')]
+        [switch]$NoEscape
     )
 
     $req = [System.Net.WebRequest]::CreateDefault($url)
@@ -36,7 +38,7 @@ function Get-RedirectedUrl {
 
     if ($resp -and $resp.ResponseUri.OriginalString -ne $url) {
         Write-Verbose "Found redirected url '$($resp.ResponseUri)"
-        if ( $($resp.ResponseUri.OriginalString) -match '\%\d+' ) {
+        if ($NoEscape -or $($resp.ResponseUri.OriginalString) -match '\%\d+' ) {
             $result = $resp.ResponseUri.OriginalString
         }
         else {

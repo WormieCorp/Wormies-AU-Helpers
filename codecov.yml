@@ -1,0 +1,6 @@
+coverage:
+  notify:
+    gitter:
+      default:
+        url: secret:2OfQF7Mj7kKPY5mD3LKeyV9Ap4OB8Cvz1dTFwgzygQLzxtbuUHuWHOC6fKhzaa0RwEcjAKkClyF2GVasF6+Vj6p0jULn7au1GqbQpcmqBpZ8QVMWu97rHSeR9N0iDkyi
+        threshold: 1%

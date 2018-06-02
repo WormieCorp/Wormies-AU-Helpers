@@ -21,8 +21,8 @@ test_script:
     Import-Module $env:USERPROFILE\CodeCovIo.psm1
     .\test -CodeCoverage
 artifacts:
-- path: '**\*.nupkg'
-- path: '**\*.7z'
+- path: '.build\**\*.nupkg'
+- path: '.build\**\*.7z'
 notifications:
 - provider: GitHubPullRequest
   on_build_success: false
