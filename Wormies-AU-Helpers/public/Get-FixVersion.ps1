@@ -131,10 +131,19 @@ function Get-FixVersion() {
         }
 
         if ($mainVersion -ge $belowVersion -and ($preRelease -ge $belowPreRelease)) {
-            return $Version
+            if (!$preRelease -and ([string]$existingVersion).StartsWith($mainVersion)) {
+                return $existingVersion
+            }elseif (([string]$existingVersion).StartsWith("${mainVersion}${preRelease}")) {
+            }else {
+                return $Version
+            }
         }
         elseif ($mainVersion -eq $belowVersion -and !$preRelease -and $belowVersion) {
-            return $Version
+            if (([string]$existingVersion).StartsWith($mainVersion)) {
+                return $existingVersion
+            } else {
+                return $Version
+            }
         }
     }
 
