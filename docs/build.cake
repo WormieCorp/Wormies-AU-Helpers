@@ -20,7 +20,7 @@ BuildParameters.SetParameters(
 
 BuildParameters.PrintParameters(Context);
 
-BuildParameters.Tasks.PublishDocumentationTask.Task.Actions.Clear();
+((CakeTask)BuildParameters.Tasks.PublishDocumentationTask.Task).Actions.Clear();
 BuildParameters.Tasks.PublishDocumentationTask.Does(() => RequireTool(KuduSyncTool, () => {
         if(BuildParameters.CanUseWyam)
         {
