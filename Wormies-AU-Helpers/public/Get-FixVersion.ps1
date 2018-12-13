@@ -134,6 +134,7 @@ function Get-FixVersion() {
             if (!$preRelease -and ([string]$existingVersion).StartsWith($mainVersion)) {
                 return $existingVersion
             }elseif (([string]$existingVersion).StartsWith("${mainVersion}${preRelease}")) {
+                if ($global:au_Force -ne $true) { return $existingVersion }
             }else {
                 return $Version
             }
