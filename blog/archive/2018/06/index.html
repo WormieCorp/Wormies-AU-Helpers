@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
-        <title>Wormies-AU-Helpers - Get-FixVersion</title>
+        <title>Wormies-AU-Helpers - June, 2018</title>
         <link href="/Wormies-AU-Helpers/assets/css/mermaid.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/highlight.css" rel="stylesheet">
         <link href="/Wormies-AU-Helpers/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
@@ -58,8 +58,8 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">                            
-                                    <li class="active"><a href="/Wormies-AU-Helpers/docs">Documentation</a></li>
-        <li><a href="/Wormies-AU-Helpers/blog">Blog</a></li>
+                                    <li><a href="/Wormies-AU-Helpers/docs">Documentation</a></li>
+        <li class="active"><a href="/Wormies-AU-Helpers/blog">Blog</a></li>
  
                         </ul>       
                     </div>
@@ -73,7 +73,6 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/functions/get-fixversion.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -84,17 +83,19 @@
                     <ul class="sidebar-menu">
                         
 
-                <li class="treeview active">
-                    <a href="/Wormies-AU-Helpers/docs/functions">Functions</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/Wormies-AU-Helpers/docs/functions/expand-aliases">Expand-Aliases</a></li>
-                <li class="selected"><a href="/Wormies-AU-Helpers/docs/functions/get-fixversion">Get-FixVersion</a></li>
-                <li><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></li>
-                <li><a href="/Wormies-AU-Helpers/docs/functions/update-metadata">Update-Metadata</a></li>
-
-                    </ul>
-                </li>
+    <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
+        <li><a href="/Wormies-AU-Helpers/blog/Release">Release</a></li>
+    
+    <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/11">November, 2018</a></li>
+        <li class="selected"><a href="/Wormies-AU-Helpers/blog/archive/2018/06">June, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/05">May, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/04">April, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/01">January, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2017/12">December, 2017</a></li>
+    
+    <li class="header"><i class="fa fa-user"></i> Authors</li>    
+        <li><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></li>
 
                     </ul>
                             
@@ -108,183 +109,35 @@
 
 
 		<section class="content-header">
-			<h1>Get-FixVersion</h1>
+			<h1>June, 2018</h1>
 		</section>
 	<section class="content">
-		<div class="alert alert-info"><p>This function was introduced in version <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/releases/tag/0.1.0"><strong>0.1.0</strong></a>.</p>
-</div>
-<p>Parse the specified version and create a fix version when needed.</p>
-<h2 id="syntax">Syntax</h2>
-<pre><code class="language-PowerShell">Get-FixVersion `
-    -Version &lt;String&gt; `
-    [-OnlyFixBelowVersion &lt;String&gt;] `
-    [-AppendRevisionLength &lt;Int32&gt;] `
-    [-NuspecFile &lt;String&gt;]
-</code></pre>
-<h2 id="description">Description</h2>
-<p>When a 4-part version number is used by the software authors, there
-may be a little hard at times to push out an updated version by manually
-creating the fix version.
-This script helps out with this when both a 4-part version is used, and
-when a prerelease have been passed.</p>
-<h2 id="notes">Notes</h2>
-<p>While the parameter <code>NuspecFile</code> accepts globbing patterns,
-it is expected to only match a single file.</p>
-<h2 id="aliases">Aliases</h2>
-<p>None</p>
-<h2 id="examples">Examples</h2>
-<h3 id="example-1">Example 1</h3>
-<pre><code class="language-PowerShell">Get-FixVersion -Version '24.0.0.195'
-</code></pre>
-<p>will output <code>24.0.0.19501</code> if the
-nuspec version is equal to <code>24.0.0.195</code> or <code>24.0.0.19500</code> and
-<code>$global:au_Force</code> is set to <code>$true</code></p>
-<h3 id="example-2">Example 2</h3>
-<pre><code class="language-PowerShell">Get-FixVersion -Version '5.0-beta'
-</code></pre>
-<p>will output <code>5.0-beta-20171123</code> (the current date)</p>
-<h2 id="inputs">Inputs</h2>
-<p>None</p>
-<h2 id="outputs">Outputs</h2>
-<p>Will output the full version number with a fix number when a 4-part version
-have been specified.</p>
-<p>Will append the date to any pre-release versions.</p>
-<p>Will just return the same version number if no fix is needed, or when the
-version number isn't a 4-part version.</p>
-<h2 id="required-parameters">Required Parameters</h2>
-<h3 id="version-string">-Version &lt;String&gt;</h3>
-<p>The version number to parse for a fix version</p>
-<table class="table">
-<thead>
-<tr>
-<th style="text-align: left;">Property</th>
-<th style="text-align: center;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Aliases</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Position?</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr>
-<td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">false</td>
-</tr>
-<tr>
-<td style="text-align: left;">Default Value</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Accept Pipeline Input?</td>
-<td style="text-align: center;">false</td>
-</tr>
-</tbody>
-</table>
-<h2 id="optional-parameters">Optional Parameters</h2>
-<h3 id="onlyfixbelowversion-string">-OnlyFixBelowVersion &lt;String&gt;</h3>
-<p>The version to stop adding fix versions to
-(in case of padding revision number)</p>
-<table class="table">
-<thead>
-<tr>
-<th style="text-align: left;">Property</th>
-<th style="text-align: center;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Aliases</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Position?</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr>
-<td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">false</td>
-</tr>
-<tr>
-<td style="text-align: left;">Default Value</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Accept Pipeline Input?</td>
-<td style="text-align: center;">false</td>
-</tr>
-</tbody>
-</table>
-<h3 id="appendrevisionlength-int32">-AppendRevisionLength &lt;Int32&gt;</h3>
-<p>The number of zeros to append the revision number with, before adding the
-fix number
-(defaults to 1).</p>
-<table class="table">
-<thead>
-<tr>
-<th style="text-align: left;">Property</th>
-<th style="text-align: center;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Aliases</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Position?</td>
-<td style="text-align: center;">3</td>
-</tr>
-<tr>
-<td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">false</td>
-</tr>
-<tr>
-<td style="text-align: left;">Default Value</td>
-<td style="text-align: center;">1</td>
-</tr>
-<tr>
-<td style="text-align: left;">Accept Pipeline Input?</td>
-<td style="text-align: center;">false</td>
-</tr>
-</tbody>
-</table>
-<h3 id="nuspecfile-string">-NuspecFile &lt;String&gt;</h3>
-<p>The nuspec metadata file to parse for the existing version information
-(defaults to '.*.nuspec')</p>
-<table class="table">
-<thead>
-<tr>
-<th style="text-align: left;">Property</th>
-<th style="text-align: center;">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Aliases</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">Position?</td>
-<td style="text-align: center;">4</td>
-</tr>
-<tr>
-<td style="text-align: left;">Globbing?</td>
-<td style="text-align: center;">true</td>
-</tr>
-<tr>
-<td style="text-align: left;">Default Value</td>
-<td style="text-align: center;">./*.nuspec</td>
-</tr>
-<tr>
-<td style="text-align: left;">Accept Pipeline Input?</td>
-<td style="text-align: center;">false</td>
-</tr>
-</tbody>
-</table>
+		
+
+        <h2><a href="/Wormies-AU-Helpers/blog/new-release-0.3.0">New Release 0.3.0</a></h2>
+
+<dl class="dl-horizontal">
+    <dt><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Saturday, June 2, 2018</dd>
+        <dt><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>
+            <div>
+                <p>As part of this release we had <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.2...0.3.0">10 commits</a> which resulted in <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=4&amp;state=closed">2 issues</a> being closed.</p>
+                <a href="/Wormies-AU-Helpers/blog/new-release-0.3.0">Read more...</a>
+            </div>
+        <hr />
+    <nav>
+        <ul class="pager">
+            <li class="previous">                
+            </li>
+            <li class="next">
+            </li>
+        </ul>
+    </nav>
+
 
 	</section>
                 
