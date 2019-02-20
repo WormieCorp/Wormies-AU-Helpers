@@ -1,0 +1,45 @@
+{
+  "projectName": "Wormies-AU-Helpers",
+  "projectOwner": "WormieCorp",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "AdmiringWorm",
+      "name": "Kim J. Nordmo",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/1474648?v=4",
+      "profile": "https://github.com/AdmiringWorm",
+      "contributions": [
+        "maintenance"
+      ]
+    },
+    {
+      "login": "RedBaron2",
+      "name": "RB",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1191271?v=4",
+      "profile": "https://github.com/RedBaron2",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "types": {
+    "bug": {
+      "symbol": "🐛",
+      "description": "Bug reports",
+      "link": "<%= options.repoHost %>/<%= options.projectOwner %>/<%= options.projectName %>/issues?q=author%3A<%= contributor.login %>+label%3Abug"
+    },
+    "ideas": {
+      "symbol": "🤔",
+      "description": "Ideas, Planning, & Feedback",
+      "link": "<%= options.repoHost %>/<%= options.projectOwner %>/<%= options.projectName %>/issues?q=author%3A<%= contributor.login %>"
+    }
+  }
+}
