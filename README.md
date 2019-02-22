@@ -1,6 +1,7 @@
 [![Build status](https://img.shields.io/appveyor/ci/AdmiringWorm/Wormies-AU-Helpers.svg?style=plastic&logo=appveyor)](https://ci.appveyor.com/project/AdmiringWorm/wormies-au-helpers) [![Code Coverage](https://img.shields.io/codecov/c/github/WormieCorp/Wormies-AU-Helpers/develop.svg?style=plastic)](https://codecov.io/gh/WormieCorp/Wormies-AU-Helpers/branch/develop) [![license](https://img.shields.io/github/license/WormieCorp/Wormies-AU-Helpers.svg?style=plastic)](https://github.com/WormieCorp/Wormies-AU-Helpers/blob/master/LICENSE)
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
+TODO: This is added just as a test
 # Chocolatey Automatic Package Updater Helper Module
 
 This PowerShell module implements functions that can be used to make maintaining packages with AU even easier.
