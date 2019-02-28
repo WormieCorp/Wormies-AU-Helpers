@@ -50,7 +50,7 @@ function GenerateParameterTable {
     )
 
     forEach ($item in $parameters) {
-        '### -' + $item.name + " \<" + $item.Type.Name + "\>"
+        '### -' + $item.name + " \<" + $item.Type.Name + "\>`n"
         ($item.Description | Out-String).Trim() + "`r`n"
         $propLen = $arrParameterProperties | ForEach-Object { $_ -split '\:' | Select-Object -last 1 } | Measure-Object -Maximum -Property Length | ForEach-Object Maximum
         $propLen += 2

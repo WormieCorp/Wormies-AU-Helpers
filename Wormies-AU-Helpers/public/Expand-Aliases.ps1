@@ -19,8 +19,7 @@
     The files to expand aliases in.
 
 .PARAMETER AliasWhitelist
-    Allows to add a array of whitelisted aliases that shouldn't be expanded.
-    (defaults to @('Get-UninstallRegistryKey'))
+    Allows to add a array of whitelisted aliases that shouldn't be expanded. (Available since v 0.3.0)
 
 .EXAMPLE
     Expand-Aliases -Text "rm file.txt; gi file.exe"
