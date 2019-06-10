@@ -1,5 +1,6 @@
 [![Build status](https://img.shields.io/appveyor/ci/AdmiringWorm/Wormies-AU-Helpers.svg?style=plastic&logo=appveyor)](https://ci.appveyor.com/project/AdmiringWorm/wormies-au-helpers) [![Code Coverage](https://img.shields.io/codecov/c/github/WormieCorp/Wormies-AU-Helpers/develop.svg?style=plastic)](https://codecov.io/gh/WormieCorp/Wormies-AU-Helpers/branch/develop) [![license](https://img.shields.io/github/license/WormieCorp/Wormies-AU-Helpers.svg?style=plastic)](https://github.com/WormieCorp/Wormies-AU-Helpers/blob/master/LICENSE)
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=plastic)](#contributors)
+[![Liberapay receiving](https://img.shields.io/liberapay/receives/WormieCorp.svg?logo=liberapay&style=plastic)](https://liberapay.com/WormieCorp)
 
 # Chocolatey Automatic Package Updater Helper Module
 
