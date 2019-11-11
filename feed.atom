@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<link rel="self" href="http://wormiecorp.github.io/Wormies-AU-Helpers" />
 	<id>http://wormiecorp.github.io/Wormies-AU-Helpers</id>
 	<title>Wormies-AU-Helpers</title>
+	<link rel="self" href="http://wormiecorp.github.io/Wormies-AU-Helpers" />
 	<rights>2019</rights>
-	<updated>2019-06-15T12:04:10Z</updated>
+	<updated>2019-11-11T23:03:30Z</updated>
 	<entry>
+		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.3.1</id>
+		<title>Bug Release 0.3.1</title>
 		<author>
 			<name>AdmiringWorm</name>
 		</author>
 		<link href="http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.3.1" />
-		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.3.1</id>
-		<title>Bug Release 0.3.1</title>
 		<updated>2018-11-13T00:00:00Z</updated>
 		<content>&lt;h2 id="bug-release"&gt;0.3.1 Bug Release&lt;/h2&gt;
 &lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.3.0...0.3.1"&gt;6 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=8&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
@@ -25,12 +25,12 @@
 		<summary>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.3.0...0.3.1"&gt;6 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=8&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</summary>
 	</entry>
 	<entry>
+		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.3.0</id>
+		<title>New Release 0.3.0</title>
 		<author>
 			<name>AdmiringWorm</name>
 		</author>
 		<link href="http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.3.0" />
-		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.3.0</id>
-		<title>New Release 0.3.0</title>
 		<updated>2018-06-02T00:00:00Z</updated>
 		<content>&lt;h2 id="release"&gt;0.3.0 Release&lt;/h2&gt;
 &lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.2...0.3.0"&gt;10 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=4&amp;amp;state=closed"&gt;2 issues&lt;/a&gt; being closed.&lt;/p&gt;
@@ -45,12 +45,12 @@
 		<summary>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.2...0.3.0"&gt;10 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=4&amp;amp;state=closed"&gt;2 issues&lt;/a&gt; being closed.&lt;/p&gt;</summary>
 	</entry>
 	<entry>
+		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.2</id>
+		<title>Bug Release 0.2.2</title>
 		<author>
 			<name>AdmiringWorm</name>
 		</author>
 		<link href="http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.2" />
-		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.2</id>
-		<title>Bug Release 0.2.2</title>
 		<updated>2018-05-05T00:00:00Z</updated>
 		<content>&lt;h1 id="bug-release"&gt;0.2.2 Bug Release&lt;/h1&gt;
 &lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.1...0.2.2"&gt;15 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=7&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
@@ -64,12 +64,12 @@
 		<summary>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.1...0.2.2"&gt;15 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=7&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</summary>
 	</entry>
 	<entry>
+		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.1</id>
+		<title>Bug Release 0.2.1</title>
 		<author>
 			<name>AdmiringWorm</name>
 		</author>
 		<link href="http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.1" />
-		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.1</id>
-		<title>Bug Release 0.2.1</title>
 		<updated>2018-04-25T00:00:00Z</updated>
 		<content>&lt;h1 id="bug-release"&gt;0.2.1 Bug Release&lt;/h1&gt;
 &lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.0...0.2.1"&gt;3 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=6&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
@@ -83,12 +83,12 @@
 		<summary>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.0...0.2.1"&gt;3 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=6&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</summary>
 	</entry>
 	<entry>
+		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.0</id>
+		<title>New Release 0.2.0</title>
 		<author>
 			<name>AdmiringWorm</name>
 		</author>
 		<link href="http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.0" />
-		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.0</id>
-		<title>New Release 0.2.0</title>
 		<updated>2018-01-07T00:00:00Z</updated>
 		<content>&lt;h2 id="release"&gt;0.2.0 Release&lt;/h2&gt;
 &lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.1...0.2.0"&gt;22 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=2&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
@@ -102,12 +102,12 @@
 		<summary>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.1...0.2.0"&gt;22 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=2&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</summary>
 	</entry>
 	<entry>
+		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.1.1</id>
+		<title>Bug Release 0.1.1</title>
 		<author>
 			<name>AdmiringWorm</name>
 		</author>
 		<link href="http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.1.1" />
-		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.1.1</id>
-		<title>Bug Release 0.1.1</title>
 		<updated>2017-12-12T00:00:00Z</updated>
 		<content>&lt;h1 id="bug-release"&gt;0.1.1 Bug Release&lt;/h1&gt;
 &lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.0...0.1.1"&gt;2 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=3&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
@@ -121,12 +121,12 @@
 		<summary>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.0...0.1.1"&gt;2 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=3&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</summary>
 	</entry>
 	<entry>
+		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.1.0</id>
+		<title>New Release - 0.1.0</title>
 		<author>
 			<name>AdmiringWorm</name>
 		</author>
 		<link href="http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.1.0" />
-		<id>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.1.0</id>
-		<title>New Release - 0.1.0</title>
 		<updated>2017-12-08T00:00:00Z</updated>
 		<content>&lt;h1 id="release"&gt;0.1.0 Release&lt;/h1&gt;
 &lt;p&gt;I'm happy to anounce the first public release of the Wormies-AU-Helpers powershell module.&lt;/p&gt;
