@@ -8,7 +8,7 @@
 $gitReleaseManager = Get-Command "gitreleasemanager.exe" -ErrorAction Ignore | ForEach-Object Source
 if (!$gitReleaseManager) {
     $gitReleaseManager = Get-Command "dotnet-gitreleasemanager" | ForEach-Object Source
-    if (!gitreleasemanager) {
+    if (!$gitreleasemanager) {
         throw "git release manager executable was not found"
     }
 }
