@@ -86,4 +86,17 @@ Describe "Expand-Aliases" {
 
         Expand-Aliases -Text $testText | Should Be $expectedText
     }
+
+    It "Should expand 'touch' command to 'New-Item' command" {
+        $testText = 'touch something.txt'
+        $expectedText = 'New-Item -ItemType File -Path something.txt'
+
+        Expand-Aliases -Text $testText | Should Be $expectedText
+    }
+
+    It "Should not expand 'touch.exe'" {
+        $testText = 'touch.exe something.text'
+
+        Expand-Aliases -Text $testText | Should Be $testText
+    }
 }

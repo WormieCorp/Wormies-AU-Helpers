@@ -8,17 +8,28 @@
         $ParserErrors = $null,
         [string[]]$whitelist = @())
 
+    $additionalReplaces = @{
+        "touch" = "New-Item -ItemType File -Path"
+    }
+
     $tokens = [System.Management.Automation.PSParser]::Tokenize($text, [ref]$ParserErrors)
     $commands = $tokens | Where-Object Type -eq "Command" | Sort-Object Start -Descending
 
     foreach ($cmd in $commands) {
         $key = $cmd.Content
-        if ($aliases.Contains($key) -and !$whitelist.Contains($key)) {
+        if ($whitelist.Contains($key)) { continue; }
+        if ($aliases.Contains($key)) {
             $alias = $aliases.$key
-            $old = $cmd.Content
+            $old = $key
             $new = $alias.ResolvedCommandName
             if ($PSCmdlet.ShouldProcess($old, "Expand alias to $new")) {
-                $text = $text.Remove($cmd.Start, $cmd.Content.Length).Insert($cmd.Start, $new)
+                $text = $text.Remove($cmd.Start, $old.Length).Insert($cmd.Start, $new)
+            }
+        } elseif ($additionalReplaces.ContainsKey($key)) {
+            $old = $key
+            $new = $additionalReplaces[$key]
+            if ($PSCmdlet.ShouldProcess($old, "Expand command to $new")) {
+                $text = $text.Remove($cmd.Start, $old.Length).Insert($cmd.Start, $new)
             }
         }
     }
