@@ -5,9 +5,12 @@
     [switch]$preRelease
 )
 
-$gitReleaseManager = Get-Command "gitreleasemanager.exe" -ErrorAction Ignore
+$gitReleaseManager = Get-Command "gitreleasemanager.exe" -ErrorAction Ignore | ForEach-Object Source
 if (!$gitReleaseManager) {
-    throw "git release manager executable was not found"
+    $gitReleaseManager = Get-Command "dotnet-gitreleasemanager" | ForEach-Object Source
+    if (!gitreleasemanager) {
+        throw "git release manager executable was not found"
+    }
 }
 
 $cmd = "'$gitReleaseManager' create -c master -m '$version' -n '$version Release' -u '$user' -p '$token'"
