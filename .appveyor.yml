@@ -38,4 +38,4 @@ on_success:
 
 cache:
 - docs/input/docs/functions
-- docs/tools->docs/build.ps1
+- 'docs/tools->docs/build.ps1,docs/build.cake'
