@@ -8,7 +8,10 @@ init:
 install:
 - ps: |
     cinst powershell -n --no-progress
-    cinst gitversion.portable gitreleasemanager.portable codecov au --no-progress
+    dotnet tool install -g GitVersion.Tool
+    dotnet tool install -g GitReleaseManager.Tool
+    dotnet tool install -g Codecov.Tool
+    cinst au --no-progress
     Install-Module Pester -Scope CurrentUser -Force -SkipPublisherCheck
     $uri = "https://raw.githubusercontent.com/PowerShell/DscResource.Tests/491688867dc53894b92ca53520a18d145deb7760/DscResource.CodeCoverage/CodeCovIo.psm1"
     Invoke-WebRequest -Uri $uri -OutFile $env:USERPROFILE\CodeCovIo.psm1

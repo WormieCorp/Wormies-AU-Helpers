@@ -7,9 +7,12 @@
 
 $ErrorActionPreference = 'Stop'
 
-$gitReleaseManager = Get-Command "gitreleasemanager.exe" -ErrorAction Ignore
+$gitReleaseManager = Get-Command "gitreleasemanager.exe" -ErrorAction Ignore | ForEach-Object Source
 if (!$gitReleaseManager) {
-    throw "git release manager executable was not found"
+    $gitReleaseManager = Get-Command "dotnet-gitreleasemanager" | ForEach-Object Source
+    if (!$gitReleaseManager) {
+        throw "git release manager executable was not found"
+    }
 }
 
 $args = "-t '$version' -u '$user' -p '$token'"
