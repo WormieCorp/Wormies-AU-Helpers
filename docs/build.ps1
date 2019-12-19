@@ -143,7 +143,7 @@ $cakeArguments = New-Object System.Collections.Generic.List[string]
 $cakeArguments.Add($Script) | Out-Null
 $excludeArgs = @("Script","CakeVersion","UseNetCore","ScriptArgs", "Verbose")
 
-$PSBoundParameters.GetEnumerator() | ? { !$excludeArgs.Contains($_.Key) } | % {
+$PSBoundParameters.GetEnumerator() | Where-Object { !$excludeArgs.Contains($_.Key) } | ForEach-Object {
     if ($_.Value) {
         $cakeArguments.Add("-$($_.Key)=$($_.Value)")
     } else {

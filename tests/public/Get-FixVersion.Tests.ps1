@@ -6,7 +6,7 @@ Describe 'Get-FixVersion' {
         $PSScriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Definition
     }
     $rootPath = $PSScriptRoot
-    sc -Value "" -Path "$rootPath\test.nuspec"
+    Set-Content -Value "" -Path "$rootPath\test.nuspec"
 
     #Mock "Resolve-Path" { return "$rootPath\test.nuspec" }
     $nuspecFile = "$PSScriptRoot/../private/ValidNuspec.nuspec"
