@@ -52,19 +52,35 @@ function Update-Metadata {
     )
 
     $NuspecFile = Resolve-Path $NuspecFile
-
     $nu = New-Object xml
     $nu.PSBase.PreserveWhitespace = $true
     $nu.Load($NuspecFile)
     $data.Keys | ForEach-Object {
-        if ($nu.package.metadata."$_") {
-            $nu.package.metadata."$_" = $data[$_]
-        }
-        else {
-            throw "$_ does not exist on the metadata element in the nuspec file"
+    if ($_ -eq "file") {
+    if (!([string]::IsNullOrEmpty($value)) ) {
+        $src,$target = $value -split(",")
+    } else {
+        $src,$target = $data[$_] -split(",")
+    }
+        $nu.package.files.file.src = $src
+        $nu.package.files.file.target = $target
+    } elseif ($_ -eq "dependency") {
+    if (!([string]::IsNullOrEmpty($value)) ) {
+        $id,$version = $value -split(",")
+    } else {
+        $id,$version = $data[$_] -split(",")
+    }
+    $nu.package.metadata.dependencies.dependency.id = $id
+    $nu.package.metadata.dependencies.dependency.version = $version
+        } else {
+            if ($nu.package.metadata."$_") {
+                $nu.package.metadata."$_" = $data[$_]
+            } else {
+                throw "$_ does not exist on the metadata element in the nuspec file"
+            }
         }
     }
-
     $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
     [System.IO.File]::WriteAllText($NuspecFile, $nu.InnerXml, $utf8NoBom)
+    write-host "nuspec -$NuspecFile- written"
 }
