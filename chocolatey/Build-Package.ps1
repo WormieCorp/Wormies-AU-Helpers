@@ -6,9 +6,8 @@ $version = $version.ToString()
 if (!$version) { throw "Latest module build can not be found" }
 $modulePath = "$buildPath/$version/Wormies-AU-Helpers"
 
-. $modulePath/private/Test-ValidVersion.ps1
-if (!(Test-ValidVersion -version $version)) {
-    throw "Latest module is not a valid version."
+if ($version -notmatch "^\d+(\.\d+){1,3}((\-[a-z\d]+){1,2}(\-\d+))?$") {
+    throw "Latest module version ($version) is not a valid version."
 }
 
 $nuspecPath = "$PSScriptRoot/wormies-au-helpers.nuspec"
