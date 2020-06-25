@@ -6,7 +6,7 @@ $version = $version.ToString()
 if (!$version) { throw "Latest module build can not be found" }
 $modulePath = "$buildPath/$version/Wormies-AU-Helpers"
 
-if ($version -notmatch "^\d+(\.\d+){1,3}((\-[a-z\d]+){1,2}(\-\d+))?$") {
+if ($version -notmatch "^\d+(\.\d+){1,3}((\-[a-z\d]+){1,2}(\-?\d+))?$") {
     throw "Latest module version ($version) is not a valid version."
 }
 
