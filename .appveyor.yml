@@ -22,7 +22,11 @@ build_script:
 test_script:
 - ps: |
     Import-Module $env:USERPROFILE\CodeCovIo.psm1
-    .\test -CodeCoverage
+    if ("$env:APPVEYOR_PULL_REQUEST_NUMBER") {
+        .\test -Pester -CodeCoverage # We can not run chocolatey tests on pull requests
+    } else {
+        .\test -CodeCoverage
+    }
 artifacts:
 - path: '.build\**\*.nupkg'
 - path: '.build\**\*.7z'
