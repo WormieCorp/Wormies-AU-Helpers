@@ -11,7 +11,7 @@ install:
     dotnet tool install -g GitVersion.Tool
     dotnet tool install -g GitReleaseManager.Tool
     dotnet tool install -g Codecov.Tool
-    Install-Module Pester -Scope CurrentUser -Force -SkipPublisherCheck
+    Install-Module Pester -RequiredVersion 4.10.1 -Scope CurrentUser -Force -SkipPublisherCheck
     Install-Module AU
     $uri = "https://raw.githubusercontent.com/PowerShell/DscResource.Tests/491688867dc53894b92ca53520a18d145deb7760/DscResource.CodeCoverage/CodeCovIo.psm1"
     Invoke-WebRequest -Uri $uri -OutFile $env:USERPROFILE\CodeCovIo.psm1
