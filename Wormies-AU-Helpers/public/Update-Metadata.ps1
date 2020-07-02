@@ -75,7 +75,7 @@ function Update-Metadata {
             '^(file|files)$' {
                 $src, $target = $data[$_] -split (",")
                 if (($src -isnot [string]) -or ($target -isnot [string])) {
-                    Write-Verbose "$src or $target is not a valid string";
+                    throw "$src or $target is not a valid string";
                 }
                 else {
                     if ( ($nu.package.files.ChildNodes.Count) -eq 3 ) {
@@ -83,14 +83,14 @@ function Update-Metadata {
                        $nu.package.files.file.target = $target
                     }
                     else {
-                       Write-Verbose "Zero or more than one Files Child Node found"
+                       throw "Zero or more than one Files Child Node found"
                     }
                 }
             }
             '^(dependency|dependencies)$' {
                 $id, $version = $data[$_] -split (",")
                 if (($id -isnot [string]) -or ($version -isnot [string]))  {
-                    Write-Verbose "$id or $version is not a valid string";
+                    throw "$id or $version is not a valid string";
                 }
                 else {
                     if ( ($nu.package.metadata.dependencies.ChildNodes.Count) -eq 3 ) {
@@ -98,7 +98,7 @@ function Update-Metadata {
                        $nu.package.metadata.dependencies.dependency.version = $version
                     }
                     else {
-                       Write-Verbose "Zero or more than one dependencies Child Node found"
+                       throw "Zero or more than one dependencies Child Node found"
                     }
                 }
             }
@@ -107,7 +107,7 @@ function Update-Metadata {
                     $nu.package.metadata."$_" = $data[$_]
                 }
                 else {
-                    Write-Verbose "$_ does not exist on the metadata element in the nuspec file"
+                    throw "$_ does not exist on the metadata element in the nuspec file"
                 }
             }
             
