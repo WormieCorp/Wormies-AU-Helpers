@@ -53,7 +53,13 @@ Describe "Update-Metadata" {
         <id>ValidNuspec</id>
         <title>Valid Test Nuspec</title>
         <version>1.0.3</version>
-    </metadata>
+        <dependencies>
+          <dependency id="" />
+        </dependencies>
+  </metadata>
+  <files>
+    <file src="" />
+  </files>
 </package>
 '@
         $utf8NoBomEncoding = New-Object System.Text.UTF8Encoding($false)
@@ -82,13 +88,24 @@ Describe "Update-Metadata" {
         $nuspecFile | Should -FileContentMatchExactly "\<title\>Let me test out changing the title\<\/title\>"
     }
 
-    It "Throws exception when item doesn't exist" {
-        { Update-Metadata -key "rlsNotes" -value "I'm the new item" -NuspecFile $nuspecFile } | Should -Throw "rlsNotes does not exist on the metadata element in the nuspec file"
+    It "Can update dependency with id of 'WindowsNewKB' and the version of '0.20.8.1" {
+        ( Update-Metadata -key "dependency" -value "WindowsNewKB|0.20.8.1" -NuspecFile $nuspecFile 3>&1 ) -match "Change has been omitted due to dependency Nodes not having -1 Nodes" | Should Be $true
+
+        $nuspecFile | Should -FileContentMatchExactly "\<dependency id=`"WindowsNewKB`" version=`"0.20.8.1`" \/\>"
+    }
+
+    It "Can update file with src of 'tools\**' and the target of 'tools" {
+        ( Update-Metadata -key "file" -value "tools\**|tools" -NuspecFile $nuspecFile 3>&1 ) -match "Change has been omitted due to file Nodes not having -1 Nodes" | Should Be $true
+
+        $nuspecFile | Should -FileContentMatchExactly "\<file src=`"tools\\\*\*`" target=`"tools`" \/\>"
+    }
+
+    It "Shows Warning when item doesn't exist" {
+        ( Update-Metadata -key "rlsNotes" -value "I'm the new item" -NuspecFile $nuspecFile 3>&1 ) -match "rlsNotes does not exist on the metadata element in the nuspec file" | Should Be $true        
     }
 
     It "Should update multiple values" {
         Update-Metadata -data @{ "title" = "Yuppie"; Version = "0.5.3"; id = "yuppie" } -NuspecFile $nuspecFile
-
         $nuspecFile | Should -FileContentMatchExactly "\<title\>Yuppie\<\/title\>"
         $nuspecFile | Should -FileContentMatchExactly "\<version\>0\.5\.3\<\/version\>"
         $nuspecFile | Should -FileContentMatchExactly "\<id\>yuppie\<\/id\>"
@@ -100,5 +117,20 @@ Describe "Update-Metadata" {
         $expectedEncoding = New-Object System.Text.UTF8Encoding($false)
 
         Get-FileEncoding -Path $nuspecFile -DefaultEncoding $expectedEncoding | Should Be $expectedEncoding
+    }
+
+    Context 'Test Group of passing change number clearly outside of the number of file/dependency nodes' {
+        It "Shows Warning when dependency 2 is not present in the nuspec file" {
+            ( Update-Metadata -data @{ dependency = 'kb2020813|0.20.8.13,2' } -NuspecFile $nuspecFile 3>&1 ) -match "Change has been omitted due to dependency Nodes not having 1 Nodes" | Should Be $true
+            $nuspecFile | Should -FileContentMatchExactly "\<dependency id=`"kb2020813`" version=`"|0.20.8.13`" \/\>"
+        }
+        It "Shows Warning when file 87 is not present in the nuspec file" {
+            ( Update-Metadata -data @{ file = 'tools\**|content\any\any,87' }  -NuspecFile $nuspecFile 3>&1 ) -match "86 is greater than 3 of file Nodes" -and "Change has been omitted due to file Nodes not having 86 Nodes" | Should Be $true
+            $nuspecFile | Should -FileContentMatchExactly "\<file src=`"tools\\\*\*`" target=`"content\\any\\any`" \/\>"
+        }
+        It "Shows Warning when dependency 10 is not present in the nuspec file" {
+            ( Update-Metadata -data @{ dependency = 'kb2020812|0.20.8.12,10' } -NuspecFile $nuspecFile 3>&1 ) -match "9 is greater than 3 of dependency Nodes" -and "Change has been omitted due to dependency Nodes not having -1 Nodes" | Should Be $true
+            $nuspecFile | Should -FileContentMatchExactly "\<dependency id=`"kb2020812`" version=`"0.20.8.12`" \/\>"
+        }
     }
 }
