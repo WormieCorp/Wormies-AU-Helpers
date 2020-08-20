@@ -89,13 +89,13 @@ Describe "Update-Metadata" {
     }
 
     It "Can update dependency with id of 'WindowsNewKB' and the version of '0.20.8.1" {
-        ( Update-Metadata -key "dependency" -value "WindowsNewKB|0.20.8.1" -NuspecFile $nuspecFile 3>&1 ) -match "Change has been omitted due to dependency Nodes not having -1 Nodes" | Should Be $true
+        ( Update-Metadata -key "dependency" -value "WindowsNewKB|0.20.8.1" -NuspecFile $nuspecFile 3>&1 ) -match "Change has been omitted due to dependency not having that number of Nodes" | Should Be $true
 
         $nuspecFile | Should -FileContentMatchExactly "\<dependency id=`"WindowsNewKB`" version=`"0.20.8.1`" \/\>"
     }
 
     It "Can update file with src of 'tools\**' and the target of 'tools" {
-        ( Update-Metadata -key "file" -value "tools\**|tools" -NuspecFile $nuspecFile 3>&1 ) -match "Change has been omitted due to file Nodes not having -1 Nodes" | Should Be $true
+        ( Update-Metadata -key "file" -value "tools\**|tools" -NuspecFile $nuspecFile 3>&1 ) -match "Change has been omitted due to file not having that number of Nodes" | Should Be $true
 
         $nuspecFile | Should -FileContentMatchExactly "\<file src=`"tools\\\*\*`" target=`"tools`" \/\>"
     }
@@ -121,15 +121,15 @@ Describe "Update-Metadata" {
 
     Context 'Test Group of passing change number clearly outside of the number of file/dependency nodes' {
         It "Shows Warning when dependency 2 is not present in the nuspec file" {
-            ( Update-Metadata -data @{ dependency = 'kb2020813|0.20.8.13,2' } -NuspecFile $nuspecFile 3>&1 ) -match "Change has been omitted due to dependency Nodes not having 1 Nodes" | Should Be $true
+            ( Update-Metadata -data @{ dependency = 'kb2020813|0.20.8.13,2' } -NuspecFile $nuspecFile 3>&1 ) -match "Change has been omitted due to dependency not having that number of Nodes" | Should Be $true
             $nuspecFile | Should -FileContentMatchExactly "\<dependency id=`"kb2020813`" version=`"|0.20.8.13`" \/\>"
         }
         It "Shows Warning when file 87 is not present in the nuspec file" {
-            ( Update-Metadata -data @{ file = 'tools\**|content\any\any,87' }  -NuspecFile $nuspecFile 3>&1 ) -match "86 is greater than 3 of file Nodes" -and "Change has been omitted due to file Nodes not having 86 Nodes" | Should Be $true
+            ( Update-Metadata -data @{ file = 'tools\**|content\any\any,87' }  -NuspecFile $nuspecFile 3>&1 ) -match "86 is greater than 3 of file Nodes" -and "Change has been omitted due to file not having that number of Nodes" | Should Be $true
             $nuspecFile | Should -FileContentMatchExactly "\<file src=`"tools\\\*\*`" target=`"content\\any\\any`" \/\>"
         }
         It "Shows Warning when dependency 10 is not present in the nuspec file" {
-            ( Update-Metadata -data @{ dependency = 'kb2020812|0.20.8.12,10' } -NuspecFile $nuspecFile 3>&1 ) -match "9 is greater than 3 of dependency Nodes" -and "Change has been omitted due to dependency Nodes not having -1 Nodes" | Should Be $true
+            ( Update-Metadata -data @{ dependency = 'kb2020812|0.20.8.12,10' } -NuspecFile $nuspecFile 3>&1 ) -match "9 is greater than 3 of dependency Nodes" -and "Change has been omitted due to dependency not having that number of Nodes" | Should Be $true
             $nuspecFile | Should -FileContentMatchExactly "\<dependency id=`"kb2020812`" version=`"0.20.8.12`" \/\>"
         }
     }
