@@ -3,14 +3,21 @@ anchors.options.placement = "left";
 anchors.add("#content > h1,h2,h3,h4");
 
 var snippets = document.querySelectorAll("pre > code");
-var assetDir = document.querySelector("[data-assets-dir]").getAttribute("data-assets-dir");
+var assetDir = document
+    .querySelector("[data-assets-dir]")
+    .getAttribute("data-assets-dir");
 [].forEach.call(snippets, function (snippet) {
-    snippet.insertAdjacentHTML("beforebegin", "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='" + assetDir + "/images/clippy.svg' alt='Copy to clipboard'></button>");
+    snippet.insertAdjacentHTML(
+        "beforebegin",
+        "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='" +
+            assetDir +
+            "/images/clippy.svg' alt='Copy to clipboard'></button>"
+    );
 });
 var clipboardSnippets = new Clipboard("[data-clipboard-snippet]", {
     target: function (trigger) {
         return trigger.nextElementSibling;
-    }
+    },
 });
 clipboardSnippets.on("success", function (e) {
     e.clearSelection();
@@ -32,7 +39,7 @@ function showTooltip(elem, msg) {
 }
 function fallbackMessage(action) {
     var actionMsg = "";
-    var actionKey = (action === "cut" ? "X" : "C");
+    var actionKey = action === "cut" ? "X" : "C";
     if (/iPhone|iPad/i.test(navigator.userAgent)) {
         actionMsg = "No support :(";
     } else if (/Mac/i.test(navigator.userAgent)) {

@@ -9,5 +9,7 @@
     "[powershell]": {
         "files.encoding": "utf8bom"
     },
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "powershell.scriptAnalysis.enable": true,
+    "powershell.scriptAnalysis.settingsPath": ".github/linters/.powershell-psscriptanalyzer.psd1"
 }

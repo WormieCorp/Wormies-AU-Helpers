@@ -20,11 +20,11 @@
         <projectSourceUrl>https://github.com/WormieCorp/Wormies-AU-Helpers</projectSourceUrl>
         <packageSourceUrl>https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/chocolatey</packageSourceUrl>
         <dependencies>
-          <dependency id="powershell" version="3.0" />
+            <dependency id="powershell" version="3.0" />
         </dependencies>
     </metadata>
     <files>
-      <file src="tools\**" target="tools" />
-      <file src="legal\**" target="legal" />
+        <file src="tools\**" target="tools" />
+        <file src="legal\**" target="legal" />
     </files>
 </package>

@@ -3,7 +3,7 @@ create:
   footer-heading: Where to get it
   footer-content: You can download this release from [chocolatey](https://chocolatey.org/packages/wormies-au-helpers/{milestone}), or from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Wormies-AU-Helpers/{milestone})
   footer-includes-milestone: true
-  milestone-replace-text: '{milestone}'
+  milestone-replace-text: "{milestone}"
 export:
   include-created-date-in-title: true
   created-date-string-format: yyyy-MM-dd
@@ -11,11 +11,11 @@ export:
   regex-text: '### Where to get it(\r\n)*You can .*\)(\r\n)*$'
   multiline-regex: true
 issue-labels-include:
-- Bug
-- Feature
-- Enhancement
-- Imporvement
-- Documentation
+  - Bug
+  - Feature
+  - Enhancement
+  - Imporvement
+  - Documentation
 issue-labels-exclude:
-- Build
-- Epic
+  - Build
+  - Epic
