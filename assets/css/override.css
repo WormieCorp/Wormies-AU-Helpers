@@ -113,6 +113,9 @@ pre:hover .btn-copy {
 }
 .github-button:hover,
 .github-button:focus {
-  background-color: #4EABDD;
+  background-color: #4eabdd;
   color: #fff;
+}
+tr.active > th {
+  color: dimgrey;
 }
