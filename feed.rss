@@ -1,11 +1,139 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0">
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
 	<channel>
-		<title>Cake.Addin.Analyzer</title>
-		<link>https://wormiecorp.github.io/Cake.Addin.Analyzer</link>
+		<title>Wormies-AU-Helpers</title>
+		<link>http://wormiecorp.github.io/Wormies-AU-Helpers</link>
 		<description />
-		<copyright>2020</copyright>
-		<pubDate>Fri, 11 Sep 2020 20:45:15 GMT</pubDate>
-		<lastBuildDate>Fri, 11 Sep 2020 20:45:15 GMT</lastBuildDate>
+		<copyright>2021</copyright>
+		<pubDate>Sun, 31 Jan 2021 11:13:07 GMT</pubDate>
+		<lastBuildDate>Sun, 31 Jan 2021 11:13:07 GMT</lastBuildDate>
+		<item>
+			<title>Bug Release 0.3.1</title>
+			<link>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.3.1</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.3.0...0.3.1"&gt;6 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=8&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>AdmiringWorm</author>
+			<guid>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.3.1</guid>
+			<pubDate>Tue, 13 Nov 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h2 id="bug-release"&gt;0.3.1 Bug Release&lt;/h2&gt;
+&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.3.0...0.3.1"&gt;6 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=8&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bug&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/19"&gt;&lt;strong&gt;#19&lt;/strong&gt;&lt;/a&gt; Same version should use existing fix version in nuspec file&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://chocolatey.org/packages/wormies-au-helpers/0.3.1"&gt;chocolatey&lt;/a&gt;, or from the &lt;a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.3.1"&gt;PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>New Release 0.3.0</title>
+			<link>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.3.0</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.2...0.3.0"&gt;10 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=4&amp;amp;state=closed"&gt;2 issues&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>AdmiringWorm</author>
+			<guid>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.3.0</guid>
+			<pubDate>Sat, 02 Jun 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h2 id="release"&gt;0.3.0 Release&lt;/h2&gt;
+&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.2...0.3.0"&gt;10 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=4&amp;amp;state=closed"&gt;2 issues&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/18"&gt;&lt;strong&gt;#18&lt;/strong&gt;&lt;/a&gt; Allow users to add a whitelist to Expand-Aliases&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/15"&gt;&lt;strong&gt;#15&lt;/strong&gt;&lt;/a&gt; Allow users to disable the escaping of returned urls in Get-RedirectedUrl&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://chocolatey.org/packages/wormies-au-helpers/0.3.0"&gt;chocolatey&lt;/a&gt;, or from the &lt;a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.3.0"&gt;PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Bug Release 0.2.2</title>
+			<link>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.2</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.1...0.2.2"&gt;15 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=7&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>AdmiringWorm</author>
+			<guid>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.2</guid>
+			<pubDate>Sat, 05 May 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h1 id="bug-release"&gt;0.2.2 Bug Release&lt;/h1&gt;
+&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.1...0.2.2"&gt;15 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=7&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bug&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/17"&gt;&lt;strong&gt;#17&lt;/strong&gt;&lt;/a&gt; Some uri escape to %2520 instead of %20&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://chocolatey.org/packages/wormies-au-helpers/0.2.2"&gt;chocolatey&lt;/a&gt;, or from the &lt;a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.2.2"&gt;PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Bug Release 0.2.1</title>
+			<link>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.1</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.0...0.2.1"&gt;3 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=6&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>AdmiringWorm</author>
+			<guid>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.1</guid>
+			<pubDate>Wed, 25 Apr 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h1 id="bug-release"&gt;0.2.1 Bug Release&lt;/h1&gt;
+&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.0...0.2.1"&gt;3 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=6&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bug&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/14"&gt;&lt;strong&gt;#14&lt;/strong&gt;&lt;/a&gt; Get-RedirectedUrl Should automatically escape the url&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://chocolatey.org/packages/wormies-au-helpers/0.2.1"&gt;chocolatey&lt;/a&gt;, or from the &lt;a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.2.1"&gt;PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>New Release 0.2.0</title>
+			<link>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.0</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.1...0.2.0"&gt;22 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=2&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>AdmiringWorm</author>
+			<guid>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.2.0</guid>
+			<pubDate>Sun, 07 Jan 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h2 id="release"&gt;0.2.0 Release&lt;/h2&gt;
+&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.1...0.2.0"&gt;22 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=2&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Feature&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/12"&gt;&lt;strong&gt;#12&lt;/strong&gt;&lt;/a&gt; Add ability to expand aliases in powershell scripts&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://chocolatey.org/packages/wormies-au-helpers/0.2.0"&gt;chocolatey&lt;/a&gt;, or from the &lt;a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.2.0"&gt;PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Bug Release 0.1.1</title>
+			<link>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.1.1</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.0...0.1.1"&gt;2 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=3&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>AdmiringWorm</author>
+			<guid>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.1.1</guid>
+			<pubDate>Tue, 12 Dec 2017 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h1 id="bug-release"&gt;0.1.1 Bug Release&lt;/h1&gt;
+&lt;p&gt;As part of this release we had &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.0...0.1.1"&gt;2 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=3&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bug&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/11"&gt;&lt;strong&gt;#11&lt;/strong&gt;&lt;/a&gt; Update-Metadata saves nuspec file with UTF8-BOM encoding&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://chocolatey.org/packages/wormies-au-helpers/0.1.1"&gt;chocolatey&lt;/a&gt;, or from the &lt;a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.1.1"&gt;PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>New Release - 0.1.0</title>
+			<link>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.1.0</link>
+			<description>&lt;p&gt;I'm happy to anounce the first public release of the Wormies-AU-Helpers powershell module.&lt;/p&gt;</description>
+			<author>AdmiringWorm</author>
+			<guid>http://wormiecorp.github.io/Wormies-AU-Helpers/blog/new-release-0.1.0</guid>
+			<pubDate>Fri, 08 Dec 2017 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h1 id="release"&gt;0.1.0 Release&lt;/h1&gt;
+&lt;p&gt;I'm happy to anounce the first public release of the Wormies-AU-Helpers powershell module.&lt;/p&gt;
+&lt;p&gt;In this release, the following was made available:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/5"&gt;&lt;strong&gt;#5&lt;/strong&gt;&lt;/a&gt; Add the ability to update a single metadata key&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/4"&gt;&lt;strong&gt;#4&lt;/strong&gt;&lt;/a&gt; Add the ability to get a redirected url&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/3"&gt;&lt;strong&gt;#3&lt;/strong&gt;&lt;/a&gt; Add ability to create a fix version for pre-releases&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/2"&gt;&lt;strong&gt;#2&lt;/strong&gt;&lt;/a&gt; Add ability to create a fix version for 4-part releases&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Enhancement&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues/6"&gt;&lt;strong&gt;#6&lt;/strong&gt;&lt;/a&gt; Add the ability to update multiple metadata key/values at the same time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://chocolatey.org/packages/wormies-au-helpers/0.1.0"&gt;chocolatey&lt;/a&gt;, or from the &lt;a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers/0.1.0"&gt;PowerShell Gallery&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
 	</channel>
 </rss>

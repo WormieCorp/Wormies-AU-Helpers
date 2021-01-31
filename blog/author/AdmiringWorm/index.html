@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
-        <title>Wormies-AU-Helpers - Wormies AU Helpers</title>
+        <title>Wormies-AU-Helpers - AdmiringWorm</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/tomorrow-night-blue.min.css" integrity="sha256-5Kr7SYiCX+8lWzO4pfBPyY98dxUXBObcdOw8tcuF/QY=" crossorigin="anonymous" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.9/css/AdminLTE.min.css" integrity="sha256-N9iz3oCQBitkiDQoNT4Po0/SHVkKcfJN+pwTqCznM6M=" crossorigin="anonymous" />
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
@@ -35,7 +35,7 @@
 
         
     </head>
-    <body class="hold-transition wyam layout-boxed layout-top-nav ">
+    <body class="hold-transition wyam layout-boxed  ">
         <div class="top-banner"></div>
         <div class="wrapper with-container">
             <!-- Header -->
@@ -47,6 +47,10 @@
 
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
 
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -59,7 +63,7 @@
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
                                     <li><a href="/Wormies-AU-Helpers/docs">Documentation</a></li>
-        <li><a href="/Wormies-AU-Helpers/blog">Blog</a></li>
+        <li class="active"><a href="/Wormies-AU-Helpers/blog">Blog</a></li>
 
                         </ul>
                     </div>
@@ -70,10 +74,9 @@
             </header>
 
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar hidden">
+            <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
                     	
-        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/index.cshtml"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -83,6 +86,20 @@
 
                     <ul class="sidebar-menu">
                         
+
+        <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
+            <li><a href="/Wormies-AU-Helpers/blog/Release">Release</a></li>
+    
+    <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/11">November, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/06">June, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/05">May, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/04">April, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2018/01">January, 2018</a></li>
+        <li><a href="/Wormies-AU-Helpers/blog/archive/2017/12">December, 2017</a></li>
+    
+        <li class="header"><i class="fa fa-user"></i> Authors</li>    
+            <li class="selected"><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></li>
 
                     </ul>
                     
@@ -96,32 +113,96 @@
 
 
 		<section class="content-header">
-			<h1>Wormies AU Helpers</h1>
+			<h1>AdmiringWorm</h1>
 		</section>
 	<section class="content">
 		
-<div class="container-fluid">
-    <h1>What is it?</h1>
-    <p>
-        Wormies AU Helpers is a collection of helper scripts to make maintaining packages
-        using AU even easier.
-    </p>
 
-    <h2>Where to get it?</h2>
-    <p>
-        Officially published versions are available on our
-        <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/releases/">GitHub releases page</a>,
-        on <a href="https://chocolatey.org/packages/wormies-au-helpers">chocolatey</a> as well as on the
-        <a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers">PowerShell Gallery</a>.
-    </p>
-    <p>
-        Deveopment versions can be installed through chocolatey with the command
-        <code>choco install wormies-au-helpers --source https://www.myget.org/F/wormie-nugets --pre</code>, and can
-        be viewed <a href="https://www.myget.org/feed/wormie-nugets/package/nuget/wormies-au-helpers">here</a>.
-        These versions can also be installed using the latest
-        <a href="https://ci.appveyor.com/project/admiringworm/wormies-au-helpers/build/artifacts">AppVeyor Artifacts</a>.
-    </p>
-</div>
+        <h2><a href="/Wormies-AU-Helpers/blog/new-release-0.3.1">Bug Release 0.3.1</a></h2>
+
+<dl class="dl-horizontal" style="margin-bottom: 12px;">
+    <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Tuesday, November 13, 2018</dd>
+        <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>
+            <div>
+                <p>As part of this release we had <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.3.0...0.3.1">6 commits</a> which resulted in <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=8&amp;state=closed">1 issue</a> being closed.</p>
+                <a href="/Wormies-AU-Helpers/blog/new-release-0.3.1">Read more...</a>
+            </div>
+        <hr />
+        <h2><a href="/Wormies-AU-Helpers/blog/new-release-0.3.0">New Release 0.3.0</a></h2>
+
+<dl class="dl-horizontal" style="margin-bottom: 12px;">
+    <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Saturday, June 2, 2018</dd>
+        <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>
+            <div>
+                <p>As part of this release we had <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.2...0.3.0">10 commits</a> which resulted in <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=4&amp;state=closed">2 issues</a> being closed.</p>
+                <a href="/Wormies-AU-Helpers/blog/new-release-0.3.0">Read more...</a>
+            </div>
+        <hr />
+        <h2><a href="/Wormies-AU-Helpers/blog/new-release-0.2.2">Bug Release 0.2.2</a></h2>
+
+<dl class="dl-horizontal" style="margin-bottom: 12px;">
+    <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Saturday, May 5, 2018</dd>
+        <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>
+            <div>
+                <p>As part of this release we had <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.1...0.2.2">15 commits</a> which resulted in <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=7&amp;state=closed">1 issue</a> being closed.</p>
+                <a href="/Wormies-AU-Helpers/blog/new-release-0.2.2">Read more...</a>
+            </div>
+        <hr />
+        <h2><a href="/Wormies-AU-Helpers/blog/new-release-0.2.1">Bug Release 0.2.1</a></h2>
+
+<dl class="dl-horizontal" style="margin-bottom: 12px;">
+    <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Wednesday, April 25, 2018</dd>
+        <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>
+            <div>
+                <p>As part of this release we had <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.2.0...0.2.1">3 commits</a> which resulted in <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=6&amp;state=closed">1 issue</a> being closed.</p>
+                <a href="/Wormies-AU-Helpers/blog/new-release-0.2.1">Read more...</a>
+            </div>
+        <hr />
+        <h2><a href="/Wormies-AU-Helpers/blog/new-release-0.2.0">New Release 0.2.0</a></h2>
+
+<dl class="dl-horizontal" style="margin-bottom: 12px;">
+    <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Sunday, January 7, 2018</dd>
+        <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/Release">Release</a></dd>
+            <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm">AdmiringWorm</a></dd>
+</dl>
+            <div>
+                <p>As part of this release we had <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/compare/0.1.1...0.2.0">22 commits</a> which resulted in <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/issues?milestone=2&amp;state=closed">1 issue</a> being closed.</p>
+                <a href="/Wormies-AU-Helpers/blog/new-release-0.2.0">Read more...</a>
+            </div>
+        <hr />
+    <nav>
+        <ul class="pager">
+            <li class="previous">                
+            </li>
+            <li class="next">
+                    <a href="/Wormies-AU-Helpers/blog/author/AdmiringWorm/page2">Older <span aria-hidden="true">&rarr;</span></a>
+            </li>
+        </ul>
+    </nav>
+
 
 	</section>
 

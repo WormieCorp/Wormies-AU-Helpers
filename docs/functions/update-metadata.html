@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/Wormies-AU-Helpers/assets/img/favicon.ico" type="image/x-icon">
-        <title>Wormies-AU-Helpers - Wormies AU Helpers</title>
+        <title>Wormies-AU-Helpers - Update-Metadata</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/tomorrow-night-blue.min.css" integrity="sha256-5Kr7SYiCX+8lWzO4pfBPyY98dxUXBObcdOw8tcuF/QY=" crossorigin="anonymous" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.9/css/AdminLTE.min.css" integrity="sha256-N9iz3oCQBitkiDQoNT4Po0/SHVkKcfJN+pwTqCznM6M=" crossorigin="anonymous" />
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
@@ -35,7 +35,7 @@
 
         
     </head>
-    <body class="hold-transition wyam layout-boxed layout-top-nav ">
+    <body class="hold-transition wyam layout-boxed  ">
         <div class="top-banner"></div>
         <div class="wrapper with-container">
             <!-- Header -->
@@ -47,6 +47,10 @@
 
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
 
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -58,7 +62,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
-                                    <li><a href="/Wormies-AU-Helpers/docs">Documentation</a></li>
+                                    <li class="active"><a href="/Wormies-AU-Helpers/docs">Documentation</a></li>
         <li><a href="/Wormies-AU-Helpers/blog">Blog</a></li>
 
                         </ul>
@@ -70,10 +74,10 @@
             </header>
 
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar hidden">
+            <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200">
                     	
-        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/index.cshtml"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+        <div><p><a href="https://github.com/WormieCorp/Wormies-AU-Helpers/tree/master/input/docs/functions/update-metadata.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"></div>
 
                 </section>
@@ -83,6 +87,18 @@
 
                     <ul class="sidebar-menu">
                         
+
+                <li class="treeview active">
+                    <a href="/Wormies-AU-Helpers/docs/functions">Functions</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/Wormies-AU-Helpers/docs/functions/expand-aliases">Expand-Aliases</a></li>
+                <li><a href="/Wormies-AU-Helpers/docs/functions/get-fixversion">Get-FixVersion</a></li>
+                <li><a href="/Wormies-AU-Helpers/docs/functions/get-redirectedurl">Get-RedirectedUrl</a></li>
+                <li class="selected"><a href="/Wormies-AU-Helpers/docs/functions/update-metadata">Update-Metadata</a></li>
+
+                    </ul>
+                </li>
 
                     </ul>
                     
@@ -96,32 +112,204 @@
 
 
 		<section class="content-header">
-			<h1>Wormies AU Helpers</h1>
+			<h1>Update-Metadata</h1>
 		</section>
 	<section class="content">
-		
-<div class="container-fluid">
-    <h1>What is it?</h1>
-    <p>
-        Wormies AU Helpers is a collection of helper scripts to make maintaining packages
-        using AU even easier.
-    </p>
-
-    <h2>Where to get it?</h2>
-    <p>
-        Officially published versions are available on our
-        <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/releases/">GitHub releases page</a>,
-        on <a href="https://chocolatey.org/packages/wormies-au-helpers">chocolatey</a> as well as on the
-        <a href="https://www.powershellgallery.com/packages/Wormies-AU-Helpers">PowerShell Gallery</a>.
-    </p>
-    <p>
-        Deveopment versions can be installed through chocolatey with the command
-        <code>choco install wormies-au-helpers --source https://www.myget.org/F/wormie-nugets --pre</code>, and can
-        be viewed <a href="https://www.myget.org/feed/wormie-nugets/package/nuget/wormies-au-helpers">here</a>.
-        These versions can also be installed using the latest
-        <a href="https://ci.appveyor.com/project/admiringworm/wormies-au-helpers/build/artifacts">AppVeyor Artifacts</a>.
-    </p>
+		<div class="alert alert-info"><p>This function was introduced in version <a href="https://github.com/WormieCorp/Wormies-AU-Helpers/releases/tag/0.1.0"><strong>0.1.0</strong></a>.</p>
 </div>
+<p>Updates the metadata nuspec file with the specified information.</p>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-PowerShell">Update-Metadata `
+    -key &lt;String&gt; `
+    -value &lt;String&gt; `
+    [-NuspecFile &lt;String&gt;]
+</code></pre>
+<pre><code class="language-PowerShell">Update-Metadata `
+    -data &lt;Hashtable&gt; `
+    [-NuspecFile &lt;String&gt;]
+</code></pre>
+<h2 id="description">Description</h2>
+<p>When a key and value is specified, update the metadata element with the specified key
+and the corresponding value in the specified NuspecFile.
+Singlular metadata elements are the only ones changed at this time.</p>
+<h2 id="notes">Notes</h2>
+<p>Will now show a warning if the specified key doesn't exist in the nuspec file.
+Will now show a warning when change for file/dependency key is greater than currently in the nuspec file.
+Will now show a warning when change has been omitted due to nodes not allowing change at that key.
+Will now show a warning when file/dependency doesn't have any attributes defined to be updated.</p>
+<p>While the parameter <code>NuspecFile</code> accepts globbing patterns,
+it is expected to only match a single file.</p>
+<h2 id="aliases">Aliases</h2>
+<p>None</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example-1">Example 1</h3>
+<pre><code class="language-PowerShell">Update-Metadata -key releaseNotes -value &quot;https://github.com/majkinetor/AU/releases/latest&quot;
+</code></pre>
+<h3 id="example-2">Example 2</h3>
+<pre><code class="language-PowerShell">Update-Metadata -key releaseNotes -value &quot;https://github.com/majkinetor/AU/releases/latest&quot; -NuspecFile &quot;.\package.nuspec&quot;
+</code></pre>
+<h3 id="example-3">Example 3</h3>
+<pre><code class="language-PowerShell">This is an example of changing the Title of the nuspec file
+</code></pre>
+<p title="My Awesome Title">Update-Metadata -data &#64;</p>
+<ul>
+<li>or -
+&#64; | Update-Metadata</li>
+</ul>
+<h3 id="example-4">Example 4</h3>
+<pre><code class="language-PowerShell">This is an example of changing the id and version attributes for the dependency key
+</code></pre>
+<p dependency="kb2919355|1.0.20160915">Update-Metadata -data &#64;</p>
+<ul>
+<li>or -
+&#64; | Update-Metadata</li>
+</ul>
+<h3 id="example-5">Example 5</h3>
+<pre><code class="language-PowerShell">This is an example of changing the src and target attributes
+</code></pre>
+<p file="tools\**,tools">Update-Metadata -data &#64;</p>
+<ul>
+<li>or -
+&#64; | Update-Metadata</li>
+</ul>
+<h3 id="example-6">Example 6</h3>
+<pre><code class="language-PowerShell">This is an example of changing the file src and target attributes for the first file element in the nuspec file.
+</code></pre>
+<p file="tools\**|tools,1">If only one file element is found the change value is omitted.
+&#64; | Update-Metadata</p>
+<h2 id="inputs">Inputs</h2>
+<p>None</p>
+<h2 id="outputs">Outputs</h2>
+<p>None</p>
+<h2 id="required-parameters">Required Parameters</h2>
+<h3 id="key-string">-key &lt;String&gt;</h3>
+<p>The element that should be updated in the metadata section.</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="value-string">-value &lt;String&gt;</h3>
+<p>The value to update with.</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-hashtable">-data &lt;Hashtable&gt;</h3>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">false</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;">&#64;{$key = $value}</td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">true (ByValue)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="optional-parameters">Optional Parameters</h2>
+<h3 id="nuspecfile-string">-NuspecFile &lt;String&gt;</h3>
+<p>The metadata/nuspec file to update</p>
+<table class="table">
+<thead>
+<tr>
+<th style="text-align: left;">Property</th>
+<th style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Aliases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Position?</td>
+<td style="text-align: center;">named</td>
+</tr>
+<tr>
+<td style="text-align: left;">Globbing?</td>
+<td style="text-align: center;">true</td>
+</tr>
+<tr>
+<td style="text-align: left;">Default Value</td>
+<td style="text-align: center;">.\*.nuspec</td>
+</tr>
+<tr>
+<td style="text-align: left;">Accept Pipeline Input?</td>
+<td style="text-align: center;">false</td>
+</tr>
+</tbody>
+</table>
 
 	</section>
 
