@@ -39,17 +39,9 @@ function Publish-MyGet {
 
 if (!(Test-Path Env:\APPVEYOR)) { throw "This script can only be run on appveyor" }
 
-Write-Verbose "Finding installed GitVersion executable"
-$useDotnet = $false
-$gitVersion = Get-Command GitVersion.exe -ea 0 | ForEach-Object Source
-if (!$gitVersion) {
-    $gitVersion = "gitversion"
-    $useDotnet = $true
-}
-
 if (!(Test-Path Env\GitVersion_NuGetPreReleaseTagV2)) {
     $cmd = if ($useDotnet) { ". dotnet" } else { "." }
-    $cmd = "$cmd '$gitVersion' /output json /showvariable NuGetVersionV2"
+    $cmd = ". dotnet gitversion /output json /showvariable NuGetVersionV2"
     Write-Verbose "Running $cmd"
     Write-Information "Calculating version using gitversion"
     $Version = $cmd | Invoke-Expression
