@@ -6,7 +6,7 @@
 )
 
 
-$cmd = "dotnet gitreleasemanager create -c master -m '$version' -n '$version Release' -u '$user' -p '$token'"
+$cmd = "dotnet gitreleasemanager create -c master -m '$version' -n '$version Release' --token '$token'"
 $splits = ("git remote get-url origin" | Invoke-Expression) -split '\/|\.git$'
 $repoUser = $splits | Select-Object -Last 1 -Skip 2
 $repoName = $splits | Select-Object -Last 1 -Skip 1
