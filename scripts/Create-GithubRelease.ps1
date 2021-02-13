@@ -20,14 +20,13 @@ $assets = Get-ChildItem $PSScriptRoot/../.build -Include "*.7z", "*.nupkg" -Recu
 "Uploading the followings assets to $repoName for version $version"
 $assets | ForEach-Object { "  - " + (Split-Path -Leaf $_) }
 
-$cmd = if ($useDotnet) { "& dotnet" } else { "&" }
 "$gitReleaseManager addasset $args --assets $assets" | Invoke-Expression
 
 if ($publishRelease) {
-    $args = $args -replace '\-t', '-m'
+    $args = $args -replace '\-t ', '-m '
     "Closing $version milestone"
     "$gitReleaseManager close $args" | Invoke-Expression
-    $args = $args -replace '\-m', '-t'
+    $args = $args -replace '\-m ', '-t '
     "Publishing $version release"
     "$gitReleaseManager publish $args" | Invoke-Expression
 }
