@@ -9,5 +9,6 @@
     "[powershell]": {
         "files.encoding": "utf8bom"
     },
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "powershell.codeFormatting.addWhitespaceAroundPipe": true
 }
