@@ -47,11 +47,16 @@ if (!$gitVersion) {
     $useDotnet = $true
 }
 
-$cmd = if ($useDotnet) { ". dotnet" } else { "." }
-$cmd = "$cmd '$gitVersion' /output json /showvariable NuGetVersionV2"
-Write-Verbose "Running $cmd"
-Write-Information "Calculating version using gitversion"
-$Version = $cmd | Invoke-Expression
+if (!(Test-Path Env\GitVersion_NuGetPreReleaseTagV2)) {
+    $cmd = if ($useDotnet) { ". dotnet" } else { "." }
+    $cmd = "$cmd '$gitVersion' /output json /showvariable NuGetVersionV2"
+    Write-Verbose "Running $cmd"
+    Write-Information "Calculating version using gitversion"
+    $Version = $cmd | Invoke-Expression
+}
+else {
+    $Version = $env:GitVersion_NuGetPreReleaseTagV2
+}
 $buildDir = "$PSScriptRoot/.build/$Version"
 $moduleName = ".\Wormies-AU-Helpers"
 $modulePath = "$buildDir/$moduleName"

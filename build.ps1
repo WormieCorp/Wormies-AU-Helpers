@@ -63,11 +63,17 @@ if (!$Version) {
         Write-Information "Running $cmd"
         $cmd | Invoke-Expression
     }
-    $cmd = "$cmd '$gitVersion' /output json /showvariable NuGetVersionV2"
-    Write-Verbose "Running $cmd"
-    Write-Information "Calculating version using gitversion"
-    $Version = $cmd | Invoke-Expression
-    Write-Information "Version found: $Version"
+
+    if (!(Test-Path Env\GitVersion_NuGetPreReleaseTagV2)) {
+        $cmd = "$cmd '$gitVersion' /output json /showvariable NuGetVersionV2"
+        Write-Verbose "Running $cmd"
+        Write-Information "Calculating version using gitversion"
+        $Version = $cmd | Invoke-Expression
+        Write-Information "Version found: $Version"
+    }
+    else {
+        $Version = $env:GitVersion_NuGetPreReleaseTagV2
+    }
 }
 
 $modulePath = "$PSScriptRoot/Wormies-AU-Helpers"
