@@ -3,7 +3,7 @@
 $ErrorActionPreference = 'Stop'
 
 function Test-Var {
-    $input | ForEach-Object { if (!(Test-Path Env:$_)) { throw "Environment Variable $_ must be set" }}
+    $input | ForEach-Object { if (!(Test-Path Env:$_)) { throw "Environment Variable $_ must be set" } }
 
     $params = @{
         Path = $modulePath

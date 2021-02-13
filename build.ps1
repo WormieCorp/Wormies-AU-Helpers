@@ -49,8 +49,7 @@ if ($Clean) { git clean -Xfd -e vars.ps1; return }
 if (!$Version) {
     Write-Verbose "Finding installed GitVersion executable"
     $gitversion = Get-Command "GitVersion" -ea 0 | ForEach-Object Source
-    if (!$gitversion)
-    {
+    if (!$gitversion) {
         $gitversion = Get-Command "dotnet-gitversion" | ForEach-Object Source
     }
 

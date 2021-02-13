@@ -1,45 +1,42 @@
-version: '{build}'
-image: 'Visual Studio 2019'
+version: "{build}"
+image: "Visual Studio 2019"
 pull_requests:
   do_not_increment_build_number: true
 skip_branch_with_pr: true
 init:
-- ps: $PSVersionTable
+  - ps: $PSVersionTable
 install:
-- ps: |
-    cinst powershell -n --no-progress
-    dotnet tool install -g GitVersion.Tool
-    dotnet tool install -g GitReleaseManager.Tool
-    dotnet tool install -g Codecov.Tool
-    Install-Module Pester -RequiredVersion 4.10.1 -Scope CurrentUser -Force -SkipPublisherCheck
-    Install-Module AU
-    $uri = "https://raw.githubusercontent.com/PowerShell/DscResource.Tests/491688867dc53894b92ca53520a18d145deb7760/DscResource.CodeCoverage/CodeCovIo.psm1"
-    Invoke-WebRequest -Uri $uri -OutFile $env:USERPROFILE\CodeCovIo.psm1
-- ps: Get-Module Pester -ListAvailable | select -First 1 | % { $_.Version.ToString() }
+  - ps: |
+      cinst powershell -n --no-progress
+      dotnet tool restore
+      Install-Module Pester -RequiredVersion 4.10.1 -Scope CurrentUser -Force -SkipPublisherCheck
+      Install-Module AU
+      $uri = "https://raw.githubusercontent.com/PowerShell/DscResource.Tests/491688867dc53894b92ca53520a18d145deb7760/DscResource.CodeCoverage/CodeCovIo.psm1"
+      Invoke-WebRequest -Uri $uri -OutFile $env:USERPROFILE\CodeCovIo.psm1
+  - ps: Get-Module Pester -ListAvailable | select -First 1 | % { $_.Version.ToString() }
 build_script:
-- ps: |
-    .\build -BuildDocs
+  - ps: |
+      .\build -BuildDocs
 test_script:
-- ps: |
-    Import-Module $env:USERPROFILE\CodeCovIo.psm1
-    if ("$env:APPVEYOR_PULL_REQUEST_NUMBER") {
-        .\test -Pester -CodeCoverage # We can not run chocolatey tests on pull requests
-    } else {
-        .\test -CodeCoverage
-    }
+  - ps: |
+      Import-Module $env:USERPROFILE\CodeCovIo.psm1
+      if ("$env:APPVEYOR_PULL_REQUEST_NUMBER") {
+          .\test -Pester -CodeCoverage # We can not run chocolatey tests on pull requests
+      } else {
+          .\test -CodeCoverage
+      }
 artifacts:
-- path: '.build\**\*.nupkg'
-- path: '.build\**\*.7z'
+  - path: '.build\**\*.nupkg'
+  - path: '.build\**\*.7z'
 notifications:
-- provider: GitHubPullRequest
-  on_build_success: false
-  on_build_failure: true
-  on_build_status_changed: true
+  - provider: GitHubPullRequest
+    on_build_success: false
+    on_build_failure: true
+    on_build_status_changed: true
 on_success:
-  - cmd: codecov -f "coverage.json"
+  - cmd: dotnet codecov -f "coverage.json"
   - ps: .\publish.ps1
 
-
 cache:
-- docs/input/docs/functions
-- 'docs/tools->docs/build.ps1,docs/build.cake'
+  - docs/input/docs/functions
+  - "docs/tools->docs/build.ps1,docs/build.cake"
