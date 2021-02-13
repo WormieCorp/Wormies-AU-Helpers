@@ -15,7 +15,7 @@ if (!$gitReleaseManager) {
     }
 }
 
-$args = "-t '$version' -u '$user' -p '$token'"
+$args = "-t '$version' --token '$token'"
 $splits = ("git remote get-url origin" | Invoke-Expression) -split '\/|\.git$'
 $repoUser = $splits | Select-Object -Last 1 -Skip 2
 $repoName = $splits | Select-Object -Last 1 -Skip 1

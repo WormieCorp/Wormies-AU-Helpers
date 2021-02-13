@@ -14,5 +14,8 @@ trim_trailing_whitespace = false
 charset = utf-8-bom
 end_of_line = crlf
 
+[*.{yml,yaml}]
+indent_size = 2
+
 [*.nuspec]
 end_of_line = lf

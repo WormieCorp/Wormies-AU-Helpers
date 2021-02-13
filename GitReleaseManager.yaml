@@ -3,19 +3,29 @@ create:
   footer-heading: Where to get it
   footer-content: You can download this release from [chocolatey](https://chocolatey.org/packages/wormies-au-helpers/{milestone}), or from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Wormies-AU-Helpers/{milestone})
   footer-includes-milestone: true
-  milestone-replace-text: '{milestone}'
+  milestone-replace-text: "{milestone}"
 export:
   include-created-date-in-title: true
   created-date-string-format: yyyy-MM-dd
   perform-regex-removal: true
   regex-text: '### Where to get it(\r\n)*You can .*\)(\r\n)*$'
   multiline-regex: true
+close:
+  use-issue-comments: true
+  issue-comment: |-
+  :tada: This issue has been resolved in version {milestone} :tada:
+
+  The release can be installed from:
+
+  - [Chocolatey](https://chocolatey.org/packages/wormies-au-helpers/{milestone})
+  - [PowerShell Gallery](https://www.powershellgallery.com/packages/{repository}/{milestone})
+  - [GitHub Releases](https://github.com/{owner}/{repository}/releases/tag/{milestone})
 issue-labels-include:
-- Bug
-- Feature
-- Enhancement
-- Imporvement
-- Documentation
+  - Bug
+  - Feature
+  - Enhancement
+  - Improvement
+  - Documentation
 issue-labels-exclude:
-- Build
-- Epic
+  - Build
+  - Epic
