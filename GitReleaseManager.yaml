@@ -13,13 +13,13 @@ export:
 close:
   use-issue-comments: true
   issue-comment: |-
-  :tada: This issue has been resolved in version {milestone} :tada:
+    :tada: This issue has been resolved in version {milestone} :tada:
 
-  The release can be installed from:
+    The release can be installed from:
 
-  - [Chocolatey](https://chocolatey.org/packages/wormies-au-helpers/{milestone})
-  - [PowerShell Gallery](https://www.powershellgallery.com/packages/{repository}/{milestone})
-  - [GitHub Releases](https://github.com/{owner}/{repository}/releases/tag/{milestone})
+    - [Chocolatey](https://chocolatey.org/packages/wormies-au-helpers/{milestone})
+    - [PowerShell Gallery](https://www.powershellgallery.com/packages/{repository}/{milestone})
+    - [GitHub Releases](https://github.com/{owner}/{repository}/releases/tag/{milestone})
 issue-labels-include:
   - Bug
   - Feature
