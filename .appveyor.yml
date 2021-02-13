@@ -16,6 +16,8 @@ install:
   - ps: Get-Module Pester -ListAvailable | select -First 1 | % { $_.Version.ToString() }
 build_script:
   - ps: |
+      $VerbosePreference = 'Continue'
+      $InformationPreference = 'Continue'
       .\build -BuildDocs
 test_script:
   - ps: |
