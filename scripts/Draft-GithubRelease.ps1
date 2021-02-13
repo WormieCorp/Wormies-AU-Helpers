@@ -5,12 +5,11 @@
     [switch]$preRelease
 )
 
+$useDotnet = $false
 $gitReleaseManager = Get-Command "gitreleasemanager.exe" -ErrorAction Ignore | ForEach-Object Source
 if (!$gitReleaseManager) {
-    $gitReleaseManager = Get-Command "dotnet-gitreleasemanager" | ForEach-Object Source
-    if (!$gitreleasemanager) {
-        throw "git release manager executable was not found"
-    }
+    $gitReleaseManager = "gitreleasemanager"
+    $useDotnet = $true
 }
 
 $cmd = "'$gitReleaseManager' create -c master -m '$version' -n '$version Release' -u '$user' -p '$token'"
@@ -27,4 +26,10 @@ if ($preRelease) {
 else {
     "Drafting $version release for $repoName"
 }
-"& $cmd" | Invoke-Expression
+
+if ($useDotnet) {
+    "& dotnet $cmd" | Invoke-Expression
+}
+else {
+    "& $cmd" | Invoke-Expression
+}

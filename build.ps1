@@ -48,17 +48,22 @@ function BuildChocolateyPackage {
 if ($Clean) { git clean -Xfd -e vars.ps1; return }
 if (!$Version) {
     Write-Verbose "Finding installed GitVersion executable"
+    $useDotnet = $false
     $gitversion = Get-Command "GitVersion" -ea 0 | ForEach-Object Source
     if (!$gitversion) {
-        $gitversion = Get-Command "dotnet-gitversion" | ForEach-Object Source
+        # We will blindly call dotnet gitversion in this case
+        $gitversion = "gitversion"
+        $useDotnet = $true
     }
 
+    $cmd = if ($useDotnet) { ". dotnet" } else { "." }
+
     if ($env:APPVEYOR -eq $true) {
-        $cmd = ". '$gitVersion' /output buildserver"
+        $cmd = "$cmd '$gitVersion' /output buildserver"
         Write-Information "Running $cmd"
         $cmd | Invoke-Expression
     }
-    $cmd = ". '$gitVersion' /output json /showvariable NuGetVersionV2"
+    $cmd = "$cmd '$gitVersion' /output json /showvariable NuGetVersionV2"
     Write-Verbose "Running $cmd"
     Write-Information "Calculating version using gitversion"
     $Version = $cmd | Invoke-Expression

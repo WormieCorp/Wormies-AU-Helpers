@@ -7,12 +7,11 @@
 
 $ErrorActionPreference = 'Stop'
 
+$useDotnet = $false
 $gitReleaseManager = Get-Command "gitreleasemanager.exe" -ErrorAction Ignore | ForEach-Object Source
 if (!$gitReleaseManager) {
-    $gitReleaseManager = Get-Command "dotnet-gitreleasemanager" | ForEach-Object Source
-    if (!$gitReleaseManager) {
-        throw "git release manager executable was not found"
-    }
+    $gitReleaseManager = "gitreleasemanager"
+    $useDotnet = $true
 }
 
 $args = "-t '$version' --token '$token'"
@@ -26,16 +25,17 @@ $assets = Get-ChildItem $PSScriptRoot/../.build -Include "*.7z", "*.nupkg" -Recu
 "Uploading the followings assets to $repoName for version $version"
 $assets | ForEach-Object { "  - " + (Split-Path -Leaf $_) }
 
-"& '$gitReleaseManager' addasset $args --assets $assets" | Invoke-Expression
+$cmd = if ($useDotnet) { "& dotnet" } else { "&" }
+"$cmd '$gitReleaseManager' addasset $args --assets $assets" | Invoke-Expression
 
 if ($publishRelease) {
     $args = $args -replace '\-t', '-m'
     "Closing $version milestone"
-    "& '$gitReleaseManager' close $args" | Invoke-Expression
+    "$cmd '$gitReleaseManager' close $args" | Invoke-Expression
     $args = $args -replace '\-m', '-t'
     "Publishing $version release"
-    "& '$gitReleaseManager' publish $args" | Invoke-Expression
+    "$cmd '$gitReleaseManager' publish $args" | Invoke-Expression
 }
 
 "Exporting Release Notes..."
-"& '$gitReleaseManager' export $args --fileOutputPath '$PSScriptRoot\..\chocolatey\CHANGELOG.md'" | Invoke-Expression
+"$cmd '$gitReleaseManager' export $args --fileOutputPath '$PSScriptRoot\..\chocolatey\CHANGELOG.md'" | Invoke-Expression
