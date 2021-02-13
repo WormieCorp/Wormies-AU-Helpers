@@ -50,9 +50,9 @@ if (!$Version) {
     $cmd = ". dotnet gitversion"
 
     if ($env:APPVEYOR -eq $true) {
-        $cmd = "$cmd /output buildserver"
+        $buildCmd = "$cmd /output buildserver"
         Write-Information "Running $cmd"
-        $cmd | Invoke-Expression
+        $buildCmd | Invoke-Expression
     }
 
     if (!(Test-Path Env\GitVersion_NuGetPreReleaseTagV2)) {
