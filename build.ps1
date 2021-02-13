@@ -13,7 +13,7 @@ function init {
         Remove-Item -Recurse (Split-path $buildDir) -ea Ignore
     }
 
-    mkdir -Force $buildDir | Out-Null
+    New-Item -ItemType Directory -Force $buildDir | Out-Null
     Copy-Item -Recurse $modulePath $buildDir
 }
 
@@ -31,7 +31,7 @@ function ZipModule {
     "Creating 7z package"
 
     $zipPath = "$buildDir/${moduleName}_$version.7z"
-    $exec = Get-Command "7z.exe" -ErrorAction Ignore | ForEach-Object Source
+    $exec = Get-Command "7z" -ErrorAction Ignore | ForEach-Object Source
     if (!$exec) { $exec = "$Env:ChocolateyInstall/tools/7z.exe" }
 
     "& '$exec' a -m0=lzma2 -mx=9 '$zipPath' '$modulePath' '$installerPath'" | Invoke-Expression

@@ -76,7 +76,7 @@ function GenerateParameterTable {
     }
 }
 
-if (!(Test-Path $OutputFolderPath)) { mkdir -Path $OutputFolderPath }
+if (!(Test-Path $OutputFolderPath)) { New-Item -ItemType Directory -Path $OutputFolderPath }
 $OutputFolderPath = Resolve-Path $OutputFolderPath
 
 $arrParameterProperties = @(
@@ -148,7 +148,7 @@ $b = {
             ":::{.alert .alert-warning}`r`n**Preliminary Notice**`r`n`r`nThis function has not yet been made available. It is a planned function for the next minor version.`r`n:::" | Out-File -FilePath $outputFile -Append
         }
         else {
-            [version]$tag = $tagsWithCommands.GetEnumerator() | Where-Object { $_.Value | Where-Object { $_ -eq $singleFunction }} | ForEach-Object { $_.Key } | Sort-Object | Select-Object -First 1
+            [version]$tag = $tagsWithCommands.GetEnumerator() | Where-Object { $_.Value | Where-Object { $_ -eq $singleFunction } } | ForEach-Object { $_.Key } | Sort-Object | Select-Object -First 1
 
             ":::{.alert .alert-info}`r`nThis function was introduced in version [**$tag**](https://github.com/WormieCorp/Wormies-AU-Helpers/releases/tag/$tag).`r`n:::" | Out-File -FilePath $outputFile -Append
         }
@@ -163,7 +163,7 @@ $b = {
         if ($functionHelp.Syntax) {
             '## Syntax' | Out-File -FilePath $outputFile -Append
 
-            $functionHelp.Syntax.syntaxItem | ForEach-Object { "``````PowerShell`r`n" + (GenerateSyntax -syntax $_ -commonParameters $commonParameters) + "`r`n```````r`n"} | Out-File -FilePath $outputFile -Append
+            $functionHelp.Syntax.syntaxItem | ForEach-Object { "``````PowerShell`r`n" + (GenerateSyntax -syntax $_ -commonParameters $commonParameters) + "`r`n```````r`n" } | Out-File -FilePath $outputFile -Append
         }
 
         # Add Description
