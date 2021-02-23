@@ -66,7 +66,7 @@ function Update-Metadata {
         [Parameter(Mandatory = $true, ParameterSetName = "Single")]
         [string]$value,
         [Parameter(Mandatory = $true, ParameterSetName = "Multiple", ValueFromPipeline = $true)]
-        [hashtable]$data = @{$key = $value},
+        [hashtable]$data = @{ $key = $value },
         [ValidateScript( { Test-Path $_ })]
         [SupportsWildcards()]
         [string]$NuspecFile = ".\*.nuspec"
@@ -84,44 +84,46 @@ function Update-Metadata {
             '^(file)$' {
                 $metaData = "files"
                 $NodeGroup = $nu.package.$metaData
-                $NodeData,[int]$change = $data[$_] -split (",")
+                $NodeData, [int]$change = $data[$_] -split (",")
                 $NodeCount = $nu.package.$metaData.ChildNodes.Count
-                $src,$target,$exclude = $NodeData -split ("\|")
+                $src, $target, $exclude = $NodeData -split ("\|")
                 $NodeAttributes = [ordered] @{
-                                              "src"     = $src
-                                              "target"  = $target
-                                              "exclude" = $exclude
-                                            }
-                $change = @{$true="0";$false=($change - 1)}[ ([string]::IsNullOrEmpty($change)) ]
+                    "src"     = $src
+                    "target"  = $target
+                    "exclude" = $exclude
+                }
+                $change = @{$true = "0"; $false = ($change - 1) }[ ([string]::IsNullOrEmpty($change)) ]
                 if ($NodeCount -eq 3) {
                     $NodeGroup = $NodeGroup."$_"
-                } else {
+                }
+                else {
                     $NodeGroup = $NodeGroup.$_[$change]
                 }
             }
             '^(dependency)$' {
-                $MetaNode = $_ -replace("y","ies")
+                $MetaNode = $_ -replace ("y", "ies")
                 $metaData = "metadata"
-                $NodeData,[int]$change = $data[$_] -split (",")
+                $NodeData, [int]$change = $data[$_] -split (",")
                 $NodeGroup = $nu.package.$metaData.$MetaNode
                 $NodeCount = $nu.package.$metaData.$MetaNode.ChildNodes.Count
-                $id,$version,$include,$exclude = $NodeData -split ("\|")
+                $id, $version, $include, $exclude = $NodeData -split ("\|")
                 $NodeAttributes = [ordered] @{
-                                             "id"      = $id
-                                             "version" = $version
-                                             "include" = $include
-                                             "exclude" = $exclude
-                                            }
-                $change = @{$true="0";$false=($change - 1)}[ ([string]::IsNullOrEmpty($change)) ]
+                    "id"      = $id
+                    "version" = $version
+                    "include" = $include
+                    "exclude" = $exclude
+                }
+                $change = @{$true = "0"; $false = ($change - 1) }[ ([string]::IsNullOrEmpty($change)) ]
                 if ($NodeCount -eq 3) {
                     $NodeGroup = $NodeGroup."$_"
-                } else {
+                }
+                else {
                     $NodeGroup = $NodeGroup.$_[$change]
                 }
             }
             default {
                 if ( $nu.package.metadata."$_" ) {
-                    $nu.package.metadata."$_" = $data[$_]
+                    $nu.package.metadata."$_" = [string]$data[$_]
                 }
                 else {
                     Write-Warning "$_ does not exist on the metadata element in the nuspec file"
@@ -139,12 +141,13 @@ function Update-Metadata {
                 if (!([string]::IsNullOrEmpty($NodeAttributes[$attrib])) ) {
                     if (![string]::IsNullOrEmpty( $NodeGroup.Attributes ) ) {
                         $NodeGroup.SetAttribute($attrib, $NodeAttributes[$attrib] )
-                    } else { 
+                    }
+                    else {
                         Write-Warning "Attribute $attrib not defined for $_ in the nuspec file"
                     }
                 }
             }
-        } 
+        }
     }
 
     $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
