@@ -43,7 +43,7 @@ function Get-FileEncoding {
 }
 
 Describe "Update-Metadata Test With Attributes" {
-    $nuspecFile = "$PSScriptRoot\test.nuspec"
+    $nuspecFile = Join-Path "$PSScriptRoot" "test.nuspec"
     BeforeEach {
         $xml = @'
 <?xml version="1.0" encoding="utf-8"?>
@@ -53,6 +53,7 @@ Describe "Update-Metadata Test With Attributes" {
         <id>ValidNuspec</id>
         <title>Valid Test Nuspec</title>
         <version>1.0.3</version>
+        <releaseNotes>https://something.com</releaseNotes>
         <dependencies>
           <dependency id="" />
         </dependencies>
@@ -101,7 +102,7 @@ Describe "Update-Metadata Test With Attributes" {
     }
 
     It "Shows Warning when item doesn't exist" {
-        ( Update-Metadata -key "rlsNotes" -value "I'm the new item" -NuspecFile $nuspecFile 3>&1 ) -match "rlsNotes does not exist on the metadata element in the nuspec file" | Should Be $true        
+        ( Update-Metadata -key "rlsNotes" -value "I'm the new item" -NuspecFile $nuspecFile 3>&1 ) -match "rlsNotes does not exist on the metadata element in the nuspec file" | Should Be $true
     }
 
     It "Should update multiple values" {
@@ -119,6 +120,18 @@ Describe "Update-Metadata Test With Attributes" {
         Get-FileEncoding -Path $nuspecFile -DefaultEncoding $expectedEncoding | Should Be $expectedEncoding
     }
 
+    It "Should update metadata when passed a uri string" {
+        [uri]$url = "https://chocolatey.org"
+        Update-Metadata -key "releaseNotes" -value $url -NuspecFile $nuspecFile
+        $nuspecFile | Should -FileContentMatchExactly "\<releaseNotes\>https://chocolatey.org\/\<\/releaseNotes\>"
+    }
+
+    It "Should update metadata when passed a uri in data hashtable" {
+        [uri]$url = "https://chocolatey.org/path"
+        Update-Metadata -data @{ releaseNotes = $url } -NuspecFile $nuspecFile
+        $nuspecFile | Should -FileContentMatchExactly "\<releaseNotes\>https://chocolatey.org\/path\<\/releaseNotes\>"
+    }
+
     It "Shows Warning when dependency 2 is not present in the nuspec file" {
         ( Update-Metadata -data @{ dependency = 'kb2020813|0.20.8.13,2' } -NuspecFile $nuspecFile 3>&1 ) -match "Change has been omitted due to dependency not having that number of Nodes" | Should Be $true
         $nuspecFile | Should -FileContentMatchExactly "\<dependency id=`"kb2020813`" version=`"|0.20.8.13`" \/\>"
@@ -134,7 +147,7 @@ Describe "Update-Metadata Test With Attributes" {
 }
 
 Describe "Update-Metadata Test Multiple File/Dependency Keys" {
-    $nuspecFile = "$PSScriptRoot\test.nuspec"
+    $nuspecFile = Join-Path "$PSScriptRoot" "test.nuspec"
     BeforeEach {
         $xml = @'
 <?xml version="1.0" encoding="utf-8"?>
@@ -186,12 +199,12 @@ Describe "Update-Metadata Test Multiple File/Dependency Keys" {
     }
 
     It "Testing for changing only exclude attribute of second dependency key" {
-        Update-Metadata -data @{ dependency = '|||second exclude,2' } -NuspecFile $nuspecFile 
+        Update-Metadata -data @{ dependency = '|||second exclude,2' } -NuspecFile $nuspecFile
         $nuspecFile | Should -FileContentMatchExactly "\<dependency exclude=`"second exclude`" \/\>"
     }
 
     It "Testing for changing only id attribute of first dependency key" {
-        Update-Metadata -data @{ dependency = 'first identity,1' } -NuspecFile $nuspecFile 
+        Update-Metadata -data @{ dependency = 'first identity,1' } -NuspecFile $nuspecFile
         $nuspecFile | Should -FileContentMatchExactly "\<dependency id=`"first identity`" \/\>"
     }
 
@@ -203,21 +216,21 @@ Describe "Update-Metadata Test Multiple File/Dependency Keys" {
     }
 
     It "Testing for changing only exclude attribute of second dependency and target attribute of first file key" {
-        Update-Metadata -data @{ dependency = '|||second exclude,2' } -NuspecFile $nuspecFile 
+        Update-Metadata -data @{ dependency = '|||second exclude,2' } -NuspecFile $nuspecFile
         $nuspecFile | Should -FileContentMatchExactly "\<dependency exclude=`"second exclude`" \/\>"
         Update-Metadata -data @{ file = '|new target,1' } -NuspecFile $nuspecFile
         $nuspecFile | Should -FileContentMatchExactly "\<file target=`"new target`" \/\>"
     }
 
     It "Testing for changing all attributes of second dependency and first file key" {
-        Update-Metadata -data @{ dependency = 'ident|versions|includes|second exclude,2' } -NuspecFile $nuspecFile 
+        Update-Metadata -data @{ dependency = 'ident|versions|includes|second exclude,2' } -NuspecFile $nuspecFile
         $nuspecFile | Should -FileContentMatchExactly "\<dependency exclude=`"second exclude`" id=`"ident`" version=`"versions`" include=`"includes`" \/\>"
         Update-Metadata -data @{ file = 'sources|new target|excludes,1' } -NuspecFile $nuspecFile
         $nuspecFile | Should -FileContentMatchExactly "\<file target=`"new target`" src=`"sources`" exclude=`"excludes`" \/\>"
     }
 
     It "Testing for changing all attributes except exclude of second dependency and target of first file key" {
-        Update-Metadata -data @{ dependency = 'ident|versions|includes,2' } -NuspecFile $nuspecFile 
+        Update-Metadata -data @{ dependency = 'ident|versions|includes,2' } -NuspecFile $nuspecFile
         $nuspecFile | Should -FileContentMatchExactly "\<dependency exclude=`"exclude`" id=`"ident`" version=`"versions`" include=`"includes`" \/\>"
         Update-Metadata -data @{ file = 'sources||excludes,1' } -NuspecFile $nuspecFile
         $nuspecFile | Should -FileContentMatchExactly "\<file target=`"target`" src=`"sources`" exclude=`"excludes`" \/\>"
@@ -226,7 +239,7 @@ Describe "Update-Metadata Test Multiple File/Dependency Keys" {
 }
 
 Describe "Update-Metadata Test No Attributes Defined in File/Dependency Keys" {
-    $nuspecFile = "$PSScriptRoot\test.nuspec"
+    $nuspecFile = Join-Path "$PSScriptRoot" "test.nuspec"
     BeforeEach {
         $xml = @'
 <?xml version="1.0" encoding="utf-8"?>
