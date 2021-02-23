@@ -206,8 +206,11 @@ $b = {
 
         "## Inputs" | Out-File -FilePath $outputFile -Append
 
-        if ($functionHelp.input) {
-            $functionHelp.input + "`r`n" | Out-File -FilePath $outputFile -Append
+        if ($functionHelp.inputs) {
+            $functionHelp.inputs + "`r`n" | Out-File -FilePath $outputFile -Append
+        }
+        elseif ($functionHelp.inputTypes) {
+            $functionHelp.inputTypes.inputType.type.name + "`r`n" | Out-File -FilePath $outputFile -Append
         }
         else {
             "None`r`n" | Out-File -FilePath $outputFile -Append
