@@ -1,4 +1,4 @@
-#load "nuget:?package=Cake.Wyam.Recipe&version=0.8.0"
+#load "nuget:?package=Cake.Wyam.Recipe&version=2.0.1"
 
 Environment.SetVariableNames(
     githubPasswordVariable: "GITHUB_TOKEN",
