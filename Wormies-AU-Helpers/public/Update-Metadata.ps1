@@ -124,7 +124,7 @@ function Update-Metadata {
                     $nu.package.metadata."$_" = $data[$_]
                 }
                 else {
-                    Write-Warning "$_ does not exist on the metadata element in the nuspec file"
+                    Write-Warning "$_ does not exist on the metadata element in the nuspec file ($NuspecFile)"
                 }
             }
         }
@@ -140,7 +140,7 @@ function Update-Metadata {
                     if (![string]::IsNullOrEmpty( $NodeGroup.Attributes ) ) {
                         $NodeGroup.SetAttribute($attrib, $NodeAttributes[$attrib] )
                     } else { 
-                        Write-Warning "Attribute $attrib not defined for $_ in the nuspec file"
+                        Write-Warning "Attribute $attrib not defined for $_ in the nuspec file ($NuspecFile)"
                     }
                 }
             }
